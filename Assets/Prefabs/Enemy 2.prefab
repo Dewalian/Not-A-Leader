@@ -99,11 +99,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca75fd570011d354a9ce46ecdd005afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
-  health: 250
-  attackRange: 1.5
+  moveSpeed: 1
+  health: 100
+  attackRange: 0.5
   attackDamage: 50
-  attackCD: 1.5
+  attackCD: 1
+  agent: {fileID: 0}
   playerLayer:
     serializedVersion: 2
     m_Bits: 128

@@ -3,30 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : Unit
 {
-    [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float health = 100f;
-    [SerializeField] private float attackRange = 1f;
-    [SerializeField] private float attackDamage = 50f;
-    [SerializeField] private float attackCD = 1.5f;
     [SerializeField] private LayerMask playerLayer;
-    
-    private bool canAttack = true;
-    private Transform target;
+    private float moveSpeedCopy;
+    private Transform wayPoint;
+    private int wayPointIndex = 0;
     private List<GameObject> unitsToFight = new List<GameObject>();
-    private int movePointIndex = 0;
-    // private int index = 0;
-    public enum State{
-        Walking,
-        Fighting
-    };
     public State enemyState;
 
-    void Update()
+    protected override void Start()
     {
-        if(enemyState == State.Walking){
-            moveSpeed = 5f;
+        moveSpeedCopy = moveSpeed;
+    }
+
+    private void Update()
+    {
+        if(enemyState == State.Neutral){
+            moveSpeed = moveSpeedCopy;
         }else if(enemyState == State.Fighting){
             moveSpeed = 0f;
             if(unitsToFight.Count > 0 && Vector2.Distance(transform.position, unitsToFight[0].transform.position) <= attackRange){
@@ -35,11 +29,13 @@ public class Enemy : MonoBehaviour
         }
 
         if(unitsToFight.Count == 0){
-            enemyState = State.Walking;
+            enemyState = State.Neutral;
+        }else{
+            enemyState = State.Fighting;
         }
 
-        target = LevelManager.instance.movePoint[movePointIndex];
-        MoveToMovePoint();
+        wayPoint = LevelManager.instance.wayPoint[wayPointIndex];
+        MoveToWayPoint();
         ChangeTargetPos();
 
         if(health <= 0){
@@ -47,43 +43,44 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void ChangeTargetPos(){
-        if(Vector2.Distance(target.position, transform.position) <= 0.1f){
-            movePointIndex++;
-            if(movePointIndex == LevelManager.instance.movePoint.Length){
+    private void ChangeTargetPos()
+    {
+        if(Vector2.Distance(wayPoint.position, transform.position) <= 0.1f){
+            wayPointIndex++;
+            if(wayPointIndex == LevelManager.instance.wayPoint.Length){
                 Destroy(gameObject);
             }else{
-                target = LevelManager.instance.movePoint[movePointIndex];
+                wayPoint = LevelManager.instance.wayPoint[wayPointIndex];
             }
         }
     }
 
-    void MoveToMovePoint(){
-        transform.position = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
+    private void MoveToWayPoint()
+    {
+        transform.position = Vector2.MoveTowards(transform.position, wayPoint.position, moveSpeed * Time.deltaTime);
     }
 
-    IEnumerator AttackUnit(GameObject unitToFight){
-        if(canAttack){
-            canAttack = false;
-            unitToFight.GetComponent<Unit>().TakeDamage(attackDamage);
-            yield return new WaitForSeconds(attackCD);
-            canAttack = true;
+    public void AddUnitToFightArr(GameObject unitToFight)
+    {
+        unitsToFight.Add(unitToFight);
+    }
+
+    public void RemoveUnitFromFightArr(GameObject unitToFight)
+    {
+        unitsToFight.Remove(unitToFight);
+    }
+
+    public Vector2 GetBulletPos(float bulletDuration)
+    {
+        float bulletCalc = bulletDuration * moveSpeed;
+
+        Vector2 enemyDir = (wayPoint.position - transform.position).normalized;
+        Vector2 nextWaypointDir = (LevelManager.instance.wayPoint[wayPointIndex + 1].position - LevelManager.instance.wayPoint[wayPointIndex].position).normalized;
+
+        if(Vector2.Distance(transform.position, wayPoint.position) <= bulletCalc){
+            float remainingDistance = bulletCalc - Vector2.Distance(transform.position, wayPoint.position);
+            return (nextWaypointDir * remainingDistance) + (enemyDir * (bulletCalc - remainingDistance));
         }
-    }
-
-    public void TakeDamage(float damage){
-        health -= damage;
-    }
-
-    public void ChangeStateToFighting(){
-        enemyState = State.Fighting;
-    }
-
-    public void AddUnitToFightArr(GameObject unitToFight){
-        this.unitsToFight.Add(unitToFight);
-    }
-
-    public void RemoveUnitToFightArr(GameObject unitToFight){
-        this.unitsToFight.Remove(unitToFight);
+        return enemyDir * bulletCalc;
     }
 }

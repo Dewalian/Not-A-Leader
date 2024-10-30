@@ -1,116 +1,49 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class Unit : MonoBehaviour
+public abstract class Unit : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 1f;
-    [SerializeField] private float health = 100f;
-    [SerializeField] private float attackDamage = 15f;
-    [SerializeField] private float attackRange = 1f;
-    [SerializeField] private float attackCD = 1.5f;
-    [SerializeField] private float respawnTime = 3f;
-    [SerializeField] private GameObject barrackPos;
-    private Vector2 startingPos;
-    private bool canAttack = true;
-    private Collider2D enemyToAggro;
-    private Enemy enemyScript;
-    private Collider2D unitInRange;
-    private bool addedToFightList = false;
+    [SerializeField] protected float moveSpeed;
+    [SerializeField] protected float health;
+    [SerializeField] protected float attackRange;
+    [SerializeField] protected float attackDamage;
+    [SerializeField] protected float attackCD;
+    [SerializeField] protected NavMeshAgent agent;
+    protected bool canAttack = true;
     public enum State{
-        Standing,
-        Aggroing,
+        Neutral,
+        Aggro,
         Fighting
     };
-    public State unitState;
 
-    void Start()
+    protected virtual void Start()
     {
-        startingPos = transform.position;
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+        agent.speed = moveSpeed;
     }
 
-    void Update()
+    protected virtual void Death()
     {
-        if(unitState == State.Standing){
-            enemyToAggro = unitInRange;
-            if(enemyToAggro){
-                enemyScript = enemyToAggro.GetComponent<Enemy>();
-            }
-        }if(unitState == State.Fighting){
-            StartCoroutine(AttackEnemy());
-        }
+        Destroy(gameObject);
+    }
 
-        if(enemyToAggro && unitState != State.Fighting){
-            unitState = State.Aggroing;
-            StartCoroutine(ToAggro());
-        }else if(!enemyToAggro){
-            unitState = State.Standing;
-        }
-
-        if(enemyToAggro == null){
-            MoveToStartPosition();
-        }
-
+    public virtual void TakeDamage(float attackDamage){
+        health -= attackDamage;
         if(health <= 0){
             Death();
-            StartCoroutine(Respawn());
         }
     }
 
-    IEnumerator ToAggro(){
-        enemyScript.ChangeStateToFighting();
-        AddToFightList();
-        if(Vector2.Distance(transform.position, enemyToAggro.transform.position) >= attackRange){
-            transform.position = Vector2.MoveTowards(transform.position, enemyToAggro.transform.position, moveSpeed * Time.deltaTime);
-        }
-        yield return new WaitUntil(() => Vector2.Distance(transform.position, enemyToAggro.transform.position) <= attackRange);
-        unitState = State.Fighting;
-    }
-
-    IEnumerator AttackEnemy(){
-        if(canAttack){
+    public IEnumerator AttackUnit(GameObject unitToFight)
+    {
+        if(canAttack && unitToFight != null){
             canAttack = false;
-            enemyScript.TakeDamage(attackDamage);
+            unitToFight.GetComponent<Unit>().TakeDamage(attackDamage);
             yield return new WaitForSeconds(attackCD);
             canAttack = true;
         }
-    }
-
-    IEnumerator Respawn(){
-        yield return new WaitForSeconds(respawnTime);
-        health = 100f;
-        unitState = State.Standing;
-    }
-
-    void Death(){
-        if(enemyToAggro){
-            RemoveFromFightList();
-        }
-        transform.position = barrackPos.transform.position;
-    }
-
-    void AddToFightList(){
-        if(!addedToFightList){
-            enemyScript.AddUnitToFightArr(gameObject);
-            addedToFightList = true;
-        }
-    }
-
-    void RemoveFromFightList(){
-        enemyScript.RemoveUnitToFightArr(gameObject);
-        addedToFightList = false;
-    }
-
-    public void MoveToStartPosition(){
-        transform.position = Vector2.MoveTowards(transform.position, startingPos, moveSpeed * Time.deltaTime);
-    }
-
-    public void TakeDamage(float damage){
-        health -= damage;
-    }
-
-    public void EnemyToAggro(Collider2D unitInRange){
-        this.unitInRange = unitInRange;
     }
 }

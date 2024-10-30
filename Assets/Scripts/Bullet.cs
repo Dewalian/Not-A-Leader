@@ -2,34 +2,60 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public abstract class Bullet : MonoBehaviour
 {
-    [SerializeField] private float bulletSpeed = 10f;
-    [SerializeField] private float damage = 50f;
-    [SerializeField] private Transform target;
+    [SerializeField] private AnimationCurve trajectoryCurve;
+    [SerializeField] private float maxHeight;
+    [SerializeField] private Transform bullet;
+    [SerializeField] private Transform bulletShadow;
+    private Transform startPosBullet;
+    private Transform startPosBulletShadow;
+    private Transform target;
+    private Vector2 endPos;
+    private float duration;
+    protected float damage;
 
-    void Update()
+    private void Start()
     {
-        FollowTarget();
+        endPos = (Vector2)target.position + target.GetComponent<Enemy>().GetBulletPos(duration);
     }
 
-    public void SetTarget(Transform target){
+    private void Update()
+    {
+        StartCoroutine(Lob());
+    }
+
+    private IEnumerator Lob(){
+        float timePassed = 0;
+
+        while(timePassed < duration)
+        {
+            timePassed += Time.deltaTime;
+            
+            float durationNorm = timePassed / duration;
+            float height = Mathf.Lerp(0, maxHeight, trajectoryCurve.Evaluate(durationNorm));
+
+            bullet.position = Vector2.Lerp(startPosBullet.position, endPos, durationNorm) + new Vector2(0, height);
+            bulletShadow.position = Vector2.Lerp(startPosBulletShadow.position, endPos, durationNorm);
+
+            yield return null;
+        }
+
+        DamageEnemy();
+        Destroy(gameObject);
+    }
+
+    protected virtual void DamageEnemy()
+    {
+        target.GetComponent<Enemy>().TakeDamage(damage);
+    }
+
+    public void InitVariables(Transform target, Transform startPosBullet, Transform startPosBulletShadow, float damage, float duration)
+    {
         this.target = target;
-    }
-
-    void FollowTarget(){
-        if(target != null){
-            transform.position = Vector2.MoveTowards(transform.position, target.position, bulletSpeed * Time.deltaTime);
-        }else{
-            Destroy(gameObject);
-        }
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if(other.CompareTag("Enemy")){
-            other.GetComponent<Enemy>().TakeDamage(damage);
-            Destroy(gameObject);
-        }
+        this.startPosBullet = startPosBullet;
+        this.startPosBulletShadow = startPosBulletShadow;
+        this.damage = damage;
+        this.duration = duration;
     }
 }

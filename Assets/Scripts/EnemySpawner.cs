@@ -16,7 +16,6 @@ public class EnemySpawner : MonoBehaviour
         public GameObject[] enemies;
         public float spawnCD;
     }
-
     [SerializeField] private List<Wave> waves;
     private int waveIndex;
 

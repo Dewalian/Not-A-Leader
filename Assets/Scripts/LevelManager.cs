@@ -6,7 +6,7 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance = null;
-    public Transform[] movePoint;
+    public Transform[] wayPoint;
     public bool waveStart = true;
 
     

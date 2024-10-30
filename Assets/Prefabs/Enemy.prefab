@@ -99,12 +99,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca75fd570011d354a9ce46ecdd005afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 0.5
   health: 100
   attackRange: 1.5
+  attackDamage: 0
+  attackCD: 0
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
+  enemyState: 0
 --- !u!58 &162305304421753872
 CircleCollider2D:
   m_ObjectHideFlags: 0
