@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - Bullet
+  - Portal
+  - Tower
   layers:
   - Default
   - TransparentFX
@@ -15,12 +17,12 @@ TagManager:
   - UI
   - Enemy
   - Player
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Click
+  - Ally
+  - Swift Enemy
+  - Path
+  - Terrain
+  - Object
   - 
   - 
   - 
@@ -43,12 +45,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Enemy
+  - name: Terrain
+    uniqueID: 2807954099
+    locked: 0
+  - name: Object
+    uniqueID: 4138867485
+    locked: 0
+  - name: Unit
     uniqueID: 2153339559
     locked: 0
-  - name: Tower
+  - name: Projectile
     uniqueID: 1137524345
     locked: 0
-  - name: Tower2
+  - name: Tower
     uniqueID: 265255141
+    locked: 0
+  - name: UI
+    uniqueID: 1576263433
     locked: 0

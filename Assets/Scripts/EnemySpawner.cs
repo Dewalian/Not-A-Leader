@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    private WaveManager waveManager;
+
     [Serializable]
     public struct Wave{
         public MiniWave[] miniWave;
@@ -17,27 +19,50 @@ public class EnemySpawner : MonoBehaviour
         public float spawnCD;
     }
     [SerializeField] private List<Wave> waves;
-    private int waveIndex;
+    public Transform[] wayPoint;
+    
 
-    void Update()
+    private void Start()
     {
-        if(LevelManager.instance.waveStart){
+        waveManager = GetComponentInParent<WaveManager>();
+    }
+
+    private void Update()
+    {
+        if(waveManager.waveStart){
+            CalcWaveDuration();
             StartCoroutine(SpawnMiniWave());
         }
     }
 
-    IEnumerator SpawnMiniWave(){
-        LevelManager.instance.waveStart = false;
-        foreach(MiniWave e in waves[waveIndex].miniWave){
-            StartCoroutine(SpawnEnemies(e));
-            yield return new WaitForSeconds(waves[waveIndex].spawnCD);
+    private void CalcWaveDuration()
+    {
+        float waveDuration = 0;
+        Wave currentWave = waves[waveManager.waveCount];
+
+        waveDuration += currentWave.spawnCD;
+        foreach(MiniWave mw in currentWave.miniWave){
+            waveDuration += mw.spawnCD;
+        }
+
+        waveManager.SetWaveDuration(waveDuration);
+    }
+
+    private IEnumerator SpawnMiniWave()
+    {
+        waveManager.waveStart = false;
+        foreach(MiniWave mw in waves[waveManager.waveCount].miniWave){
+            StartCoroutine(SpawnEnemies(mw));
+            yield return new WaitForSeconds(waves[waveManager.waveCount].spawnCD);
         }
     }
 
-    IEnumerator SpawnEnemies(MiniWave mw){
-        foreach(GameObject e in mw.enemies){
-            Instantiate(e, transform.position, Quaternion.identity);
-            yield return new WaitForSeconds(mw.spawnCD);
+    private IEnumerator SpawnEnemies(MiniWave miniWave)
+    {
+        foreach(GameObject e in miniWave.enemies){
+            GameObject enemyObj = Instantiate(e, wayPoint[0].position, Quaternion.identity);
+            enemyObj.transform.SetParent(gameObject.transform);
+            yield return new WaitForSeconds(miniWave.spawnCD);
         }
     }
 }
