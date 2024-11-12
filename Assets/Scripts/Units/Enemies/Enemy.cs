@@ -5,15 +5,13 @@ using UnityEngine;
 
 public class Enemy : Unit
 {
-    [SerializeField] private LayerMask playerLayer;
-    private Transform wayPoint;
-    private List<GameObject> unitsToFight = new List<GameObject>();
-    private float moveSpeedCopy;
+    protected Transform wayPoint;
+    protected List<GameObject> unitsToFight = new List<GameObject>();
     protected EnemySpawner enemySpawner;
     protected int wayPointIndex = 0;
     public State enemyState;
 
-    protected virtual void Start()
+    protected override void Start()
     {
         enemySpawner = GetComponentInParent<EnemySpawner>();
         moveSpeedCopy = moveSpeed;
@@ -38,6 +36,7 @@ public class Enemy : Unit
                 Destroy(gameObject);
             }else{
                 wayPoint = enemySpawner.wayPoint[wayPointIndex];
+                FlipDirection(wayPoint.position);
             }
         }
     }
@@ -54,7 +53,8 @@ public class Enemy : Unit
             moveSpeed = moveSpeedCopy;
         }else if(enemyState == State.Fighting){
             moveSpeed = 0;
-            if(unitsToFight.Count > 0 && Vector2.Distance(transform.position, unitsToFight[0].transform.position) <= attackRange){
+            if(unitsToFight != null && 
+            unitsToFight.Count > 0 && Vector2.Distance(transform.position, unitsToFight[0].transform.position) <= attackRange){
                 StartCoroutine(AttackUnit(unitsToFight[0]));
             }
         }
@@ -69,6 +69,7 @@ public class Enemy : Unit
     public void AddUnitToFightArr(GameObject unitToFight)
     {
         unitsToFight.Add(unitToFight);
+        FlipDirection(unitToFight.transform.position);
     }
 
     public void RemoveUnitFromFightArr(GameObject unitToFight)

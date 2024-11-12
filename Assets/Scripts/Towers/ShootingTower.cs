@@ -9,6 +9,7 @@ public class ShootingTower : Tower
     [SerializeField] private Transform firingPoint;
     [SerializeField] private Transform shadowPoint;
     [SerializeField] private GameObject bullet;
+
     [Serializable]
     private struct Stats{
         public float attackRange;
@@ -75,5 +76,10 @@ public class ShootingTower : Tower
         shootCD = stats[level].shootCD;
         bulletDamagePhysic = stats[level].bulletDamagePhysic;
         bulletDamageMagic = stats[level].bulletDamageMagic;
+    }
+
+    public void ChangeShootCD(float changeValue)
+    {
+        shootCD += changeValue;
     }
 }

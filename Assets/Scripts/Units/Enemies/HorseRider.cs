@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EHorseRider : Enemy
+public class HorseRider : Enemy
 {
     [SerializeField] private GameObject lancer;
 

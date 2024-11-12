@@ -21,33 +21,34 @@ public class AllyArea : MonoBehaviour
         DetectEnemy();
     }
 
-    protected void DetectEnemy()
+    private void DetectEnemy()
     {
         Collider2D[] enemies = Physics2D.OverlapCircleAll(area.transform.position, aggroArea, enemyLayer);
 
         if(enemies.Length > 0 && !isAreaMoving){
-            SetAllyTarget(enemies);
+            StartCoroutine(SetAllyTarget(enemies));
         }
     }
 
-    protected void SetAllyTarget(Collider2D[] enemies)
+    private IEnumerator SetAllyTarget(Collider2D[] enemies)
     {
         foreach(GameObject a in allies){
             Ally aScript = a.GetComponent<Ally>();
 
             if(a.activeSelf == true){
                 foreach(Collider2D e in enemies){
-                    if(e.GetComponent<Enemy>().enemyState == Unit.State.Neutral && aScript.isDuel == false){
+                    if(e != null && e.GetComponent<Enemy>().enemyState == Unit.State.Neutral && aScript.isDuel == false){
                         aScript.SetTarget(e.gameObject);
                         aScript.isDuel = true;
-                        return;
+                        yield break;
                     }
                 }
 
-                if(aScript.allyState == Unit.State.Neutral){
+                if(enemies[0] != null && aScript.allyState == Unit.State.Neutral){
                     aScript.SetTarget(enemies[0].gameObject);
                 }
             }
+            yield return null;
         }
     }
 
@@ -70,6 +71,12 @@ public class AllyArea : MonoBehaviour
             area.transform.position = targetPos;
 
             foreach(GameObject a in allies){
+                if(a.activeSelf == true){   
+                    StartCoroutine(a.GetComponent<Ally>().WalkToTarget(a.GetComponent<Ally>().originalPos.position));
+                }
+            }
+
+            foreach(GameObject a in allies){
                 if(a.activeSelf == true){
                     yield return new WaitUntil(() => Vector2.Distance(a.transform.position, a.GetComponent<Ally>().originalPos.position) < 0.1f);
                     break;
@@ -88,13 +95,4 @@ public class AllyArea : MonoBehaviour
     {
         OnMoveArea?.Invoke();
     }
-
-    // public void UpgradeAlly(float moveSpeed, float health, float attackRange, float damagePhysic, float damageMagic,
-    // float attackCD, float physicRes, float magicRes)
-    // {
-    //     foreach(GameObject a in allies){
-    //         Ally ally = a.GetComponent<Ally>();
-            
-    //     }
-    // }
 }

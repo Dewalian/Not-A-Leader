@@ -59,6 +59,9 @@ MonoBehaviour:
     m_Bits: 64
   respawnPos: {fileID: 665685237866578021}
   respawnCD: 8
+  OnMoveArea:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3918927366556408308
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,6 +265,10 @@ PrefabInstance:
       propertyPath: attackDamage
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 8241285278197710672, guid: fdda26540d5fa494a9f9f17ef90d1f25, type: 3}
+      propertyPath: attackDamagePhysic
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -353,6 +360,10 @@ PrefabInstance:
       propertyPath: attackDamage
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 8241285278197710672, guid: fdda26540d5fa494a9f9f17ef90d1f25, type: 3}
+      propertyPath: attackDamagePhysic
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -384,6 +395,10 @@ PrefabInstance:
       propertyPath: originalPos
       value: 
       objectReference: {fileID: 665685237866578021}
+    - target: {fileID: 1324738554479871351, guid: 4248f2236cc93604fa51a5df1b5e90df, type: 3}
+      propertyPath: attackDamagePhysic
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 2870560370481627931, guid: 4248f2236cc93604fa51a5df1b5e90df, type: 3}
       propertyPath: m_Radius
       value: 0.1

@@ -8,6 +8,7 @@ TagManager:
   - Bullet
   - Portal
   - Tower
+  - Ally
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Path
   - Terrain
   - Object
-  - 
+  - Tower
   - 
   - 
   - 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ERanged : Enemy
+public class EnemyRanged : Enemy
 {
     [SerializeField] private float rangedRange;
     [SerializeField] private float rangedDamagePhysic;

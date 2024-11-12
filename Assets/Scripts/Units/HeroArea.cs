@@ -25,7 +25,6 @@ public class HeroArea : AllyArea
         if(MouseManager.Instance.rightMouseClick == null){
             StopCoroutine(CheckPortal());
         }else if(MouseManager.Instance.rightMouseClick.CompareTag("Portal")){
-            Debug.Log("loh");
             Portal portal = MouseManager.Instance.rightMouseClick.GetComponent<Portal>();
             yield return new WaitForSeconds(2f);
             area.transform.position = portal.Teleport();
