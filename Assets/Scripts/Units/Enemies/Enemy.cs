@@ -98,6 +98,4 @@ public class Enemy : Unit
         this.wayPointIndex = wayPointIndex;
         this.enemySpawner = enemySpawner;
     }
-
-    
 }
