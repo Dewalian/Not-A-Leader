@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8371356716524169053}
   - component: {fileID: 5260784651626015639}
+  - component: {fileID: 179199854620526847}
   m_Layer: 0
   m_Name: Slow Area
   m_TagString: Untagged
@@ -67,6 +68,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2
+--- !u!114 &179199854620526847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5643820849150031780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b711ce1323bfdf4084f028a2b1fc36f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8874370166680243440
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,14 +188,13 @@ MonoBehaviour:
   attackCD: 1
   physicRes: 1
   magicRes: 0
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 128
+  dodgeChance: 0
+  bounty: 0
+  lifeDamage: 0
   enemyState: 0
   debuffArea: {fileID: 5260784651626015639}
   debuffAreaRange: 5
-  slowMoveSpeedPower: -1
-  slowShootCDPower: 0.2
+  debuffPercentage: 20
 --- !u!58 &309439083209008443
 CircleCollider2D:
   m_ObjectHideFlags: 0

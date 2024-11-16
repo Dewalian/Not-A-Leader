@@ -10,14 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 6302539352187587123}
   - component: {fileID: 8576571769623446233}
-  - component: {fileID: 1324738554479871351}
+  - component: {fileID: 2810956816805482081}
   - component: {fileID: 2870560370481627931}
   - component: {fileID: 3134719557126481304}
   - component: {fileID: 7503683327745347538}
   - component: {fileID: 7802607309626474008}
   m_Layer: 9
-  m_Name: Hero
-  m_TagString: Ally
+  m_Name: Joker
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34,7 +34,8 @@ Transform:
   m_LocalPosition: {x: -5.42, y: -1.26, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 810130468581439119}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8576571769623446233
@@ -89,7 +90,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1324738554479871351
+--- !u!114 &2810956816805482081
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -98,21 +99,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 576127391318613040}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b891e0c9948ec434a92df50b19dcedfa, type: 3}
+  m_Script: {fileID: 11500000, guid: 77c86e852828a8d4d876cf91cd25c49d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 5000
   moveSpeed: 2
   attackRange: 0.5
-  attackDamagePhysic: 0
+  attackDamagePhysic: 50
   attackDamageMagic: 0
   attackCD: 1
   physicRes: 0
   magicRes: 0
   agent: {fileID: 2870560370481627931}
+  animator: {fileID: 0}
   originalPos: {fileID: 0}
   allyState: 0
   isDuel: 0
+  gamblerRoulette: {fileID: 8026929104034839049}
+  gamblerRouletteCD: 1
 --- !u!195 &2870560370481627931
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -218,3 +222,83 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &8026929104034839049
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 810130468581439119}
+  - component: {fileID: 900829075602356733}
+  - component: {fileID: 7025923831668270932}
+  m_Layer: 9
+  m_Name: Gambler Roulette
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &810130468581439119
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8026929104034839049}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6302539352187587123}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &900829075602356733
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8026929104034839049}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 5
+--- !u!114 &7025923831668270932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8026929104034839049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24e150ba61d62a548940d26e05a31ada, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -2,9 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Enemy : Unit
 {
+    [SerializeField] private float dodgeChance;
+    [SerializeField] private int bounty;
+    [SerializeField] private int lifeDamage;
     protected Transform wayPoint;
     protected List<GameObject> unitsToFight = new List<GameObject>();
     protected EnemySpawner enemySpawner;
@@ -33,6 +37,7 @@ public class Enemy : Unit
         if(Vector2.Distance(wayPoint.position, transform.position) <= 0.1f){
             wayPointIndex++;
             if(wayPointIndex == enemySpawner.wayPoint.Length){
+                LevelManager.Instance.life -= lifeDamage;
                 Destroy(gameObject);
             }else{
                 wayPoint = enemySpawner.wayPoint[wayPointIndex];
@@ -63,6 +68,19 @@ public class Enemy : Unit
             enemyState = State.Neutral;
         }else{
             enemyState = State.Fighting;
+        }
+    }
+
+    public override void Death()
+    {
+        LevelManager.Instance.gold += bounty;
+        base.Death();
+    }
+
+    public override void TakeDamage(float attackDamagePhysic, float attackDamageMagic)
+    {
+        if(Random.value <= dodgeChance / 100){
+            base.TakeDamage(attackDamagePhysic, attackDamageMagic);
         }
     }
 

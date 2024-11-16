@@ -5,7 +5,9 @@ using UnityEngine;
 public abstract class Tower : MonoBehaviour
 {
     [SerializeField] private GameObject plot;
-    protected int level = -1;
+    public string towerName;
+    public int level = 0;
+    public int[] costs = new int[3];
 
     public virtual void SellTower()
     {
@@ -16,8 +18,10 @@ public abstract class Tower : MonoBehaviour
 
     public virtual void UpgradeTower()
     {
-        if(level < 2){
+        if(level < 2 && LevelManager.Instance.gold >= costs[level+1]){
             level++;
+            LevelManager.Instance.gold -= costs[level];
         }
+        Debug.Log(level);
     }
 }

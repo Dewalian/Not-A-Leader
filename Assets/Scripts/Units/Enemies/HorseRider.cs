@@ -17,7 +17,7 @@ public class HorseRider : Enemy
         
     }
 
-    protected override void Death()
+    public override void Death()
     {
         GameObject lancerObj = Instantiate(lancer, transform.position, Quaternion.identity);
         lancerObj.GetComponent<Enemy>().InitializeSummoned(wayPointIndex, enemySpawner);

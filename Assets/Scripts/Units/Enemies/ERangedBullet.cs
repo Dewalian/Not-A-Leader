@@ -8,9 +8,4 @@ public class ERangedBullet : Bullet
     {
         endPos = (Vector2)target.position;
     }
-
-    protected override void DamageEnemy()
-    {
-        Debug.Log("Belum kelar");
-    }
 }

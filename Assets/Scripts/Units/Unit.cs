@@ -13,6 +13,11 @@ public abstract class Unit : MonoBehaviour
     [SerializeField] protected float physicRes;
     [SerializeField] protected float magicRes;
     protected float moveSpeedCopy;
+    protected float attackDamagePhysicCopy;
+    protected float attackDamageMagicCopy;
+    protected float attackCDCopy;
+    protected float physicResCopy;
+    protected float magicResCopy;
     protected bool canAttack = true;
     public enum State{
         Neutral,
@@ -23,7 +28,7 @@ public abstract class Unit : MonoBehaviour
 
     protected virtual void Start()
     {
-        moveSpeedCopy = moveSpeed;
+        UpdateStatsCopy();
     }
 
     protected virtual void CriticalEffect()
@@ -36,19 +41,19 @@ public abstract class Unit : MonoBehaviour
         return;
     }
 
-    protected virtual void Death()
+    public virtual void Death()
     {
         Destroy(gameObject);
     }
 
     public virtual bool AboutToDie(float attackDamagePhysic, float attackDamageMagic)
     {
-        return health < Mathf.Max(0, attackDamagePhysic - physicRes) + Mathf.Max(0, attackDamageMagic - magicRes);
+        return health < Mathf.Max(1, attackDamagePhysic - physicRes) + Mathf.Max(1, attackDamageMagic - magicRes);
     }
 
     public virtual void TakeDamage(float attackDamagePhysic, float attackDamageMagic)
     {
-        health -= Mathf.Max(0, attackDamagePhysic - physicRes) + Mathf.Max(0, attackDamageMagic - magicRes);
+        health -= Mathf.Max(1, attackDamagePhysic - physicRes) + Mathf.Max(1, attackDamageMagic - magicRes);
         if(health <= 0){
             Death();
         }
@@ -87,10 +92,27 @@ public abstract class Unit : MonoBehaviour
         this.attackCD = attackCD;
         this.physicRes = physicRes;
         this.magicRes = magicRes;
+
+        UpdateStatsCopy();
     }
 
-    public virtual void ChangeMoveSpeed(float changeValue)
+    public void UpdateStatsCopy()
     {
-        moveSpeed += changeValue;
+        moveSpeedCopy = moveSpeed;
+        attackDamagePhysicCopy = attackDamagePhysic;
+        attackDamageMagicCopy = attackDamageMagic;
+        attackCDCopy = attackCD;
+        physicResCopy = physicRes;
+        magicResCopy = magicRes;
+    }
+
+    public virtual void ChangeStats(float changePercentage)
+    {
+        moveSpeed += moveSpeedCopy * changePercentage;
+        attackDamagePhysic += attackDamagePhysicCopy * changePercentage;
+        attackDamageMagic += attackDamageMagicCopy * changePercentage;
+        attackCD += attackCDCopy * changePercentage;
+        physicRes += physicResCopy * changePercentage;
+        magicRes += magicResCopy * changePercentage;
     }
 }

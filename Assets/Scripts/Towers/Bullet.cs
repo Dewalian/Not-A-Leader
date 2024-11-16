@@ -11,6 +11,7 @@ public class Bullet : MonoBehaviour
     private Transform startPosBullet;
     private Transform startPosBulletShadow;
     private float duration;
+    protected Collider2D bulletCol;
     protected Transform target;
     protected Vector2 endPos;
     protected float damagePhysic;
@@ -54,7 +55,7 @@ public class Bullet : MonoBehaviour
 
     protected virtual void DamageEnemy()
     {
-        if(target != null){
+        if(target != null && Vector2.Distance(target.position, bullet.position) <= 0.5f){
             target.GetComponent<Unit>().TakeDamage(damagePhysic, damageMagic);
         }
     }

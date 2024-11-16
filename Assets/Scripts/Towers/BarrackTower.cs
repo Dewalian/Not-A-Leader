@@ -37,7 +37,6 @@ public class BarrackTower : Tower
 
     private void Start()
     {
-        UpgradeTower();
         SetStartingPos();
     }
 
@@ -46,7 +45,7 @@ public class BarrackTower : Tower
         yield return null;
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Mouse0));
         if(Vector2.Distance(Camera.main.ScreenToWorldPoint(Input.mousePosition), transform.position) <= flagRange &&
-        MouseManager.Instance.leftMouseClick.gameObject.layer == Mathf.Log(pathLayer.value, 2)){
+        MouseManager.Instance.leftMouseClick.gameObject.layer == LayerMask.NameToLayer("Path")){
             StartCoroutine(knightArea.MoveArea(Camera.main.ScreenToWorldPoint(Input.mousePosition)));
         }
     }

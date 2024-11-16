@@ -6,8 +6,7 @@ public class PajamaKid : Enemy
 {
     [SerializeField] private CircleCollider2D debuffArea;
     [SerializeField] private float debuffAreaRange;
-    [SerializeField] private float slowMoveSpeedPower;
-    [SerializeField] private float slowShootCDPower;
+    [SerializeField] private float debuffPercentage;
 
     protected override void Start()
     {
@@ -15,22 +14,22 @@ public class PajamaKid : Enemy
         debuffArea.radius = debuffAreaRange;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void OnSlowAreaEnter(Collider2D other)
     {
-        if(other.CompareTag("Ally")){
-            other.GetComponent<Unit>().ChangeMoveSpeed(slowMoveSpeedPower);
-            Debug.Log("Mantap");
-        }else if(other.CompareTag("Tower")){
-            other.GetComponent<ShootingTower>()?.ChangeShootCD(slowShootCDPower);
+        if(other.gameObject.layer == LayerMask.NameToLayer("Ally")){
+            Debug.Log(other);
+            other.GetComponent<Unit>().ChangeStats(-debuffPercentage / 100);
+        }else if(other.gameObject.layer == LayerMask.NameToLayer("Tower")){
+            other.GetComponent<ShootingTower>()?.ChangeStats(-debuffPercentage / 100);
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    public void OnSlowAreaExit(Collider2D other)
     {
-        if(other.CompareTag("Ally")){
-            other.GetComponent<Unit>().ChangeMoveSpeed(-slowMoveSpeedPower);
-        }else if(other.CompareTag("Tower")){
-            other.GetComponent<ShootingTower>().ChangeShootCD(-slowShootCDPower);
+        if(other.gameObject.layer == LayerMask.NameToLayer("Ally")){
+            other.GetComponent<Unit>().ChangeStats(debuffPercentage/100);
+        }else if(other.gameObject.layer == LayerMask.NameToLayer("Tower")){
+            other.GetComponent<ShootingTower>().ChangeStats(debuffPercentage / 100);
         }
     }
 }

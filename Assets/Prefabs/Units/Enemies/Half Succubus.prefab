@@ -107,6 +107,9 @@ MonoBehaviour:
   attackCD: 0.5
   physicRes: 0
   magicRes: 0
+  dodgeChance: 0
+  bounty: 0
+  lifeDamage: 5
   enemyState: 0
   charmChance: 20
 --- !u!58 &7044325704340306457

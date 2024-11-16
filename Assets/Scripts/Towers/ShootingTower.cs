@@ -17,7 +17,7 @@ public class ShootingTower : Tower
         public float bulletDamagePhysic;
         public float bulletDamageMagic;
     }
-    [SerializeField] private Stats[] stats;
+    [SerializeField] private Stats[] stats = new Stats[3];
     [SerializeField] private float attackRange;
     [SerializeField] private float shootCD;
     [SerializeField] private float bulletDamagePhysic;
@@ -25,11 +25,6 @@ public class ShootingTower : Tower
     [SerializeField] private float bulletDuration;
     private bool canShoot = true;
     private Transform target;
-
-    private void Start()
-    {
-        UpgradeTower();
-    }
 
     private void Update()
     {
@@ -78,8 +73,11 @@ public class ShootingTower : Tower
         bulletDamageMagic = stats[level].bulletDamageMagic;
     }
 
-    public void ChangeShootCD(float changeValue)
+    public void ChangeStats(float changePercentage)
     {
-        shootCD += changeValue;
+        attackRange += stats[level].attackRange * changePercentage;
+        shootCD += stats[level].shootCD * changePercentage;
+        bulletDamagePhysic += stats[level].bulletDamagePhysic * changePercentage;
+        bulletDamageMagic += stats[level].bulletDamageMagic * changePercentage;
     }
 }

@@ -144,7 +144,6 @@ GameObject:
   - component: {fileID: 9033015998327157426}
   - component: {fileID: 490655994840473393}
   - component: {fileID: 8194749140713293869}
-  - component: {fileID: 8031847078706377604}
   - component: {fileID: 7108525476924137897}
   - component: {fileID: 6473095732399320801}
   m_Layer: 14
@@ -237,6 +236,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plot: {fileID: 304619289554043741, guid: b03bd979e5c275542b6d16278d8c98d6, type: 3}
+  costs: 3c0000006e000000dc000000
+  level: 0
+  towerName: Barrack
   knightArea: {fileID: 5084112843948612129}
   startPosChecker: {fileID: 8980714776755811321}
   knights:
@@ -283,51 +285,6 @@ MonoBehaviour:
   pathLayer:
     serializedVersion: 2
     m_Bits: 2048
---- !u!61 &8031847078706377604
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2735006322691045798}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!61 &7108525476924137897
 BoxCollider2D:
   m_ObjectHideFlags: 0

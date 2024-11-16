@@ -8,18 +8,20 @@ public class HalfSuccubus : Enemy
     [SerializeField] private float charmChance;
 
     protected override void AttackEffect()
-    {
+    {   
+        charmedUnit = unitsToFight[0];
+        if(charmedUnit.CompareTag("Player")){
+            return;
+        }
+
         if(Random.value <= charmChance / 100){
-            charmedUnit = unitsToFight[0];
-            GameObject charmedObj = Instantiate(charmedUnit, transform.position, Quaternion.identity);
-            unitsToFight[0].GetComponent<Unit>().health = 0;
+            GameObject charmedObj = Instantiate(charmedUnit, charmedUnit.transform.position, Quaternion.identity);
+            unitsToFight[0].GetComponent<Ally>().Death();
 
             charmedObj.GetComponent<Ally>().SwitchSide();
             charmedObj.GetComponent<Enemy>().InitializeSummoned(wayPointIndex, enemySpawner);
             charmedObj.GetComponent<Enemy>().FlipDirection(wayPoint.position);
             charmedObj.transform.SetParent(enemySpawner.transform);
-            
-
         }
     }
 }

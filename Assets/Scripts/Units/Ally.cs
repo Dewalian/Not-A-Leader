@@ -21,6 +21,7 @@ public class Ally : Unit
 
     protected override void Start()
     {
+        base.Start();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
         agent.speed = moveSpeed;
@@ -33,10 +34,9 @@ public class Ally : Unit
 
         allyArea = GetComponentInParent<AllyArea>();
         allyArea.OnMoveArea.AddListener(() => RemoveFromFight());
-        // allyArea.OnMoveArea.AddListener(() => FlipDirection(Camera.main.ScreenToWorldPoint(Input.mousePosition)));
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if(allyState == State.Aggro){
             agent.isStopped = false;
@@ -77,18 +77,25 @@ public class Ally : Unit
         }
     }
 
-    protected override void Death()
+    //Test karena animasi belum ada semua, harusnya pasang di semua unit
+    protected void DeathAnimator()
     {
         animator.SetTrigger("TriggerDeath");
     }
 
-    public void DeathAnimator()
+    public override void Death()
     {
         RemoveFromFight();
         health = healthCopy;
         canAttack = true;
         allyArea.StartRespawn(gameObject);
         gameObject.SetActive(false);
+    }
+
+    public override void ChangeStats(float changePercentage)
+    {
+        base.ChangeStats(changePercentage);
+        agent.speed = moveSpeed;
     }
 
     public IEnumerator WalkToTarget(Vector2 targetPos)
@@ -131,11 +138,5 @@ public class Ally : Unit
         gameObject.layer = 6;
         Destroy(GetComponent<NavMeshAgent>());
         Destroy(this);
-    }
-
-    public override void ChangeMoveSpeed(float changeValue)
-    {
-        base.ChangeMoveSpeed(changeValue);
-        agent.speed = moveSpeed;
     }
 }
