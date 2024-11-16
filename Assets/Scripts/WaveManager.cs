@@ -33,5 +33,5 @@ public class WaveManager : MonoBehaviour
             this.waveDuration = waveDuration;
             waveTimer = 0;
         }
-    }
+    }    
 }
