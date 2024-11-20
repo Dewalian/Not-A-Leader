@@ -21,4 +21,12 @@ public class MortarBullet : Bullet
             e.GetComponent<Enemy>().TakeDamage(damagePhysic/4, damageMagic/4);
         }
     }
+
+    public void InitVariablesMortar(Transform target, Transform startPosBullet, Transform startPosBulletShadow, 
+    float damagePhysic, float damageMagic , float duration, float innerRange, float outerRange)
+    {
+        InitVariables(target, startPosBullet, startPosBulletShadow, damagePhysic, damageMagic, duration);
+        this.innerRange = innerRange;
+        this.outerRange = outerRange;
+    }
 }

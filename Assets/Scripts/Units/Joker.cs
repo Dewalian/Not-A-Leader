@@ -6,6 +6,9 @@ public class Joker : Ally
 {
     [SerializeField] private GameObject gamblerRoulette;
     [SerializeField] private float gamblerRouletteCD;
+    [SerializeField] private float gamblerRoulleteBuffPercentage;
+    [SerializeField] private float gamblerRoulleteDebuffPercentage;
+    [SerializeField] private float gamblerRoulleteDuration;
     private bool canGamblerRoulette = true;
     private List<GameObject> towers = new List<GameObject>();
     private List<string> towerNames = new List<string>();
@@ -26,9 +29,9 @@ public class Joker : Ally
                 towerNames.Remove(randomTowerName);
 
                 if(tScript.towerName == chosenTowerName){
-                    Debug.Log(chosenTowerName);
+                    StartCoroutine(tScript.ChangeStatsTimed(gamblerRoulleteBuffPercentage, gamblerRoulleteDuration));
                 }else{
-                    Debug.Log("wrong");
+                    StartCoroutine(tScript.ChangeStatsTimed(gamblerRoulleteDebuffPercentage, gamblerRoulleteDuration));
                 }
             }
 

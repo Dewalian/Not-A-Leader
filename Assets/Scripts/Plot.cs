@@ -31,7 +31,6 @@ public class Plot : MonoBehaviour
         Tower towerScript = towers[tower].GetComponent<Tower>();
 
         if(LevelManager.Instance.gold >= towerScript.costs[0]){
-            LevelManager.Instance.gold -= towerScript.costs[0];
             Instantiate(towers[tower], transform.position, Quaternion.identity);
             Destroy(gameObject);
         }

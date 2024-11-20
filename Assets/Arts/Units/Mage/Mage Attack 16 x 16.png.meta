@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: abe309d14e1c7c949978c00565b4156a
+guid: 1b686ea66d93422498c458e2e00e2b03
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Knight Attack 16 x 16_0
+      name: Mage Attack 16 x 16_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 74a8ea936c3229440a1c11f5e22e159a
-      internalID: 762339563
+      spriteID: 2d6ed11fb1dbebd4396d30cd0254466e
+      internalID: 79360566
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight Attack 16 x 16_1
+      name: Mage Attack 16 x 16_1
       rect:
         serializedVersion: 2
         x: 16
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5015017907008e747b75089eb90888f9
-      internalID: 346404569
+      spriteID: 4d4c67e1b9f0f58498da8c41e2f3f8b0
+      internalID: -2082991556
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight Attack 16 x 16_2
+      name: Mage Attack 16 x 16_2
       rect:
         serializedVersion: 2
         x: 32
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 634c00dd20528e045a865bbb5b484149
-      internalID: 1050489888
+      spriteID: 8ab52c0b652b6444e883c546c04deff1
+      internalID: 802655012
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight Attack 16 x 16_3
+      name: Mage Attack 16 x 16_3
       rect:
         serializedVersion: 2
         x: 48
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e27667ff51dd9f4cbb43ac1ea2d7a94
-      internalID: 933994477
+      spriteID: a79bf8715082f45439274fe195256e64
+      internalID: -1320157791
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight Attack 16 x 16_4
+      name: Mage Attack 16 x 16_4
       rect:
         serializedVersion: 2
         x: 64
@@ -208,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4cc4a7caa05f1a842abb6ca736ea6432
-      internalID: 540836631
+      spriteID: ec3eef2307d45bf47b8d403a801180e5
+      internalID: 1752585005
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight Attack 16 x 16_5
+      name: Mage Attack 16 x 16_5
       rect:
         serializedVersion: 2
         x: 80
@@ -229,8 +229,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a710244bde560184aa54cb57d3225b56
-      internalID: 893076120
+      spriteID: e0b39a900a675914197595df4a6945bb
+      internalID: 1350384231
       vertices: []
       indices: 
       edges: []
@@ -246,12 +246,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Knight Attack 16 x 16_0: 762339563
-      Knight Attack 16 x 16_1: 346404569
-      Knight Attack 16 x 16_2: 1050489888
-      Knight Attack 16 x 16_3: 933994477
-      Knight Attack 16 x 16_4: 540836631
-      Knight Attack 16 x 16_5: 893076120
+      Mage Attack 16 x 16_0: 79360566
+      Mage Attack 16 x 16_1: -2082991556
+      Mage Attack 16 x 16_2: 802655012
+      Mage Attack 16 x 16_3: -1320157791
+      Mage Attack 16 x 16_4: 1752585005
+      Mage Attack 16 x 16_5: 1350384231
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

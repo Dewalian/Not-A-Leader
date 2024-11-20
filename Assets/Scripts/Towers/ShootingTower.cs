@@ -6,9 +6,9 @@ using UnityEngine;
 public class ShootingTower : Tower
 {
     [SerializeField] private LayerMask enemyLayer;
-    [SerializeField] private Transform firingPoint;
-    [SerializeField] private Transform shadowPoint;
-    [SerializeField] private GameObject bullet;
+    [SerializeField] protected Transform firingPoint;
+    [SerializeField] protected Transform shadowPoint;
+    [SerializeField] protected GameObject bullet;
 
     [Serializable]
     private struct Stats{
@@ -18,31 +18,30 @@ public class ShootingTower : Tower
         public float bulletDamageMagic;
     }
     [SerializeField] private Stats[] stats = new Stats[3];
-    [SerializeField] private float attackRange;
-    [SerializeField] private float shootCD;
-    [SerializeField] private float bulletDamagePhysic;
-    [SerializeField] private float bulletDamageMagic;
-    [SerializeField] private float bulletDuration;
+    [SerializeField] protected float attackRange;
+    [SerializeField] protected float shootCD;
+    [SerializeField] protected float bulletDamagePhysic;
+    [SerializeField] protected float bulletDamageMagic;
+    [SerializeField] protected float bulletDuration;
+    protected Transform target;
     private bool canShoot = true;
-    private Transform target;
 
     private void Update()
     {
-        if(target == null){
+        if(target == null || !IsEnemyInRange()){
             DetectEnemies();
-        }else if(IsEnemyInRange() && canShoot){
+        }
+        
+        if(IsEnemyInRange() && canShoot){
             StartCoroutine(Shoot());
         }
     }
 
-    IEnumerator Shoot()
+    private IEnumerator Shoot()
     {
         canShoot = false;
         if(target != null){
-            GameObject bulletObj = Instantiate(bullet, transform.position, Quaternion.identity);
-            bulletObj.transform.SetParent(gameObject.transform);
-            bulletObj.GetComponent<Bullet>().InitVariables(target, firingPoint, shadowPoint, 
-            bulletDamagePhysic, bulletDamageMagic, bulletDuration);
+            SpawnBullet();
             yield return new WaitForSeconds(shootCD);
             canShoot = true;
         }
@@ -59,9 +58,20 @@ public class ShootingTower : Tower
     private void DetectEnemies()
     {
         Collider2D[] enemiesInRange = Physics2D.OverlapCircleAll(transform.position, attackRange, enemyLayer);
-        if(enemiesInRange.Length > 0){
-            target = enemiesInRange[0].transform;
+
+        foreach(Collider2D e in enemiesInRange){
+            if(e.GetComponent<Enemy>().health > 0){
+                target = e.transform;
+            }
         }
+    }
+
+    protected virtual void SpawnBullet()
+    {
+        GameObject bulletObj = Instantiate(bullet, transform.position, Quaternion.identity);
+        bulletObj.transform.SetParent(gameObject.transform);
+        bulletObj.GetComponent<Bullet>().InitVariables(target, firingPoint, shadowPoint, 
+        bulletDamagePhysic, bulletDamageMagic, bulletDuration);
     }
 
     public override void UpgradeTower()
@@ -73,10 +83,12 @@ public class ShootingTower : Tower
         bulletDamageMagic = stats[level].bulletDamageMagic;
     }
 
-    public void ChangeStats(float changePercentage)
+    public override void ChangeStats(float changePercentage)
     {
+        changePercentage /= 100;
+
         attackRange += stats[level].attackRange * changePercentage;
-        shootCD += stats[level].shootCD * changePercentage;
+        shootCD -= stats[level].shootCD * changePercentage;
         bulletDamagePhysic += stats[level].bulletDamagePhysic * changePercentage;
         bulletDamageMagic += stats[level].bulletDamageMagic * changePercentage;
     }

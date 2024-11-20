@@ -12,6 +12,7 @@ public abstract class Unit : MonoBehaviour
     [SerializeField] protected float attackCD;
     [SerializeField] protected float physicRes;
     [SerializeField] protected float magicRes;
+    protected Animator animator;
     protected float moveSpeedCopy;
     protected float attackDamagePhysicCopy;
     protected float attackDamageMagicCopy;
@@ -23,8 +24,16 @@ public abstract class Unit : MonoBehaviour
         Neutral,
         Aggro,
         Fighting,
-        Shooting
+        Shooting,
+        Skill,
+        Death
     };
+    public State unitState;
+
+    protected virtual void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     protected virtual void Start()
     {
@@ -41,6 +50,31 @@ public abstract class Unit : MonoBehaviour
         return;
     }
 
+    protected virtual void StateChange()
+    {
+        if(health <= 0){
+            unitState = State.Death;
+        }
+
+        if(unitState == State.Death){
+            DeathAnimator();
+            return;
+        }
+
+        if(unitState == State.Skill){
+            moveSpeed = 0;
+        }
+    }
+
+    public void DeathAnimator()
+    {
+        if(animator){
+                animator.SetBool("BoolWalk", false);
+                animator.SetBool("BoolDeath", true);
+            }
+        moveSpeed = 0;
+    }
+
     public virtual void Death()
     {
         Destroy(gameObject);
@@ -54,15 +88,16 @@ public abstract class Unit : MonoBehaviour
     public virtual void TakeDamage(float attackDamagePhysic, float attackDamageMagic)
     {
         health -= Mathf.Max(1, attackDamagePhysic - physicRes) + Mathf.Max(1, attackDamageMagic - magicRes);
-        if(health <= 0){
-            Death();
-        }
     }
 
-    public IEnumerator AttackUnit(GameObject unitToFight)
+    protected IEnumerator AttackUnit(GameObject unitToFight)
     {
         if(canAttack && unitToFight != null){
             canAttack = false;
+            if(animator){
+                animator.SetTrigger("TriggerAttack");
+            }
+
             if(unitToFight.GetComponent<Unit>().AboutToDie(attackDamagePhysic, attackDamageMagic)){
                 CriticalEffect();
             }else{
@@ -108,10 +143,12 @@ public abstract class Unit : MonoBehaviour
 
     public virtual void ChangeStats(float changePercentage)
     {
+        changePercentage /= 100;
+
         moveSpeed += moveSpeedCopy * changePercentage;
         attackDamagePhysic += attackDamagePhysicCopy * changePercentage;
         attackDamageMagic += attackDamageMagicCopy * changePercentage;
-        attackCD += attackCDCopy * changePercentage;
+        attackCD -= attackCDCopy * changePercentage;
         physicRes += physicResCopy * changePercentage;
         magicRes += magicResCopy * changePercentage;
     }

@@ -13,7 +13,6 @@ public class Enemy : Unit
     protected List<GameObject> unitsToFight = new List<GameObject>();
     protected EnemySpawner enemySpawner;
     protected int wayPointIndex = 0;
-    public State enemyState;
 
     protected override void Start()
     {
@@ -26,10 +25,6 @@ public class Enemy : Unit
         StateChange();
         MoveToWayPoint();
         ChangeTargetPos();
-
-        if(health <= 0){
-            Destroy(gameObject);
-        }
     }
 
     private void ChangeTargetPos()
@@ -52,22 +47,34 @@ public class Enemy : Unit
         transform.position = Vector2.MoveTowards(transform.position, wayPoint.position, moveSpeed * Time.deltaTime);
     }
 
-    protected virtual void StateChange()
+    protected override void StateChange()
     {
-        if(enemyState == State.Neutral){
+        base.StateChange();
+
+        if(unitState == State.Neutral){
             moveSpeed = moveSpeedCopy;
-        }else if(enemyState == State.Fighting){
+
+            if(animator){
+                animator.SetBool("BoolWalk", true);
+            }
+
+        }else if(unitState == State.Fighting){
             moveSpeed = 0;
+
+            if(animator){
+                animator.SetBool("BoolWalk", false);
+            }
+            
             if(unitsToFight != null && 
             unitsToFight.Count > 0 && Vector2.Distance(transform.position, unitsToFight[0].transform.position) <= attackRange){
                 StartCoroutine(AttackUnit(unitsToFight[0]));
             }
         }
 
-        if(unitsToFight.Count == 0 && enemyState != State.Shooting){
-            enemyState = State.Neutral;
+        if(unitsToFight.Count == 0 && unitState != State.Shooting){
+            unitState = State.Neutral;
         }else{
-            enemyState = State.Fighting;
+            unitState = State.Fighting;
         }
     }
 
@@ -79,7 +86,7 @@ public class Enemy : Unit
 
     public override void TakeDamage(float attackDamagePhysic, float attackDamageMagic)
     {
-        if(Random.value <= dodgeChance / 100){
+        if(Random.value >= dodgeChance / 100){
             base.TakeDamage(attackDamagePhysic, attackDamageMagic);
         }
     }
@@ -93,6 +100,7 @@ public class Enemy : Unit
     public void RemoveUnitFromFightArr(GameObject unitToFight)
     {
         unitsToFight.Remove(unitToFight);
+        FlipDirection(wayPoint.position);
     }
 
     public Vector2 GetBulletPos(float bulletDuration)

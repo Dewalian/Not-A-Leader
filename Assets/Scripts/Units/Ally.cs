@@ -5,18 +5,17 @@ using UnityEngine.AI;
 
 public class Ally : Unit
 {
-    [SerializeField] private NavMeshAgent agent;
+    private NavMeshAgent agent;
     private AllyArea allyArea;
     private GameObject enemy;
     private float healthCopy;
-    public Animator animator;
     public Transform originalPos;
-    public State allyState;
     public bool isDuel = false;
 
-    protected virtual void Awake()
+    protected override void Awake()
     {
-        animator = GetComponent<Animator>();
+        base.Awake();
+        agent = GetComponent<NavMeshAgent>();
     }
 
     protected override void Start()
@@ -38,30 +37,32 @@ public class Ally : Unit
 
     protected virtual void Update()
     {
-        if(allyState == State.Aggro){
+        StateChange();
+
+        agent.speed = moveSpeed;
+    }
+
+    protected override void StateChange()
+    {
+        base.StateChange();
+
+        if(unitState == State.Aggro){
             agent.isStopped = false;
             animator.SetBool("BoolWalk", true);
             AggroEnemy();
-        }else if(allyState == State.Fighting){
+        }else if(unitState == State.Fighting){
             StartCoroutine(AttackUnit(enemy));
             agent.isStopped = true;
             animator.SetBool("BoolWalk", false);
-        }else if(allyState == State.Neutral){
+        }else if(unitState == State.Neutral){
             agent.isStopped = false;
             StartCoroutine(WalkToTarget(originalPos.position));
         }
 
-        if(enemy == null){
-            allyState = State.Neutral;
+        if(enemy == null && unitState != State.Death){
+            unitState = State.Neutral;
         }
     }
-
-    //TEST soalnya enemy belum ada animasi
-    protected override void AttackEffect()
-    {
-        animator.SetTrigger("TriggerAttack");
-    }
-    //TEST
 
     private void AggroEnemy()
     {
@@ -70,22 +71,17 @@ public class Ally : Unit
                 agent.SetDestination(enemy.transform.position);
                 animator.SetBool("BoolWalk", true);
             }else{
-                allyState = State.Fighting;
+                unitState = State.Fighting;
             }
         }else{
-            allyState = State.Neutral;
+            unitState = State.Neutral;
         }
-    }
-
-    //Test karena animasi belum ada semua, harusnya pasang di semua unit
-    protected void DeathAnimator()
-    {
-        animator.SetTrigger("TriggerDeath");
     }
 
     public override void Death()
     {
         RemoveFromFight();
+        animator.SetBool("BoolDeath", false);
         health = healthCopy;
         canAttack = true;
         allyArea.StartRespawn(gameObject);
@@ -95,7 +91,6 @@ public class Ally : Unit
     public override void ChangeStats(float changePercentage)
     {
         base.ChangeStats(changePercentage);
-        agent.speed = moveSpeed;
     }
 
     public IEnumerator WalkToTarget(Vector2 targetPos)
@@ -103,7 +98,7 @@ public class Ally : Unit
         agent.SetDestination(targetPos);
         FlipDirection(targetPos);
         animator.SetBool("BoolWalk", true);
-        yield return new WaitUntil(() => Vector2.Distance(transform.position, targetPos) < 0.1f);
+        yield return new WaitUntil(() => Vector2.Distance(transform.position, targetPos) < attackRange);
         animator.SetBool("BoolWalk", false);
     }
 
@@ -113,14 +108,14 @@ public class Ally : Unit
         FlipDirection(enemy.transform.position);
         this.enemy = enemy;
         enemy.GetComponent<Enemy>().AddUnitToFightArr(gameObject);
-        allyState = State.Aggro;
+        unitState = State.Aggro;
     }
 
     public void RemoveFromFight()
     {
         if(enemy != null){
             enemy.GetComponent<Enemy>().RemoveUnitFromFightArr(gameObject);
-            allyState = State.Neutral;
+            unitState = State.Neutral;
         }
     }
 

@@ -18,18 +18,18 @@ public class PajamaKid : Enemy
     {
         if(other.gameObject.layer == LayerMask.NameToLayer("Ally")){
             Debug.Log(other);
-            other.GetComponent<Unit>().ChangeStats(-debuffPercentage / 100);
+            other.GetComponent<Unit>().ChangeStats(debuffPercentage);
         }else if(other.gameObject.layer == LayerMask.NameToLayer("Tower")){
-            other.GetComponent<ShootingTower>()?.ChangeStats(-debuffPercentage / 100);
+            other.GetComponent<ShootingTower>()?.ChangeStats(debuffPercentage);
         }
     }
 
     public void OnSlowAreaExit(Collider2D other)
     {
         if(other.gameObject.layer == LayerMask.NameToLayer("Ally")){
-            other.GetComponent<Unit>().ChangeStats(debuffPercentage/100);
+            other.GetComponent<Unit>().ChangeStats(-debuffPercentage);
         }else if(other.gameObject.layer == LayerMask.NameToLayer("Tower")){
-            other.GetComponent<ShootingTower>().ChangeStats(debuffPercentage / 100);
+            other.GetComponent<ShootingTower>().ChangeStats(-debuffPercentage);
         }
     }
 }

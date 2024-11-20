@@ -9,7 +9,7 @@ public class HorseRider : Enemy
     protected override void Start()
     {
         base.Start();
-        enemyState = State.Fighting;
+        unitState = State.Fighting;
     }
 
     protected override void StateChange()

@@ -5961,7 +5961,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b02fa6c93685f4e8c34ba75a76b44f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gold: 500
+  gold: 1000
   life: 3
 --- !u!4 &1976793126
 Transform:
@@ -6180,7 +6180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8044420404469264249, guid: 44f7b5655f9a59f4bae6230472583fe5, type: 3}
       propertyPath: waves.Array.data[0].miniWave.Array.data[0].spawnCD
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8044420404469264249, guid: 44f7b5655f9a59f4bae6230472583fe5, type: 3}
       propertyPath: waves.Array.data[1].miniWave.Array.data[0].spawnCD
@@ -6188,7 +6188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8044420404469264249, guid: 44f7b5655f9a59f4bae6230472583fe5, type: 3}
       propertyPath: waves.Array.data[0].miniWave.Array.data[0].enemies.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8044420404469264249, guid: 44f7b5655f9a59f4bae6230472583fe5, type: 3}
       propertyPath: waves.Array.data[1].miniWave.Array.data[0].enemies.Array.size
@@ -6197,23 +6197,23 @@ PrefabInstance:
     - target: {fileID: 8044420404469264249, guid: 44f7b5655f9a59f4bae6230472583fe5, type: 3}
       propertyPath: waves.Array.data[0].miniWave.Array.data[0].enemies.Array.data[0]
       value: 
-      objectReference: {fileID: 8874370166680243440, guid: 18e07398b5949a344acef3d1a4d11e55, type: 3}
+      objectReference: {fileID: 1669481420998670219, guid: 03f3eacc36df00a4ab6f3ed0a9e39c8f, type: 3}
     - target: {fileID: 8044420404469264249, guid: 44f7b5655f9a59f4bae6230472583fe5, type: 3}
       propertyPath: waves.Array.data[0].miniWave.Array.data[0].enemies.Array.data[1]
       value: 
-      objectReference: {fileID: 1669481420998670219, guid: b0538e2b97ddc2a4b8fb50e1b8af35bd, type: 3}
+      objectReference: {fileID: 1669481420998670219, guid: 03f3eacc36df00a4ab6f3ed0a9e39c8f, type: 3}
     - target: {fileID: 8044420404469264249, guid: 44f7b5655f9a59f4bae6230472583fe5, type: 3}
       propertyPath: waves.Array.data[0].miniWave.Array.data[0].enemies.Array.data[2]
       value: 
-      objectReference: {fileID: 1669481420998670219, guid: b0538e2b97ddc2a4b8fb50e1b8af35bd, type: 3}
+      objectReference: {fileID: 1669481420998670219, guid: 03f3eacc36df00a4ab6f3ed0a9e39c8f, type: 3}
     - target: {fileID: 8044420404469264249, guid: 44f7b5655f9a59f4bae6230472583fe5, type: 3}
       propertyPath: waves.Array.data[0].miniWave.Array.data[0].enemies.Array.data[3]
       value: 
-      objectReference: {fileID: 1669481420998670219, guid: 8bb14536000c6664687f06732612068b, type: 3}
+      objectReference: {fileID: 1669481420998670219, guid: 03f3eacc36df00a4ab6f3ed0a9e39c8f, type: 3}
     - target: {fileID: 8044420404469264249, guid: 44f7b5655f9a59f4bae6230472583fe5, type: 3}
       propertyPath: waves.Array.data[0].miniWave.Array.data[0].enemies.Array.data[4]
       value: 
-      objectReference: {fileID: 1669481420998670219, guid: 1646932e1c8f4ce4c8e9a43cb5ea6a95, type: 3}
+      objectReference: {fileID: 1669481420998670219, guid: 03f3eacc36df00a4ab6f3ed0a9e39c8f, type: 3}
     - target: {fileID: 8044420404469264249, guid: 44f7b5655f9a59f4bae6230472583fe5, type: 3}
       propertyPath: waves.Array.data[0].miniWave.Array.data[0].enemies.Array.data[5]
       value: 

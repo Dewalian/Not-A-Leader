@@ -117,6 +117,9 @@ MonoBehaviour:
   isDuel: 0
   gamblerRoulette: {fileID: 8026929104034839049}
   gamblerRouletteCD: 1
+  gamblerRoulleteBuffPercentage: 50
+  gamblerRoulleteDebuffPercentage: -20
+  gamblerRoulleteDuration: 3
 --- !u!195 &2870560370481627931
 NavMeshAgent:
   m_ObjectHideFlags: 0

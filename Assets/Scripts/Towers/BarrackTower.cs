@@ -8,8 +8,10 @@ using Random = UnityEngine.Random;
 public class BarrackTower : Tower
 {
     [SerializeField] private AllyArea knightArea;
+    [SerializeField] private float knightRespawnCD;
     [SerializeField] private Transform startPosChecker;
-    [SerializeField] private Ally[] knights;
+    [SerializeField] private List<Ally> knights;
+    [SerializeField] private List<Ally> knightsToAdd;
 
     [Serializable]
     private struct Stats{
@@ -35,9 +37,10 @@ public class BarrackTower : Tower
     [SerializeField] private float knightMagicRes;
     [SerializeField] private LayerMask pathLayer;
 
-    private void Start()
+    protected override void Start()
     {
         SetStartingPos();
+        knightArea.respawnCD = knightRespawnCD;
     }
 
     private IEnumerator MoveFlag()
@@ -75,7 +78,12 @@ public class BarrackTower : Tower
 
     public override void UpgradeTower()
     {
+        if(level >= 2){
+            return;
+        }
+
         base.UpgradeTower();
+
         flagRange = stats[level].flagRange;
         knightMoveSpeed = stats[level].knightMoveSpeed;
         knightHealth = stats[level].knightHealth;
@@ -86,9 +94,22 @@ public class BarrackTower : Tower
         knightPhysicRes = stats[level].knightPhysicRes;
         knightMagicRes = stats[level].knightMagicRes;
 
+
+        knights.Add(knightsToAdd[0]);
+        knights[knights.Count - 1].gameObject.SetActive(true);
+        knightsToAdd.RemoveAt(0);
+
         foreach(Ally k in knights){
             k.Upgrade(knightMoveSpeed, knightHealth, knightAttackRange, knightDamagePhysic, knightDamageMagic,
             knightAttackCD, knightPhysicRes, knightMagicRes);
         }
+    }
+
+    public override void ChangeStats(float changePercentage)
+    {
+        changePercentage /= 100;
+
+        flagRange += stats[level].flagRange * changePercentage;
+        knightArea.respawnCD += knightRespawnCD * changePercentage;
     }
 }

@@ -60,7 +60,7 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    public void InitVariables(Transform target, Transform startPosBullet, Transform startPosBulletShadow, 
+    public virtual void InitVariables(Transform target, Transform startPosBullet, Transform startPosBulletShadow, 
     float damagePhysic, float damageMagic , float duration)
     {
         this.target = target;

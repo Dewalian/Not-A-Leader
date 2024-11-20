@@ -11,9 +11,9 @@ public class AllyArea : MonoBehaviour
     [SerializeField] protected float aggroArea;
     [SerializeField] protected LayerMask enemyLayer;
     [SerializeField] protected Transform respawnPos;
-    [SerializeField] protected float respawnCD;
     protected bool isAreaMoving = false;
     protected bool isAreaMoved = false;
+    public float respawnCD;
     public UnityEvent OnMoveArea;
     
     protected virtual void Update()
@@ -37,14 +37,14 @@ public class AllyArea : MonoBehaviour
 
             if(a.activeSelf == true){
                 foreach(Collider2D e in enemies){
-                    if(e != null && e.GetComponent<Enemy>().enemyState == Unit.State.Neutral && aScript.isDuel == false){
+                    if(e != null && e.GetComponent<Enemy>().unitState == Unit.State.Neutral && aScript.isDuel == false){
                         aScript.SetTarget(e.gameObject);
                         aScript.isDuel = true;
                         yield break;
                     }
                 }
 
-                if(enemies[0] != null && aScript.allyState == Unit.State.Neutral){
+                if(enemies[0] != null && aScript.unitState == Unit.State.Neutral){
                     aScript.SetTarget(enemies[0].gameObject);
                 }
             }

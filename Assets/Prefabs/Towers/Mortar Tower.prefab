@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8084398200243186964}
   - component: {fileID: 6770867992658443064}
-  - component: {fileID: 2553884775086714867}
+  - component: {fileID: 2792933215881423537}
   - component: {fileID: 2001779129403735682}
   - component: {fileID: -1914123564236433779}
   m_Layer: 14
@@ -90,7 +90,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2553884775086714867
+--- !u!114 &2792933215881423537
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,13 +99,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1090411173420722513}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8efe91f044b2c11409a9333abdddad67, type: 3}
+  m_Script: {fileID: 11500000, guid: b1beb4f92ff304e40ab5aa7f631a92c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   plot: {fileID: 304619289554043741, guid: b03bd979e5c275542b6d16278d8c98d6, type: 3}
-  costs: 78000000dc0000005e010000
-  level: 0
   towerName: Mortar
+  level: -1
+  costs: 78000000dc0000005e010000
   enemyLayer:
     serializedVersion: 2
     m_Bits: 1088
@@ -125,11 +125,21 @@ MonoBehaviour:
     shootCD: 1.5
     bulletDamagePhysic: 200
     bulletDamageMagic: 0
-  attackRange: 4
-  shootCD: 2
-  bulletDamagePhysic: 80
+  attackRange: 0
+  shootCD: 0
+  bulletDamagePhysic: 0
   bulletDamageMagic: 0
-  bulletDuration: 1
+  bulletDuration: 1.5
+  mortarTowerStats:
+  - innerRange: 2
+    outerRange: 5
+    bulletSize: 1
+  - innerRange: 3
+    outerRange: 6
+    bulletSize: 1.5
+  - innerRange: 4
+    outerRange: 7
+    bulletSize: 2
 --- !u!61 &2001779129403735682
 BoxCollider2D:
   m_ObjectHideFlags: 0

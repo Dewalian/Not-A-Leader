@@ -6,14 +6,24 @@ public abstract class Tower : MonoBehaviour
 {
     [SerializeField] private GameObject plot;
     public string towerName;
-    public int level = 0;
+    public int level = -1;
     public int[] costs = new int[3];
+
+    protected virtual void Start()
+    {
+        UpgradeTower();
+    }
+
+    public void DestroyTower()
+    {
+        Instantiate(plot, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+    }
 
     public virtual void SellTower()
     {
         //dapet duit
-        Instantiate(plot, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        DestroyTower();
     }
 
     public virtual void UpgradeTower()
@@ -22,6 +32,17 @@ public abstract class Tower : MonoBehaviour
             level++;
             LevelManager.Instance.gold -= costs[level];
         }
-        Debug.Log(level);
+    }
+
+    public virtual void ChangeStats(float changePercentage)
+    {
+        return;
+    }
+
+    public IEnumerator ChangeStatsTimed(float changePercentage, float time)
+    {
+        ChangeStats(changePercentage);
+        yield return new WaitForSeconds(time);
+        ChangeStats(-changePercentage);
     }
 }

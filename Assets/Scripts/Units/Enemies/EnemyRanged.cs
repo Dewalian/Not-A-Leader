@@ -11,12 +11,13 @@ public class EnemyRanged : Enemy
     [SerializeField] private GameObject bullet;
     [SerializeField] private LayerMask allyLayer;
     private bool canShoot = true;
+    private GameObject target;
     protected override void StateChange()
     {
         base.StateChange();
-        if(enemyState == State.Neutral){
+        if(unitState == State.Neutral){
             DetectTargetRanged();
-        }else if(enemyState == State.Shooting){
+        }else if(unitState == State.Shooting){
             moveSpeed = 0;
         }
     }
@@ -25,22 +26,35 @@ public class EnemyRanged : Enemy
     {
         Collider2D target = Physics2D.OverlapCircle(transform.position, rangedRange, allyLayer);
         if(target != null){
-            enemyState = State.Shooting;
+            unitState = State.Shooting;
+            FlipDirection(target.transform.position);
             if(canShoot){
-                StartCoroutine(RangeAttackTarget(target.gameObject));
+                this.target = target.gameObject;
+                RangeAttackTargetAnimator();
             }
         }
     }
 
-    private IEnumerator RangeAttackTarget(GameObject target)
+    private void RangeAttackTargetAnimator()
+    {
+        animator.SetTrigger("TriggerAttackRanged");
+    }
+
+    private IEnumerator RangeAttackCD()
+    {
+        yield return new WaitForSeconds(rangedCD);
+        canShoot = true;
+    }
+
+    private void RangeAttackTarget()
     {
         canShoot = false;
         if(target != null){
             GameObject bulletObj = Instantiate(bullet, transform.position, Quaternion.identity);
             bulletObj.transform.SetParent(gameObject.transform);
-            bulletObj.GetComponent<Bullet>().InitVariables(target.transform, transform, transform, rangedDamagePhysic, rangedDamageMagic, 1);
-            yield return new WaitForSeconds(rangedCD);
-            canShoot = true;
+            bulletObj.GetComponent<Bullet>().InitVariables(target.transform, transform, transform, 
+            rangedDamagePhysic, rangedDamageMagic, 1);
+            StartCoroutine(RangeAttackCD());
         }
     }
 }

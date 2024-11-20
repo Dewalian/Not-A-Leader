@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8084398200243186964}
   - component: {fileID: 5694850681012708643}
-  - component: {fileID: 2280606668547454865}
+  - component: {fileID: 6184276842981666821}
   - component: {fileID: -8517533275153932497}
   - component: {fileID: -6067331157388595875}
   m_Layer: 14
@@ -90,7 +90,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2280606668547454865
+--- !u!114 &6184276842981666821
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,13 +99,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1090411173420722513}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8efe91f044b2c11409a9333abdddad67, type: 3}
+  m_Script: {fileID: 11500000, guid: 72fcf2d765e2d3f4d89b95cbcb910c8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   plot: {fileID: 304619289554043741, guid: b03bd979e5c275542b6d16278d8c98d6, type: 3}
-  costs: 460000006400000096000000
-  level: 0
   towerName: Archer
+  level: -1
+  costs: 460000006400000096000000
   enemyLayer:
     serializedVersion: 2
     m_Bits: 1088
@@ -125,11 +125,21 @@ MonoBehaviour:
     shootCD: 0.6
     bulletDamagePhysic: 60
     bulletDamageMagic: 0
-  attackRange: 4
-  shootCD: 1.2
-  bulletDamagePhysic: 30
+  attackRange: 0
+  shootCD: 0
+  bulletDamagePhysic: 0
   bulletDamageMagic: 0
   bulletDuration: 1
+  archerTowerStats:
+  - maxMultiplier: 0
+    multiplierChance: 0
+  - maxMultiplier: 1
+    multiplierChance: 40
+  - maxMultiplier: 2
+    multiplierChance: 60
+  maxMultiplier: 0
+  multiplierChance: 0
+  multiplierDelay: 0.1
 --- !u!61 &-8517533275153932497
 BoxCollider2D:
   m_ObjectHideFlags: 0

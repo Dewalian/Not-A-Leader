@@ -194,7 +194,7 @@ MonoBehaviour:
   enemyState: 0
   debuffArea: {fileID: 5260784651626015639}
   debuffAreaRange: 5
-  debuffPercentage: 20
+  debuffPercentage: -20
 --- !u!58 &309439083209008443
 CircleCollider2D:
   m_ObjectHideFlags: 0
