@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Unit : MonoBehaviour
 {
@@ -12,13 +13,16 @@ public abstract class Unit : MonoBehaviour
     [SerializeField] protected float attackCD;
     [SerializeField] protected float physicRes;
     [SerializeField] protected float magicRes;
+    [SerializeField] protected float healthRegen;
     protected Animator animator;
+    protected float healthCopy;
     protected float moveSpeedCopy;
     protected float attackDamagePhysicCopy;
     protected float attackDamageMagicCopy;
     protected float attackCDCopy;
     protected float physicResCopy;
     protected float magicResCopy;
+    protected float healthRegenCopy;
     protected bool canAttack = true;
     public enum State{
         Neutral,
@@ -29,6 +33,8 @@ public abstract class Unit : MonoBehaviour
         Death
     };
     public State unitState;
+    public UnityEvent OnHealthChanged;
+
 
     protected virtual void Awake()
     {
@@ -69,9 +75,9 @@ public abstract class Unit : MonoBehaviour
     public void DeathAnimator()
     {
         if(animator){
-                animator.SetBool("BoolWalk", false);
-                animator.SetBool("BoolDeath", true);
-            }
+            animator.SetBool("BoolWalk", false);
+            animator.SetBool("BoolDeath", true);
+        }
         moveSpeed = 0;
     }
 
@@ -88,6 +94,7 @@ public abstract class Unit : MonoBehaviour
     public virtual void TakeDamage(float attackDamagePhysic, float attackDamageMagic)
     {
         health -= Mathf.Max(1, attackDamagePhysic - physicRes) + Mathf.Max(1, attackDamageMagic - magicRes);
+        OnHealthChanged?.Invoke();
     }
 
     protected IEnumerator AttackUnit(GameObject unitToFight)
@@ -117,7 +124,7 @@ public abstract class Unit : MonoBehaviour
     }
 
     public void Upgrade(float moveSpeed, float health, float attackRange, float attackDamagePhysic, 
-    float attackDamageMagic, float attackCD, float physicRes, float magicRes)
+    float attackDamageMagic, float attackCD, float physicRes, float magicRes, float healthRegen)
     {
         this.moveSpeed = moveSpeed;
         this.health = health;
@@ -127,12 +134,14 @@ public abstract class Unit : MonoBehaviour
         this.attackCD = attackCD;
         this.physicRes = physicRes;
         this.magicRes = magicRes;
+        this.healthRegen = healthRegen;
 
         UpdateStatsCopy();
     }
 
     public void UpdateStatsCopy()
     {
+        healthCopy = health;
         moveSpeedCopy = moveSpeed;
         attackDamagePhysicCopy = attackDamagePhysic;
         attackDamageMagicCopy = attackDamageMagic;

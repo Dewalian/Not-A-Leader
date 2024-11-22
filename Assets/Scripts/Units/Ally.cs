@@ -5,10 +5,13 @@ using UnityEngine.AI;
 
 public class Ally : Unit
 {
+    [SerializeField] protected float healthRegenDelay;
+    protected bool isStartRegen = true;
     private NavMeshAgent agent;
     private AllyArea allyArea;
     private GameObject enemy;
-    private float healthCopy;
+    private bool isTowardsTarget = false;
+    private Coroutine healthRegenCoroutine;
     public Transform originalPos;
     public bool isDuel = false;
 
@@ -16,6 +19,12 @@ public class Ally : Unit
     {
         base.Awake();
         agent = GetComponent<NavMeshAgent>();
+        allyArea = GetComponentInParent<AllyArea>();
+    }
+
+    private void OnEnable()
+    {
+        allyArea.OnMoveArea.AddListener(() => RemoveFromFight());
     }
 
     protected override void Start()
@@ -30,9 +39,6 @@ public class Ally : Unit
         
         StartCoroutine(WalkToTarget(originalPos.position));
         healthCopy = health;
-
-        allyArea = GetComponentInParent<AllyArea>();
-        allyArea.OnMoveArea.AddListener(() => RemoveFromFight());
     }
 
     protected virtual void Update()
@@ -49,14 +55,24 @@ public class Ally : Unit
         if(unitState == State.Aggro){
             agent.isStopped = false;
             animator.SetBool("BoolWalk", true);
+            isStartRegen = false;
             AggroEnemy();
+
+            if(healthRegenCoroutine != null) { StopCoroutine(healthRegenCoroutine); }
+            
         }else if(unitState == State.Fighting){
             StartCoroutine(AttackUnit(enemy));
             agent.isStopped = true;
             animator.SetBool("BoolWalk", false);
+            
         }else if(unitState == State.Neutral){
             agent.isStopped = false;
             StartCoroutine(WalkToTarget(originalPos.position));
+
+            if(!isStartRegen && health < healthCopy)
+            {
+                healthRegenCoroutine = StartCoroutine(HealthRegen());
+            }
         }
 
         if(enemy == null && unitState != State.Death){
@@ -73,9 +89,30 @@ public class Ally : Unit
             }else{
                 unitState = State.Fighting;
             }
-        }else{
-            unitState = State.Neutral;
         }
+    }
+
+    protected virtual IEnumerator HealthRegen()
+    {
+        isStartRegen = true;
+        yield return new WaitForSeconds(healthRegenDelay);
+
+        while(health < healthCopy){
+            health += Mathf.Min(healthRegen, healthCopy - health);
+            OnHealthChanged?.Invoke();
+            yield return new WaitForSeconds(1f);
+        }  
+    }
+
+    public override void TakeDamage(float attackDamagePhysic, float attackDamageMagic)
+    {
+        base.TakeDamage(attackDamagePhysic, attackDamageMagic);
+
+        if(healthRegenCoroutine != null) { StopCoroutine(healthRegenCoroutine); }
+        // if(healthRegenCoroutine != null) { 
+        //     StopCoroutine(healthRegenCoroutine); 
+        //     Debug.Log("Done");
+        // }
     }
 
     public override void Death()
@@ -84,6 +121,8 @@ public class Ally : Unit
         animator.SetBool("BoolDeath", false);
         health = healthCopy;
         canAttack = true;
+        moveSpeed = moveSpeedCopy;
+        OnHealthChanged?.Invoke();
         allyArea.StartRespawn(gameObject);
         gameObject.SetActive(false);
     }
@@ -95,11 +134,13 @@ public class Ally : Unit
 
     public IEnumerator WalkToTarget(Vector2 targetPos)
     {
-        agent.SetDestination(targetPos);
-        FlipDirection(targetPos);
-        animator.SetBool("BoolWalk", true);
-        yield return new WaitUntil(() => Vector2.Distance(transform.position, targetPos) < attackRange);
-        animator.SetBool("BoolWalk", false);
+        if(Vector2.Distance(transform.position, targetPos) > 0.1f){
+            agent.SetDestination(targetPos);
+            FlipDirection(targetPos);
+            animator.SetBool("BoolWalk", true);
+            yield return new WaitUntil(() => Vector2.Distance(transform.position, targetPos) < 0.1f);
+            animator.SetBool("BoolWalk", false);
+        }
     }
 
     public void SetTarget(GameObject enemy)
@@ -128,10 +169,15 @@ public class Ally : Unit
     {
         gameObject.AddComponent<Enemy>();
         GetComponent<Enemy>().Upgrade(moveSpeed, health, attackRange, attackDamagePhysic, attackDamageMagic, attackCD,
-        physicRes, magicRes);
+        physicRes, magicRes, healthRegen);
         gameObject.tag = "Enemy";
         gameObject.layer = 6;
         Destroy(GetComponent<NavMeshAgent>());
         Destroy(this);
+    }
+
+    private void OnDisable()
+    {
+        allyArea.OnMoveArea.RemoveListener(() => RemoveFromFight());
     }
 }

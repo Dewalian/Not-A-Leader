@@ -237,15 +237,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plot: {fileID: 304619289554043741, guid: b03bd979e5c275542b6d16278d8c98d6, type: 3}
   towerName: Barrack
-  level: 0
+  level: -1
   costs: 3c0000006e000000dc000000
   knightArea: {fileID: 5084112843948612129}
-  knightRespawnCD: 0
+  knightRespawnCD: 4
   startPosChecker: {fileID: 8980714776755811321}
   knights:
   - {fileID: 3968574284173201657}
-  - {fileID: 486422950728011828}
   knightsToAdd:
+  - {fileID: 486422950728011828}
   - {fileID: 5876089410358320353}
   - {fileID: 5171890160822640929}
   stats:
@@ -258,24 +258,27 @@ MonoBehaviour:
     knightAttackCD: 1.1
     knightPhysicRes: 10
     knightMagicRes: 0
+    knightHealthRegen: 3
   - flagRange: 3.2
     knightMoveSpeed: 1.1
     knightHealth: 200
-    knightAttackRange: 0.55
+    knightAttackRange: 0.5
     knightDamagePhysic: 35
     knightDamageMagic: 0
     knightAttackCD: 1
     knightPhysicRes: 20
     knightMagicRes: 5
+    knightHealthRegen: 6
   - flagRange: 3.5
     knightMoveSpeed: 1.2
     knightHealth: 250
-    knightAttackRange: 0.6
+    knightAttackRange: 0.5
     knightDamagePhysic: 50
     knightDamageMagic: 0
     knightAttackCD: 0.8
     knightPhysicRes: 30
     knightMagicRes: 15
+    knightHealthRegen: 9
   flagRange: 3
   knightMoveSpeed: 0
   knightHealth: 0
@@ -285,6 +288,7 @@ MonoBehaviour:
   knightAttackCD: 0
   knightPhysicRes: 0
   knightMagicRes: 0
+  knightHealthRegen: 0
   pathLayer:
     serializedVersion: 2
     m_Bits: 2048
@@ -806,12 +810,17 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8241285278197710672, guid: fdda26540d5fa494a9f9f17ef90d1f25, type: 3}
   m_PrefabInstance: {fileID: 3862069746174959217}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 6215627039351483643}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b891e0c9948ec434a92df50b19dcedfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &6215627039351483643 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7195208647487599242, guid: fdda26540d5fa494a9f9f17ef90d1f25, type: 3}
+  m_PrefabInstance: {fileID: 3862069746174959217}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8818076436717334020 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5762578049422717045, guid: fdda26540d5fa494a9f9f17ef90d1f25, type: 3}
@@ -901,6 +910,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2322132754943671288, guid: ab1be42caa217164a9fa7edfaf221e93, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3583582870727874940, guid: ab1be42caa217164a9fa7edfaf221e93, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -912,6 +925,10 @@ PrefabInstance:
     - target: {fileID: 3584220992765376034, guid: ab1be42caa217164a9fa7edfaf221e93, type: 3}
       propertyPath: attackCD
       value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3584220992765376034, guid: ab1be42caa217164a9fa7edfaf221e93, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3584220992765376034, guid: ab1be42caa217164a9fa7edfaf221e93, type: 3}
       propertyPath: moveSpeed
@@ -932,6 +949,14 @@ PrefabInstance:
     - target: {fileID: 4452014044138895818, guid: ab1be42caa217164a9fa7edfaf221e93, type: 3}
       propertyPath: m_LocalPosition.y
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5162940853441057222, guid: ab1be42caa217164a9fa7edfaf221e93, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5162940853441057222, guid: ab1be42caa217164a9fa7edfaf221e93, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6581903413032891858, guid: ab1be42caa217164a9fa7edfaf221e93, type: 3}
       propertyPath: m_LocalPosition.x
@@ -971,7 +996,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8211131575462820919, guid: ab1be42caa217164a9fa7edfaf221e93, type: 3}
       propertyPath: aggroArea
-      value: 2.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8211131575462820919, guid: ab1be42caa217164a9fa7edfaf221e93, type: 3}
       propertyPath: respawnCD
@@ -981,6 +1006,22 @@ PrefabInstance:
       propertyPath: respawnPos
       value: 
       objectReference: {fileID: 9033015998327157426}
+    - target: {fileID: 8211131575462820919, guid: ab1be42caa217164a9fa7edfaf221e93, type: 3}
+      propertyPath: allies.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8211131575462820919, guid: ab1be42caa217164a9fa7edfaf221e93, type: 3}
+      propertyPath: allies.Array.data[3]
+      value: 
+      objectReference: {fileID: 6215627039351483643}
+    - target: {fileID: 8535826569341276427, guid: ab1be42caa217164a9fa7edfaf221e93, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8535826569341276427, guid: ab1be42caa217164a9fa7edfaf221e93, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8608015342852994861, guid: ab1be42caa217164a9fa7edfaf221e93, type: 3}
       propertyPath: m_IsActive
       value: 0

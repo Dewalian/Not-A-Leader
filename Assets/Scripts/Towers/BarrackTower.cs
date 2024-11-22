@@ -24,6 +24,7 @@ public class BarrackTower : Tower
         public float knightAttackCD;
         public float knightPhysicRes;
         public float knightMagicRes;
+        public float knightHealthRegen;
     }
     [SerializeField] private Stats[] stats;
     [SerializeField] private float flagRange;
@@ -35,10 +36,12 @@ public class BarrackTower : Tower
     [SerializeField] private float knightAttackCD;
     [SerializeField] private float knightPhysicRes;
     [SerializeField] private float knightMagicRes;
+    [SerializeField] private float knightHealthRegen;
     [SerializeField] private LayerMask pathLayer;
 
     protected override void Start()
     {
+        base.Start();
         SetStartingPos();
         knightArea.respawnCD = knightRespawnCD;
     }
@@ -93,7 +96,7 @@ public class BarrackTower : Tower
         knightAttackCD = stats[level].knightAttackCD;
         knightPhysicRes = stats[level].knightPhysicRes;
         knightMagicRes = stats[level].knightMagicRes;
-
+        knightHealthRegen = stats[level].knightHealthRegen;
 
         knights.Add(knightsToAdd[0]);
         knights[knights.Count - 1].gameObject.SetActive(true);
@@ -101,7 +104,7 @@ public class BarrackTower : Tower
 
         foreach(Ally k in knights){
             k.Upgrade(knightMoveSpeed, knightHealth, knightAttackRange, knightDamagePhysic, knightDamageMagic,
-            knightAttackCD, knightPhysicRes, knightMagicRes);
+            knightAttackCD, knightPhysicRes, knightMagicRes, knightHealthRegen);
         }
     }
 

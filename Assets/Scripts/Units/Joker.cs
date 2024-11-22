@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Joker : Ally
 {
@@ -9,6 +11,12 @@ public class Joker : Ally
     [SerializeField] private float gamblerRoulleteBuffPercentage;
     [SerializeField] private float gamblerRoulleteDebuffPercentage;
     [SerializeField] private float gamblerRoulleteDuration;
+    [Serializable]
+    private struct HealthRegenAccel{
+        public float regenAccelCount;
+        public float regenAccelValue;
+    }
+    [SerializeField] private List<HealthRegenAccel> healthRegenAccels;
     private bool canGamblerRoulette = true;
     private List<GameObject> towers = new List<GameObject>();
     private List<string> towerNames = new List<string>();
@@ -17,6 +25,33 @@ public class Joker : Ally
     {
         base.Update();
         GamblerRoulette();
+    }
+
+    protected override IEnumerator HealthRegen()
+    {
+        isStartRegen = true;
+        yield return new WaitForSeconds(healthRegenDelay);
+
+        float seconds = 0;
+        int index = -1;
+        while(health < healthCopy){
+
+            if(index == -1){
+                health += Mathf.Min(healthRegen, healthCopy - health);
+                Debug.Log(healthRegen);
+            }else{
+                health += Mathf.Min(healthRegenAccels[index].regenAccelValue, healthCopy - health);
+                Debug.Log(healthRegenAccels[index].regenAccelValue);
+            }
+            OnHealthChanged?.Invoke();
+
+            yield return new WaitForSeconds(1f);
+            seconds++;
+
+            if(index+1 < healthRegenAccels.Count && seconds == healthRegenAccels[index+1].regenAccelCount){
+                index++;
+            }
+        }
     }
 
     private void GamblerRoulette()
