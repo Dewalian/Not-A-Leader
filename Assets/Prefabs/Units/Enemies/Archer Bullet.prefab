@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 542794179044926449}
   - component: {fileID: 7955804952719969284}
   m_Layer: 0
-  m_Name: ERanged Bullet
+  m_Name: Archer Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

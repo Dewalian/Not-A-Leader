@@ -291,7 +291,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 542794179044926449}
-  - component: {fileID: 3406216598820386095}
+  - component: {fileID: -1111250856331144987}
   m_Layer: 0
   m_Name: Mage Bullet
   m_TagString: Untagged
@@ -316,7 +316,7 @@ Transform:
   - {fileID: 1170446857904941801}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3406216598820386095
+--- !u!114 &-1111250856331144987
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -325,7 +325,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7973510780219047249}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9030799f3cf0fd14fbdb34319c20db9a, type: 3}
+  m_Script: {fileID: 11500000, guid: dde58b4ba5d945c439615405f8ab528f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   trajectoryCurve:
@@ -334,26 +334,17 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0.1
-      outSlope: 0.1
+      inSlope: 0
+      outSlope: 0
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.5
-      value: 0.05
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -0.1
-      outSlope: -0.1
+      inSlope: 0
+      outSlope: 0
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334

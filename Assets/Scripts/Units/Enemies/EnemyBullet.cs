@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ERangedBullet : Bullet
+public class EnemyBullet : Bullet
 {
     protected override void Start()
     {
