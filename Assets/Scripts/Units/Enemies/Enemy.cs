@@ -80,7 +80,7 @@ public class Enemy : Unit
 
     public override void Death()
     {
-        LevelManager.Instance.gold += bounty;
+        LevelManager.Instance.AddGold(bounty);
         base.Death();
     }
 

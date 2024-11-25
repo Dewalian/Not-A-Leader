@@ -103,6 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plot: {fileID: 304619289554043741, guid: b03bd979e5c275542b6d16278d8c98d6, type: 3}
+  areaVisual: {fileID: 0}
   towerName: Archer
   level: -1
   costs: 460000006400000096000000

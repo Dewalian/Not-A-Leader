@@ -12,12 +12,12 @@ public class MageChargeCanvas : MonoBehaviour
 
     private void Start()
     {
-        mageTower.OnUpgrade.AddListener(() => Upgrade());
+        mageTower.OnUpgrade.AddListener(() => IncreaseCharge());
         mageTower.OnDifferentTarget.AddListener(() => DifferentTarget());
         mageTower.OnSameTarget.AddListener(() => SameTarget());
     }
 
-    private void Upgrade()
+    private void IncreaseCharge()
     {
         charges.Add(chargesToAdd[0]);
         charges[charges.Count - 1].SetActive(true);

@@ -34,6 +34,7 @@ public abstract class Unit : MonoBehaviour
     };
     public State unitState;
     public UnityEvent OnHealthChanged;
+    private Unit unitTarget;
 
 
     protected virtual void Awake()
@@ -79,6 +80,7 @@ public abstract class Unit : MonoBehaviour
             animator.SetBool("BoolDeath", true);
         }
         moveSpeed = 0;
+        GetComponent<Collider2D>().enabled = false;
     }
 
     public virtual void Death()
@@ -97,23 +99,31 @@ public abstract class Unit : MonoBehaviour
         OnHealthChanged?.Invoke();
     }
 
-    protected IEnumerator AttackUnit(GameObject unitToFight)
+    protected IEnumerator AttackUnit(GameObject unit)
     {
-        if(canAttack && unitToFight != null){
+        this.unitTarget = unit.GetComponent<Unit>();;
+
+        if(canAttack && unitTarget != null){
             canAttack = false;
             if(animator){
                 animator.SetTrigger("TriggerAttack");
+            }else{
+                DamageUnitAnimator();
             }
 
-            if(unitToFight.GetComponent<Unit>().AboutToDie(attackDamagePhysic, attackDamageMagic)){
+            if(unitTarget.AboutToDie(attackDamagePhysic, attackDamageMagic)){
                 CriticalEffect();
             }else{
                 AttackEffect();
             }
-            unitToFight.GetComponent<Unit>().TakeDamage(attackDamagePhysic, attackDamageMagic);
             yield return new WaitForSeconds(attackCD);
             canAttack = true;
         }
+    }
+
+    public void DamageUnitAnimator()
+    {
+        unitTarget.TakeDamage(attackDamagePhysic, attackDamageMagic);
     }
 
     public void FlipDirection(Vector2 targetPos)

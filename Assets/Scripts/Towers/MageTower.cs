@@ -18,7 +18,6 @@ public class MageTower : ShootingTower
     private Transform lastTarget;
     public UnityEvent OnSameTarget;
     public UnityEvent OnDifferentTarget;
-    public UnityEvent OnUpgrade;
 
     protected override void SpawnBullet()
     {
@@ -46,7 +45,6 @@ public class MageTower : ShootingTower
 
         base.UpgradeTower();
         maxCharge = mageTowerStats[level].maxCharge;
-        OnUpgrade?.Invoke();
     }
 
 }

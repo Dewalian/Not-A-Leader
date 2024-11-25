@@ -9,6 +9,7 @@ public class UnitCanvas : MonoBehaviour
     private Unit unit;
     private Slider healthBar;
     private float originalHealth;
+    private Coroutine hideHealthCoroutine;
 
     private void Awake()
     {
@@ -31,10 +32,12 @@ public class UnitCanvas : MonoBehaviour
     {
         yield return new WaitForSeconds(healthUITimer);
         healthBar.gameObject.SetActive(false);
+        Debug.Log("Test");
     }
 
     public void UpdateHealthUI()
     {
+        // if(hideHealthCoroutine != null) StopCoroutine(hideHealthCoroutine);
         StopAllCoroutines();
 
         healthBar.gameObject.SetActive(true);

@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Tower : MonoBehaviour
 {
     [SerializeField] private GameObject plot;
+    [HideInInspector] public int level;
     public string towerName;
-    public int level = -1;
     public int[] costs = new int[3];
+    public UnityEvent OnUpgrade;
 
     protected virtual void Start()
     {
+        level = -1;
         UpgradeTower();
     }
 
@@ -30,19 +33,17 @@ public abstract class Tower : MonoBehaviour
     {
         if(level < 2 && LevelManager.Instance.gold >= costs[level+1]){
             level++;
-            LevelManager.Instance.gold -= costs[level];
+            LevelManager.Instance.AddGold(-costs[level]);
         }
     }
-
-    public virtual void ChangeStats(float changePercentage)
-    {
-        return;
-    }
-
     public IEnumerator ChangeStatsTimed(float changePercentage, float time)
     {
         ChangeStats(changePercentage);
         yield return new WaitForSeconds(time);
         ChangeStats(-changePercentage);
     }
+
+    public abstract void ChangeStats(float changePercentage);
+    
+    public abstract float GetRange();
 }

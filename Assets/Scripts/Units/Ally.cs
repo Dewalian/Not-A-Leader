@@ -10,7 +10,6 @@ public class Ally : Unit
     private NavMeshAgent agent;
     private AllyArea allyArea;
     private GameObject enemy;
-    private bool isTowardsTarget = false;
     private Coroutine healthRegenCoroutine;
     public Transform originalPos;
     public bool isDuel = false;
@@ -54,19 +53,22 @@ public class Ally : Unit
 
         if(unitState == State.Aggro){
             agent.isStopped = false;
-            animator.SetBool("BoolWalk", true);
-            isStartRegen = false;
+
+            if(animator) animator.SetBool("BoolWalk", true);
             AggroEnemy();
 
+            isStartRegen = false;
             if(healthRegenCoroutine != null) { StopCoroutine(healthRegenCoroutine); }
             
         }else if(unitState == State.Fighting){
-            StartCoroutine(AttackUnit(enemy));
             agent.isStopped = true;
-            animator.SetBool("BoolWalk", false);
+
+            if(animator) animator.SetBool("BoolWalk", false);
+            if(enemy!= null) StartCoroutine(AttackUnit(enemy));
             
         }else if(unitState == State.Neutral){
             agent.isStopped = false;
+
             StartCoroutine(WalkToTarget(originalPos.position));
 
             if(!isStartRegen && health < healthCopy)
@@ -85,7 +87,7 @@ public class Ally : Unit
         if(enemy != null){
             if(Vector2.Distance(transform.position, enemy.transform.position) >= attackRange){
                 agent.SetDestination(enemy.transform.position);
-                animator.SetBool("BoolWalk", true);
+                if(animator) animator.SetBool("BoolWalk", true);
             }else{
                 unitState = State.Fighting;
             }
@@ -102,6 +104,8 @@ public class Ally : Unit
             OnHealthChanged?.Invoke();
             yield return new WaitForSeconds(1f);
         }  
+
+        isStartRegen = false;
     }
 
     public override void TakeDamage(float attackDamagePhysic, float attackDamageMagic)
@@ -109,16 +113,12 @@ public class Ally : Unit
         base.TakeDamage(attackDamagePhysic, attackDamageMagic);
 
         if(healthRegenCoroutine != null) { StopCoroutine(healthRegenCoroutine); }
-        // if(healthRegenCoroutine != null) { 
-        //     StopCoroutine(healthRegenCoroutine); 
-        //     Debug.Log("Done");
-        // }
     }
 
     public override void Death()
     {
         RemoveFromFight();
-        animator.SetBool("BoolDeath", false);
+        if(animator) animator.SetBool("BoolDeath", false);
         health = healthCopy;
         canAttack = true;
         moveSpeed = moveSpeedCopy;
@@ -137,9 +137,9 @@ public class Ally : Unit
         if(Vector2.Distance(transform.position, targetPos) > 0.1f){
             agent.SetDestination(targetPos);
             FlipDirection(targetPos);
-            animator.SetBool("BoolWalk", true);
+            if(animator) animator.SetBool("BoolWalk", true);
             yield return new WaitUntil(() => Vector2.Distance(transform.position, targetPos) < 0.1f);
-            animator.SetBool("BoolWalk", false);
+            if(animator) animator.SetBool("BoolWalk", false);
         }
     }
 

@@ -21,6 +21,12 @@ public class Joker : Ally
     private List<GameObject> towers = new List<GameObject>();
     private List<string> towerNames = new List<string>();
 
+    protected override void Start()
+    {
+        base.Start();
+        LevelManager.Instance.UpdateHeroHealth(health);
+    }
+
     protected override void Update()
     {
         base.Update();
@@ -38,12 +44,11 @@ public class Joker : Ally
 
             if(index == -1){
                 health += Mathf.Min(healthRegen, healthCopy - health);
-                Debug.Log(healthRegen);
             }else{
                 health += Mathf.Min(healthRegenAccels[index].regenAccelValue, healthCopy - health);
-                Debug.Log(healthRegenAccels[index].regenAccelValue);
             }
             OnHealthChanged?.Invoke();
+            LevelManager.Instance.UpdateHeroHealth(health);
 
             yield return new WaitForSeconds(1f);
             seconds++;
@@ -52,6 +57,12 @@ public class Joker : Ally
                 index++;
             }
         }
+    }
+
+    public override void TakeDamage(float attackDamagePhysic, float attackDamageMagic)
+    {
+        base.TakeDamage(attackDamagePhysic, attackDamageMagic);
+        LevelManager.Instance.UpdateHeroHealth(health);
     }
 
     private void GamblerRoulette()

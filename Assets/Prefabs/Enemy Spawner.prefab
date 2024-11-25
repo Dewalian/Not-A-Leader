@@ -54,6 +54,16 @@ MonoBehaviour:
       - {fileID: 1669481420998670219, guid: 03f3eacc36df00a4ab6f3ed0a9e39c8f, type: 3}
       spawnCD: 0.3
     spawnCD: 2
+  - miniWave:
+    - enemies:
+      - {fileID: 1669481420998670219, guid: 03f3eacc36df00a4ab6f3ed0a9e39c8f, type: 3}
+      spawnCD: 0.3
+    spawnCD: 2
+  - miniWave:
+    - enemies:
+      - {fileID: 1669481420998670219, guid: 03f3eacc36df00a4ab6f3ed0a9e39c8f, type: 3}
+      spawnCD: 0.3
+    spawnCD: 2
   wayPoint:
   - {fileID: 4657096977749422331}
   - {fileID: 1578191781374679261}

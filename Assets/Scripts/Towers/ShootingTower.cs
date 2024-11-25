@@ -81,6 +81,8 @@ public class ShootingTower : Tower
         shootCD = stats[level].shootCD;
         bulletDamagePhysic = stats[level].bulletDamagePhysic;
         bulletDamageMagic = stats[level].bulletDamageMagic;
+
+        OnUpgrade?.Invoke();
     }
 
     public override void ChangeStats(float changePercentage)
@@ -91,5 +93,10 @@ public class ShootingTower : Tower
         shootCD -= stats[level].shootCD * changePercentage;
         bulletDamagePhysic += stats[level].bulletDamagePhysic * changePercentage;
         bulletDamageMagic += stats[level].bulletDamageMagic * changePercentage;
+    }
+
+    public override float GetRange()
+    {
+        return attackRange;
     }
 }

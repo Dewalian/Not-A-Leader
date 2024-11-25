@@ -106,6 +106,8 @@ public class BarrackTower : Tower
             k.Upgrade(knightMoveSpeed, knightHealth, knightAttackRange, knightDamagePhysic, knightDamageMagic,
             knightAttackCD, knightPhysicRes, knightMagicRes, knightHealthRegen);
         }
+
+        OnUpgrade?.Invoke();
     }
 
     public override void ChangeStats(float changePercentage)
@@ -114,5 +116,10 @@ public class BarrackTower : Tower
 
         flagRange += stats[level].flagRange * changePercentage;
         knightArea.respawnCD += knightRespawnCD * changePercentage;
+    }
+
+    public override float GetRange()
+    {
+        return flagRange;
     }
 }

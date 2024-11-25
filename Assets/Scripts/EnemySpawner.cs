@@ -6,17 +6,18 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     private WaveManager waveManager;
+    private Wave currentWave;
 
     [Serializable]
     public struct Wave{
         public MiniWave[] miniWave;
-        public float spawnCD;
+        public float miniWaveSpawnCD;
     }
 
     [Serializable]
     public struct MiniWave{
         public GameObject[] enemies;
-        public float spawnCD;
+        public float enemiesSpawnCD;
     }
     [SerializeField] private List<Wave> waves;
     public Transform[] wayPoint;
@@ -30,19 +31,22 @@ public class EnemySpawner : MonoBehaviour
     private void Update()
     {
         if(waveManager.waveStart){
+            currentWave = waves[waveManager.currentWave-1];
             CalcWaveDuration();
             StartCoroutine(SpawnMiniWave());
+            waveManager.SwitchWaveBool(false);
         }
     }
 
     private void CalcWaveDuration()
     {
         float waveDuration = 0;
-        Wave currentWave = waves[waveManager.waveCount];
 
-        waveDuration += currentWave.spawnCD;
-        foreach(MiniWave mw in currentWave.miniWave){
-            waveDuration += mw.spawnCD;
+        for(int i=0; i<currentWave.miniWave.Length; i++){
+            waveDuration += currentWave.miniWaveSpawnCD;
+            for(int j=0; j<currentWave.miniWave[i].enemies.Length; j++){
+                waveDuration += currentWave.miniWave[i].enemiesSpawnCD;
+            }
         }
 
         waveManager.SetWaveDuration(waveDuration);
@@ -50,10 +54,9 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnMiniWave()
     {
-        waveManager.waveStart = false;
-        foreach(MiniWave mw in waves[waveManager.waveCount].miniWave){
+        foreach(MiniWave mw in currentWave.miniWave){
             StartCoroutine(SpawnEnemies(mw));
-            yield return new WaitForSeconds(waves[waveManager.waveCount].spawnCD);
+            yield return new WaitForSeconds(currentWave.miniWaveSpawnCD);
         }
     }
 
@@ -62,7 +65,7 @@ public class EnemySpawner : MonoBehaviour
         foreach(GameObject e in miniWave.enemies){
             GameObject enemyObj = Instantiate(e, wayPoint[0].position, Quaternion.identity);
             enemyObj.transform.SetParent(gameObject.transform);
-            yield return new WaitForSeconds(miniWave.spawnCD);
+            yield return new WaitForSeconds(miniWave.enemiesSpawnCD);
         }
     }
 }
