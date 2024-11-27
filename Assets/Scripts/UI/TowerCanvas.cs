@@ -7,6 +7,8 @@ public class TowerCanvas : PlotCanvas
     private Tower tower;
     private float AREAVISUAL_MODIFIER = 400f;
     [SerializeField] private Transform areaVisual;
+    [SerializeField] private GameObject starContainer;
+    [SerializeField] private Transform starCharge;
 
     private void Awake()
     {
@@ -31,6 +33,10 @@ public class TowerCanvas : PlotCanvas
 
     public void UpgradeTower()
     {
-        tower.UpgradeTower();
+        if(tower.level < 2 && LevelManager.Instance.gold >= tower.costs[tower.level+1]){
+            tower.UpgradeTower();
+            Instantiate(starContainer, starCharge);
+        }
+
     }
 }

@@ -40,10 +40,6 @@ public class ArcherTower : ShootingTower
 
     public override void UpgradeTower()
     {
-        if(level >= 2 || (level < 2 && LevelManager.Instance.gold < costs[level+1])){
-            return;
-        }
-
         base.UpgradeTower();
         maxMultiplier = archerTowerStats[level].maxMultiplier;
         multiplierChance = archerTowerStats[level].multiplierChance;

@@ -31,10 +31,8 @@ public abstract class Tower : MonoBehaviour
 
     public virtual void UpgradeTower()
     {
-        if(level < 2 && LevelManager.Instance.gold >= costs[level+1]){
-            level++;
-            LevelManager.Instance.AddGold(-costs[level]);
-        }
+        level++;
+        LevelManager.Instance.AddGold(-costs[level]);
     }
     public IEnumerator ChangeStatsTimed(float changePercentage, float time)
     {

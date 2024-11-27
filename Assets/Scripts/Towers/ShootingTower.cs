@@ -28,7 +28,7 @@ public class ShootingTower : Tower
 
     private void Update()
     {
-        if(target == null || !IsEnemyInRange()){
+        if(target == null || !IsEnemyInRange() || target.GetComponent<Unit>().health <= 0){
             DetectEnemies();
         }
         

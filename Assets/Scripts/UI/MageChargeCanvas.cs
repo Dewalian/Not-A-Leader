@@ -5,8 +5,8 @@ using UnityEngine;
 public class MageChargeCanvas : MonoBehaviour
 {
     [SerializeField] private MageTower mageTower;
+    [SerializeField] private GameObject chargeContainer;
     [SerializeField] private List<GameObject> charges;
-    [SerializeField] private List<GameObject> chargesToAdd;
     [SerializeField] private Color falseChargeColor;
     private int trueChargeCount;
 
@@ -19,9 +19,8 @@ public class MageChargeCanvas : MonoBehaviour
 
     private void IncreaseCharge()
     {
-        charges.Add(chargesToAdd[0]);
-        charges[charges.Count - 1].SetActive(true);
-        chargesToAdd.RemoveAt(0);
+        GameObject chargeObj = Instantiate(chargeContainer, transform);
+        charges.Add(chargeObj);
     }
 
     private void DifferentTarget()
