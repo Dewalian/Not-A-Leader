@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class MoveCam : MonoBehaviour
 {
+    private Camera mainCam;
     [SerializeField] private float speed;
+
+    private void Awake()
+    {
+        mainCam = GetComponent<Camera>();
+    }
 
     private void Update()
     {
@@ -13,6 +19,8 @@ public class MoveCam : MonoBehaviour
 
     private void MoveCamByMousePos()
     {
+        if(!mainCam.enabled) return;
+
         Vector3 mouseToCam = new Vector3(Input.mousePosition.x, Input.mousePosition.y, -10);
         Vector3 mousePosViewport = Camera.main.ScreenToViewportPoint(mouseToCam);
         Vector3 mousePosWorld = Camera.main.ScreenToWorldPoint(mouseToCam);

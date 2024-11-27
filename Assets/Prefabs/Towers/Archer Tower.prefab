@@ -103,10 +103,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plot: {fileID: 304619289554043741, guid: b03bd979e5c275542b6d16278d8c98d6, type: 3}
-  areaVisual: {fileID: 0}
-  towerName: Archer
   level: -1
+  towerName: Archer
   costs: 460000006400000096000000
+  OnUpgrade:
+    m_PersistentCalls:
+      m_Calls: []
   enemyLayer:
     serializedVersion: 2
     m_Bits: 1088
@@ -309,11 +311,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 854010357103618929, guid: e483fc1a63de3b5428081100c1be249e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 320
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 854010357103618929, guid: e483fc1a63de3b5428081100c1be249e, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 320
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 854010357103618929, guid: e483fc1a63de3b5428081100c1be249e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -366,10 +368,6 @@ PrefabInstance:
     - target: {fileID: 4193474959885011705, guid: e483fc1a63de3b5428081100c1be249e, type: 3}
       propertyPath: m_Name
       value: Tower Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 7912739892109818980, guid: e483fc1a63de3b5428081100c1be249e, type: 3}
-      propertyPath: m_PresetInfoIsWorld
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

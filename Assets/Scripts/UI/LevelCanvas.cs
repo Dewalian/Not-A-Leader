@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class LevelCanvas : MonoBehaviour
 {
     [SerializeField] private TMP_Text goldText;
+    [SerializeField] private TMP_Text lifeText;
+    [SerializeField] private TMP_Text waveText;
     [SerializeField] private Slider heroHealthBar;
     [SerializeField] private WaveManager waveManager;
     [SerializeField] private Sprite waveStartButtonFalse;
@@ -17,11 +19,14 @@ public class LevelCanvas : MonoBehaviour
     {
         LevelManager.Instance.OnAddGold.AddListener(() => UpdateGoldText());
         LevelManager.Instance.OnHeroHealthChanged.AddListener(() => UpdateHeroHealthUI());
+        LevelManager.Instance.OnLifeBreak.AddListener(() => UpdateLifeText());
 
         waveManager.OnWaveCanStart.AddListener(() => WaveCanStart());
+        waveManager.OnNewWave.AddListener(() => UpdateWaveText());
 
         UpdateGoldText();
         UpdateHeroHealthUI();
+        UpdateLifeText();
 
         heroMaxHealth = LevelManager.Instance.heroHealth;
     }
@@ -34,6 +39,17 @@ public class LevelCanvas : MonoBehaviour
     private void UpdateHeroHealthUI()
     {
         heroHealthBar.value = LevelManager.Instance.heroHealth / heroMaxHealth;
+    }
+
+    private void UpdateLifeText()
+    {
+        lifeText.text = LevelManager.Instance.life.ToString();
+    }
+
+    private void UpdateWaveText()
+    {
+        waveText.text = waveManager.currentWave.ToString();
+        Debug.Log("Nambah");
     }
 
     private void WaveCanStart()

@@ -13,7 +13,8 @@ public class WaveManager : MonoBehaviour
     public bool waveStart;
     public int waveCount;
     [HideInInspector] public int currentWave;
-    public UnityEvent OnWaveCanStart;
+    [HideInInspector] public UnityEvent OnWaveCanStart;
+    [HideInInspector] public UnityEvent OnNewWave;
 
     private void Start()
     {
@@ -44,6 +45,7 @@ public class WaveManager : MonoBehaviour
             SwitchWaveBool(true);
             waveCanStart = false;
             currentWave++;
+            OnNewWave?.Invoke();
         }
     }
 

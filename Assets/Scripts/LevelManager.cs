@@ -9,12 +9,34 @@ public class LevelManager : MonoBehaviour
     public int gold;
     public int life;
     public float heroHealth;
-    [HideInInspector] public UnityEvent OnAddGold, OnHeroHealthChanged, OnWaveStartEarly;
+    public Camera mainCam;
+    public Camera levelCam;
+    [HideInInspector] public UnityEvent OnAddGold;
+    [HideInInspector] public UnityEvent OnHeroHealthChanged;
+    [HideInInspector] public UnityEvent OnLifeBreak;
 
     private void Awake()
     {
         if(Instance == null){
             Instance = this;
+        }
+    }
+
+    private void Update()
+    {
+        SwitchCam();
+    }
+
+    private void SwitchCam()
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha2)){
+            if(mainCam.enabled){
+                levelCam.enabled = true;
+                mainCam.enabled = false;
+            }else{
+                mainCam.enabled = true;
+                levelCam.enabled = false;
+            }
         }
     }
 
@@ -28,5 +50,11 @@ public class LevelManager : MonoBehaviour
     {
         this.heroHealth = heroHealth;
         OnHeroHealthChanged?.Invoke();
+    }
+
+    public void LifeBreak(int lifeDamage)
+    {
+        life -= lifeDamage;
+        OnLifeBreak?.Invoke();
     }
 }

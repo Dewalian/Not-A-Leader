@@ -93,8 +93,10 @@ public abstract class Unit : MonoBehaviour
 
     public virtual void TakeDamage(float attackDamagePhysic, float attackDamageMagic)
     {
-        health -= Mathf.Max(1, attackDamagePhysic - physicRes) + Mathf.Max(1, attackDamageMagic - magicRes);
-        OnHealthChanged?.Invoke();
+        if(unitState != State.Death){
+            health -= Mathf.Max(1, attackDamagePhysic - physicRes) + Mathf.Max(1, attackDamageMagic - magicRes);
+            OnHealthChanged?.Invoke();
+        }
     }
 
     protected IEnumerator AttackUnit(GameObject unit)

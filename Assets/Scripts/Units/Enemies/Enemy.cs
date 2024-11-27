@@ -32,7 +32,7 @@ public class Enemy : Unit
         if(Vector2.Distance(wayPoint.position, transform.position) <= 0.1f){
             wayPointIndex++;
             if(wayPointIndex == enemySpawner.wayPoint.Length){
-                LevelManager.Instance.life -= lifeDamage;
+                LevelManager.Instance.LifeBreak(lifeDamage);
                 Destroy(gameObject);
             }else{
                 wayPoint = enemySpawner.wayPoint[wayPointIndex];

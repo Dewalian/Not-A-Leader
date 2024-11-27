@@ -103,9 +103,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plot: {fileID: 304619289554043741, guid: b03bd979e5c275542b6d16278d8c98d6, type: 3}
-  towerName: Mage
   level: -1
+  towerName: Mage
   costs: 64000000a0000000f0000000
+  OnUpgrade:
+    m_PersistentCalls:
+      m_Calls: []
   enemyLayer:
     serializedVersion: 2
     m_Bits: 1088
@@ -139,9 +142,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnDifferentTarget:
-    m_PersistentCalls:
-      m_Calls: []
-  OnUpgrade:
     m_PersistentCalls:
       m_Calls: []
 --- !u!61 &4389788324436814862
@@ -757,11 +757,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 854010357103618929, guid: e483fc1a63de3b5428081100c1be249e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 320
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 854010357103618929, guid: e483fc1a63de3b5428081100c1be249e, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 320
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 854010357103618929, guid: e483fc1a63de3b5428081100c1be249e, type: 3}
       propertyPath: m_LocalPosition.x
