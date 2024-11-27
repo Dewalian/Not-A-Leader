@@ -24,6 +24,12 @@ public class Ally : Unit
     private void OnEnable()
     {
         allyArea.OnMoveArea.AddListener(() => RemoveFromFight());
+        OnHealthChanged?.Invoke();
+    }
+    
+    private void OnDisable()
+    {
+        allyArea.OnMoveArea.RemoveListener(() => RemoveFromFight());
     }
 
     protected override void Start()
@@ -115,14 +121,13 @@ public class Ally : Unit
         if(healthRegenCoroutine != null) { StopCoroutine(healthRegenCoroutine); }
     }
 
-    public override void Death()
+    public override void DeathAnimator()
     {
         RemoveFromFight();
-        if(animator) animator.SetBool("BoolDeath", false);
+        animator.SetBool("BoolDeath", false);
         health = healthCopy;
         canAttack = true;
         moveSpeed = moveSpeedCopy;
-        OnHealthChanged?.Invoke();
         allyArea.StartRespawn(gameObject);
         gameObject.SetActive(false);
     }
@@ -174,10 +179,5 @@ public class Ally : Unit
         gameObject.layer = 6;
         Destroy(GetComponent<NavMeshAgent>());
         Destroy(this);
-    }
-
-    private void OnDisable()
-    {
-        allyArea.OnMoveArea.RemoveListener(() => RemoveFromFight());
     }
 }

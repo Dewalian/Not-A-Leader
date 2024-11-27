@@ -16,7 +16,7 @@ public class HalfSuccubus : Enemy
 
         if(Random.value <= charmChance / 100){
             GameObject charmedObj = Instantiate(charmedUnit, charmedUnit.transform.position, Quaternion.identity);
-            unitsToFight[0].GetComponent<Ally>().Death();
+            unitsToFight[0].GetComponent<Ally>().DeathAnimator();
 
             charmedObj.GetComponent<Ally>().SwitchSide();
             charmedObj.GetComponent<Enemy>().InitializeSummoned(wayPointIndex, enemySpawner);

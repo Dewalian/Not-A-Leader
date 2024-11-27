@@ -35,7 +35,7 @@ public class Ostrad : Enemy
     {
         canWarScream = false;
         foreach(Collider2D u in unitInWarScream){
-            u.GetComponent<Unit>().DeathAnimator();
+            u.GetComponent<Unit>().Death();
         }
         unitState = State.Neutral;
         StartCoroutine(WarScreamCD());

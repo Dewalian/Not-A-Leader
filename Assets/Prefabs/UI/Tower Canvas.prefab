@@ -725,7 +725,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &4471440620496572001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -950,11 +950,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 609896357750237953, guid: 9579f12971338134b9faf1a45b155626, type: 3}
       propertyPath: m_SortingLayer
-      value: 5
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 609896357750237953, guid: 9579f12971338134b9faf1a45b155626, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 609896357750237953, guid: 9579f12971338134b9faf1a45b155626, type: 3}
       propertyPath: m_SortingLayerID
-      value: 265255141
+      value: -2141627737
       objectReference: {fileID: 0}
     - target: {fileID: 1440629869339237883, guid: 9579f12971338134b9faf1a45b155626, type: 3}
       propertyPath: m_Color.b
@@ -972,13 +976,17 @@ PrefabInstance:
       propertyPath: m_SortingLayer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1440629869339237883, guid: 9579f12971338134b9faf1a45b155626, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -2141627737
+      objectReference: {fileID: 0}
     - target: {fileID: 3001408749629006787, guid: 9579f12971338134b9faf1a45b155626, type: 3}
       propertyPath: m_SortingLayer
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3001408749629006787, guid: 9579f12971338134b9faf1a45b155626, type: 3}
       propertyPath: m_SortingLayerID
-      value: 265255141
+      value: -2141627737
       objectReference: {fileID: 0}
     - target: {fileID: 3337040574374837313, guid: 9579f12971338134b9faf1a45b155626, type: 3}
       propertyPath: m_Layer

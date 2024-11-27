@@ -14,14 +14,23 @@ public class HorseRider : Enemy
 
     protected override void StateChange()
     {
+        if(health <= 0){
+            unitState = State.Death;
+        }
+
+        if(unitState == State.Death){
+            Death();
+            return;
+        }
         
+        animator.SetBool("BoolWalk", true);
     }
 
-    public override void Death()
+    public override void DeathAnimator()
     {
         GameObject lancerObj = Instantiate(lancer, transform.position, Quaternion.identity);
         lancerObj.GetComponent<Enemy>().InitializeSummoned(wayPointIndex, enemySpawner);
         lancerObj.transform.SetParent(enemySpawner.transform);
-        base.Death();
+        base.DeathAnimator();
     }
 }

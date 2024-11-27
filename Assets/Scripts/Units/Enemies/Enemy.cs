@@ -54,16 +54,12 @@ public class Enemy : Unit
         if(unitState == State.Neutral){
             moveSpeed = moveSpeedCopy;
 
-            if(animator){
-                animator.SetBool("BoolWalk", true);
-            }
+            animator.SetBool("BoolWalk", true);
 
         }else if(unitState == State.Fighting){
             moveSpeed = 0;
 
-            if(animator){
-                animator.SetBool("BoolWalk", false);
-            }
+            animator.SetBool("BoolWalk", false);
             
             if(unitsToFight != null && 
             unitsToFight.Count > 0 && Vector2.Distance(transform.position, unitsToFight[0].transform.position) <= attackRange){

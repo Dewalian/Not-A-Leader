@@ -64,7 +64,7 @@ public abstract class Unit : MonoBehaviour
         }
 
         if(unitState == State.Death){
-            DeathAnimator();
+            Death();
             return;
         }
 
@@ -73,17 +73,15 @@ public abstract class Unit : MonoBehaviour
         }
     }
 
-    public void DeathAnimator()
+    public virtual void Death()
     {
-        if(animator){
-            animator.SetBool("BoolWalk", false);
-            animator.SetBool("BoolDeath", true);
-        }
+        animator.SetBool("BoolWalk", false);
+        animator.SetBool("BoolDeath", true);
         moveSpeed = 0;
         GetComponent<Collider2D>().enabled = false;
     }
 
-    public virtual void Death()
+    public virtual void DeathAnimator()
     {
         Destroy(gameObject);
     }

@@ -22,6 +22,11 @@ public class UnitCanvas : MonoBehaviour
         unit.OnHealthChanged.AddListener(() => UpdateHealthUI());
     }
 
+    private void OnDisable()
+    {
+        unit.OnHealthChanged.RemoveListener(() => UpdateHealthUI());
+    }
+
     private void Start()
     {
         healthBar.gameObject.SetActive(false);
@@ -32,7 +37,6 @@ public class UnitCanvas : MonoBehaviour
     {
         yield return new WaitForSeconds(healthUITimer);
         healthBar.gameObject.SetActive(false);
-        Debug.Log("Test");
     }
 
     public void UpdateHealthUI()
@@ -46,8 +50,5 @@ public class UnitCanvas : MonoBehaviour
         StartCoroutine(HideHealthUI());
     }
 
-    private void OnDisable()
-    {
-        unit.OnHealthChanged.RemoveListener(() => UpdateHealthUI());
-    }
+    
 }
