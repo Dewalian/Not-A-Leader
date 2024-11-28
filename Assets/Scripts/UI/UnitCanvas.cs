@@ -11,23 +11,23 @@ public class UnitCanvas : MonoBehaviour
     private float originalHealth;
     private Coroutine hideHealthCoroutine;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         unit = GetComponentInParent<Unit>();
         healthBar = GetComponentInChildren<Slider>();
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         unit.OnHealthChanged.AddListener(() => UpdateHealthUI());
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         unit.OnHealthChanged.RemoveListener(() => UpdateHealthUI());
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         healthBar.gameObject.SetActive(false);
         originalHealth = unit.health;

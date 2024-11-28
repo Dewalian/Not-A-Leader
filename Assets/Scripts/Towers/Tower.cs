@@ -8,6 +8,7 @@ public abstract class Tower : MonoBehaviour
     [SerializeField] private GameObject plot;
     [HideInInspector] public int level;
     public string towerName;
+    public Sprite towerSymbol;
     public int[] costs = new int[3];
     public UnityEvent OnUpgrade;
 

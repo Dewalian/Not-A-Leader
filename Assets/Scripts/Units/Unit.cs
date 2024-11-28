@@ -32,9 +32,9 @@ public abstract class Unit : MonoBehaviour
         Skill,
         Death
     };
-    public State unitState;
-    public UnityEvent OnHealthChanged;
     private Unit unitTarget;
+    [HideInInspector] public State unitState;
+    [HideInInspector] public UnityEvent OnHealthChanged;
 
 
     protected virtual void Awake()

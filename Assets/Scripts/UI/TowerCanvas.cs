@@ -1,18 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-public class TowerCanvas : PlotCanvas
+public class TowerCanvas : ToggleCanvas
 {
     private Tower tower;
-    private float AREAVISUAL_MODIFIER = 400f;
     [SerializeField] private Transform areaVisual;
     [SerializeField] private GameObject starContainer;
     [SerializeField] private Transform starCharge;
+    [SerializeField] private TMP_Text upgradeCostText;
+    [SerializeField] private GameObject upgradeButton;
 
     private void Awake()
     {
         tower = GetComponentInParent<Tower>();
+    }
+
+    private void Start()
+    {
+        SetCost();
+        AddStar();
     }
 
     private void OnEnable()
@@ -20,9 +28,26 @@ public class TowerCanvas : PlotCanvas
         tower.OnUpgrade.AddListener(() => IncreaseAreaVisual());
     }
 
+    private void OnDisable()
+    {
+        tower.OnUpgrade.RemoveListener(() => IncreaseAreaVisual());
+    }
+
+    private void SetCost()
+    {
+        if(tower.level < 2){
+            upgradeCostText.text = tower.costs[tower.level+1].ToString();
+        }
+    }
+
+    private void AddStar()
+    {
+        Instantiate(starContainer, starCharge);
+    }
+
     private void IncreaseAreaVisual()
     {
-        float range = tower.GetRange() * AREAVISUAL_MODIFIER;
+        float range = tower.GetRange() * 400;
         areaVisual.localScale = new Vector3(range, range, 0);
     }
 
@@ -35,8 +60,12 @@ public class TowerCanvas : PlotCanvas
     {
         if(tower.level < 2 && LevelManager.Instance.gold >= tower.costs[tower.level+1]){
             tower.UpgradeTower();
-            Instantiate(starContainer, starCharge);
+            SetCost();
+            AddStar();
         }
 
+        if(tower.level == 2){
+            upgradeButton.SetActive(false);
+        }
     }
 }

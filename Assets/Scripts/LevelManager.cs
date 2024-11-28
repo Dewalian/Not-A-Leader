@@ -21,7 +21,13 @@ public class LevelManager : MonoBehaviour
             Instance = this;
         }
     }
-
+    
+    private void Start()
+    {
+        OnAddGold?.Invoke();
+        OnHeroHealthChanged?.Invoke();
+        OnLifeBreak?.Invoke();
+    }
     private void Update()
     {
         SwitchCam();

@@ -238,6 +238,7 @@ MonoBehaviour:
   plot: {fileID: 304619289554043741, guid: b03bd979e5c275542b6d16278d8c98d6, type: 3}
   level: -1
   towerName: Barrack
+  towerSymbol: {fileID: 21300000, guid: 855a3982d69403a4d8f4748c28401602, type: 3}
   costs: 3c0000006e000000dc000000
   OnUpgrade:
     m_PersistentCalls:

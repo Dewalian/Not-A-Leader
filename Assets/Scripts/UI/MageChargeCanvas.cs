@@ -10,11 +10,18 @@ public class MageChargeCanvas : MonoBehaviour
     [SerializeField] private Color falseChargeColor;
     private int trueChargeCount;
 
-    private void Start()
+    private void OnEnable()
     {
         mageTower.OnUpgrade.AddListener(() => IncreaseCharge());
         mageTower.OnDifferentTarget.AddListener(() => DifferentTarget());
         mageTower.OnSameTarget.AddListener(() => SameTarget());
+    }
+
+    private void OnDisable()
+    {
+        mageTower.OnUpgrade.RemoveListener(() => IncreaseCharge());
+        mageTower.OnDifferentTarget.RemoveListener(() => DifferentTarget());
+        mageTower.OnSameTarget.RemoveListener(() => SameTarget());
     }
 
     private void IncreaseCharge()

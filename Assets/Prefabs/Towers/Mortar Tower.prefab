@@ -105,6 +105,7 @@ MonoBehaviour:
   plot: {fileID: 304619289554043741, guid: b03bd979e5c275542b6d16278d8c98d6, type: 3}
   level: -1
   towerName: Mortar
+  towerSymbol: {fileID: 21300000, guid: ebca346673b59a74fab1f14ec7e33c92, type: 3}
   costs: 78000000dc0000005e010000
   OnUpgrade:
     m_PersistentCalls:

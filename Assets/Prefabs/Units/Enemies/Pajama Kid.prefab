@@ -4843,7 +4843,8 @@ GameObject:
   - component: {fileID: 4817162509029902564}
   - component: {fileID: 309439083209008443}
   - component: {fileID: -8587405083573382243}
-  m_Layer: 6
+  - component: {fileID: 1600325129627784410}
+  m_Layer: 10
   m_Name: Pajama Kid
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -4949,7 +4950,7 @@ MonoBehaviour:
   bounty: 0
   lifeDamage: 0
   debuffArea: {fileID: 5643820849150031780}
-  debuffAreaRange: 5
+  debuffAreaRange: 10
   debuffPercentage: -20
   slothParticle: {fileID: 7863709391185719576}
 --- !u!58 &309439083209008443
@@ -5014,6 +5015,27 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &1600325129627784410
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8874370166680243440}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &4054874066089805561
 PrefabInstance:
   m_ObjectHideFlags: 0

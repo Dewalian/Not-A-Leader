@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PajamaKid : Enemy
+public class PajamaKid : SwiftEnemy
 {
     [SerializeField] private GameObject debuffArea;
     [SerializeField] private float debuffAreaRange;

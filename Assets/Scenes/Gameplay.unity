@@ -12774,7 +12774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b02fa6c93685f4e8c34ba75a76b44f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gold: 1000
+  gold: 3000
   life: 3
   heroHealth: 0
   mainCam: {fileID: 519420031}
@@ -12783,9 +12783,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnHeroHealthChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  OnWaveStartEarly:
     m_PersistentCalls:
       m_Calls: []
   OnLifeBreak:
@@ -12844,6 +12841,9 @@ MonoBehaviour:
   waveCount: 2
   currentWave: 0
   OnWaveCanStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNewWave:
     m_PersistentCalls:
       m_Calls: []
 --- !u!4 &2109981880
@@ -13332,7 +13332,7 @@ PrefabInstance:
     - target: {fileID: 8044420404469264249, guid: 44f7b5655f9a59f4bae6230472583fe5, type: 3}
       propertyPath: waves.Array.data[0].miniWave.Array.data[0].enemies.Array.data[0]
       value: 
-      objectReference: {fileID: 2877365520346369375, guid: 8919dea1a0fe32a438b5ca63e68b0baf, type: 3}
+      objectReference: {fileID: 8874370166680243440, guid: 18e07398b5949a344acef3d1a4d11e55, type: 3}
     - target: {fileID: 8044420404469264249, guid: 44f7b5655f9a59f4bae6230472583fe5, type: 3}
       propertyPath: waves.Array.data[0].miniWave.Array.data[0].enemies.Array.data[1]
       value: 
@@ -13450,6 +13450,38 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 741037771299559486, guid: c3375611e4ba78a459c8d073414a2a88, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 741037771299559486, guid: c3375611e4ba78a459c8d073414a2a88, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 741037771299559486, guid: c3375611e4ba78a459c8d073414a2a88, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 741037771299559486, guid: c3375611e4ba78a459c8d073414a2a88, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 777507482087889504, guid: c3375611e4ba78a459c8d073414a2a88, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 777507482087889504, guid: c3375611e4ba78a459c8d073414a2a88, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 777507482087889504, guid: c3375611e4ba78a459c8d073414a2a88, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 777507482087889504, guid: c3375611e4ba78a459c8d073414a2a88, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2588682794635069538, guid: c3375611e4ba78a459c8d073414a2a88, type: 3}
       propertyPath: m_Name
       value: Hero Area
@@ -13465,6 +13497,22 @@ PrefabInstance:
     - target: {fileID: 6952310311997864621, guid: c3375611e4ba78a459c8d073414a2a88, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 8278661231883119332, guid: c3375611e4ba78a459c8d073414a2a88, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8278661231883119332, guid: c3375611e4ba78a459c8d073414a2a88, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8278661231883119332, guid: c3375611e4ba78a459c8d073414a2a88, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8278661231883119332, guid: c3375611e4ba78a459c8d073414a2a88, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8644633565487895447, guid: c3375611e4ba78a459c8d073414a2a88, type: 3}
       propertyPath: m_LocalPosition.x

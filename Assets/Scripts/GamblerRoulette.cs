@@ -14,14 +14,16 @@ public class GamblerRoulette : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("Tower")){
-            joker.OnGamblerRouletteEnter(other.gameObject, other.GetComponent<Tower>().towerName);
+            Tower tower = other.GetComponent<Tower>();
+            joker.OnGamblerRouletteEnter(other.gameObject, tower.towerName, tower.towerSymbol);
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if(other.CompareTag("Tower")){
-            joker.OnGamblerRouletteExit(other.gameObject, other.GetComponent<Tower>().towerName);
+            Tower tower = other.GetComponent<Tower>();
+            joker.OnGamblerRouletteExit(other.gameObject, tower.towerName, tower.towerSymbol);
         }
     }
 }

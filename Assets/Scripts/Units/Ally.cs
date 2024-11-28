@@ -12,7 +12,7 @@ public class Ally : Unit
     private GameObject enemy;
     private Coroutine healthRegenCoroutine;
     public Transform originalPos;
-    public bool isDuel = false;
+    [HideInInspector] public bool isDuel = false;
 
     protected override void Awake()
     {
@@ -21,13 +21,13 @@ public class Ally : Unit
         allyArea = GetComponentInParent<AllyArea>();
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         allyArea.OnMoveArea.AddListener(() => RemoveFromFight());
         OnHealthChanged?.Invoke();
     }
     
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         allyArea.OnMoveArea.RemoveListener(() => RemoveFromFight());
     }
@@ -74,6 +74,7 @@ public class Ally : Unit
             
         }else if(unitState == State.Neutral){
             agent.isStopped = false;
+            moveSpeed = moveSpeedCopy;
 
             StartCoroutine(WalkToTarget(originalPos.position));
 
@@ -150,11 +151,13 @@ public class Ally : Unit
 
     public void SetTarget(GameObject enemy)
     {
-        RemoveFromFight();
-        FlipDirection(enemy.transform.position);
-        this.enemy = enemy;
-        enemy.GetComponent<Enemy>().AddUnitToFightArr(gameObject);
-        unitState = State.Aggro;
+        if(unitState != State.Skill){
+            RemoveFromFight();
+            FlipDirection(enemy.transform.position);
+            this.enemy = enemy;
+            enemy.GetComponent<Enemy>().AddUnitToFightArr(gameObject);
+            unitState = State.Aggro;
+        }
     }
 
     public void RemoveFromFight()

@@ -19,12 +19,19 @@ public class Bullet : MonoBehaviour
 
     protected virtual void Start()
     {
-        endPos = (Vector2)target.position + target.GetComponent<Enemy>().GetBulletPos(duration);
+        SetEndPos();
     }
 
     private void Update()
     {
         StartCoroutine(Lob());
+    }
+
+    private void SetEndPos()
+    {
+        if(target != null){
+            endPos = (Vector2)target.position + target.GetComponent<Enemy>().GetBulletPos(duration);
+        }
     }
 
     private IEnumerator Lob(){

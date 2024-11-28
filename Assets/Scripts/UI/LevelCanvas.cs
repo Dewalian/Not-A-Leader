@@ -17,18 +17,29 @@ public class LevelCanvas : MonoBehaviour
     private float heroMaxHealth;
     private void Start()
     {
+
+
+        heroMaxHealth = LevelManager.Instance.heroHealth;
+    }
+
+    private void OnEnable()
+    {
         LevelManager.Instance.OnAddGold.AddListener(() => UpdateGoldText());
         LevelManager.Instance.OnHeroHealthChanged.AddListener(() => UpdateHeroHealthUI());
         LevelManager.Instance.OnLifeBreak.AddListener(() => UpdateLifeText());
 
         waveManager.OnWaveCanStart.AddListener(() => WaveCanStart());
         waveManager.OnNewWave.AddListener(() => UpdateWaveText());
+    }
 
-        UpdateGoldText();
-        UpdateHeroHealthUI();
-        UpdateLifeText();
+    private void OnDisable()
+    {
+        LevelManager.Instance.OnAddGold.RemoveListener(() => UpdateGoldText());
+        LevelManager.Instance.OnHeroHealthChanged.RemoveListener(() => UpdateHeroHealthUI());
+        LevelManager.Instance.OnLifeBreak.RemoveListener(() => UpdateLifeText());
 
-        heroMaxHealth = LevelManager.Instance.heroHealth;
+        waveManager.OnWaveCanStart.RemoveListener(() => WaveCanStart());
+        waveManager.OnNewWave.RemoveListener(() => UpdateWaveText());
     }
 
     private void UpdateGoldText()
@@ -49,7 +60,6 @@ public class LevelCanvas : MonoBehaviour
     private void UpdateWaveText()
     {
         waveText.text = waveManager.currentWave.ToString();
-        Debug.Log("Nambah");
     }
 
     private void WaveCanStart()
