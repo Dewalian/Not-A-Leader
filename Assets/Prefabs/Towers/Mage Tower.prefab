@@ -462,6 +462,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tower Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7102625853230358663, guid: e483fc1a63de3b5428081100c1be249e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7820410798076163039, guid: e483fc1a63de3b5428081100c1be249e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

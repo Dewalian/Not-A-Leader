@@ -5,11 +5,6 @@ using UnityEngine;
 
 public class ShootingTower : Tower
 {
-    [SerializeField] private LayerMask enemyLayer;
-    [SerializeField] protected Transform firingPoint;
-    [SerializeField] protected Transform shadowPoint;
-    [SerializeField] protected GameObject bullet;
-
     [Serializable]
     private struct Stats{
         public float attackRange;
@@ -23,6 +18,9 @@ public class ShootingTower : Tower
     [SerializeField] protected float bulletDamagePhysic;
     [SerializeField] protected float bulletDamageMagic;
     [SerializeField] protected float bulletDuration;
+    [SerializeField] protected Transform firingPoint;
+    [SerializeField] protected Transform shadowPoint;
+    [SerializeField] protected GameObject bullet;
     protected Transform target;
     private bool canShoot = true;
 
@@ -49,7 +47,7 @@ public class ShootingTower : Tower
 
     private bool IsEnemyInRange()
     {
-        if(target != null){
+        if(target != null && target.GetComponent<Unit>().health > 0){
             return Vector2.Distance(transform.position, target.position) < attackRange;
         }
         return false;
@@ -57,12 +55,10 @@ public class ShootingTower : Tower
 
     private void DetectEnemies()
     {
-        Collider2D[] enemiesInRange = Physics2D.OverlapCircleAll(transform.position, attackRange, enemyLayer);
+        Collider2D[] enemiesInRange = Physics2D.OverlapCircleAll(transform.position, attackRange, LayerMask.GetMask("Enemy", "Swift Enemy"));
 
-        foreach(Collider2D e in enemiesInRange){
-            if(e.GetComponent<Enemy>().health > 0){
-                target = e.transform;
-            }
+        if(enemiesInRange.Length > 0){
+            target = enemiesInRange[0].transform;
         }
     }
 

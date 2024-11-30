@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour
     public Camera mainCam;
     public Camera levelCam;
     [HideInInspector] public UnityEvent OnAddGold;
-    [HideInInspector] public UnityEvent OnHeroHealthChanged;
+     public UnityEvent OnHeroHealthChanged;
     [HideInInspector] public UnityEvent OnLifeBreak;
 
     private void Awake()
@@ -21,13 +21,7 @@ public class LevelManager : MonoBehaviour
             Instance = this;
         }
     }
-    
-    private void Start()
-    {
-        OnAddGold?.Invoke();
-        OnHeroHealthChanged?.Invoke();
-        OnLifeBreak?.Invoke();
-    }
+
     private void Update()
     {
         SwitchCam();

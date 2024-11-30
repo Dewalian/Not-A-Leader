@@ -7,12 +7,6 @@ using Random = UnityEngine.Random;
 
 public class BarrackTower : Tower
 {
-    [SerializeField] private AllyArea knightArea;
-    [SerializeField] private float knightRespawnCD;
-    [SerializeField] private Transform startPosChecker;
-    [SerializeField] private List<Ally> knights;
-    [SerializeField] private List<Ally> knightsToAdd;
-
     [Serializable]
     private struct Stats{
         public float flagRange;
@@ -37,6 +31,11 @@ public class BarrackTower : Tower
     [SerializeField] private float knightPhysicRes;
     [SerializeField] private float knightMagicRes;
     [SerializeField] private float knightHealthRegen;
+    [SerializeField] private AllyArea knightArea;
+    [SerializeField] private float knightRespawnCD;
+    [SerializeField] private Transform startPosChecker;
+    [SerializeField] private List<Ally> knights;
+    [SerializeField] private List<Ally> knightsToAdd;
     [SerializeField] private LayerMask pathLayer;
 
     protected override void Start()
@@ -81,8 +80,6 @@ public class BarrackTower : Tower
 
     public override void UpgradeTower()
     {
-
-
         base.UpgradeTower();
 
         flagRange = stats[level].flagRange;

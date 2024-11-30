@@ -4933,6 +4933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73038399454965c4e8f2e15cea3b48f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitName: Pajama Kid
   health: 1000
   moveSpeed: 1
   attackRange: 0.5
@@ -4943,6 +4944,9 @@ MonoBehaviour:
   magicRes: 0
   healthRegen: 0
   unitState: 0
+  OnSwitch:
+    m_PersistentCalls:
+      m_Calls: []
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []

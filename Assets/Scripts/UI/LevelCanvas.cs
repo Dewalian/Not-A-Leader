@@ -17,9 +17,10 @@ public class LevelCanvas : MonoBehaviour
     private float heroMaxHealth;
     private void Start()
     {
-
-
         heroMaxHealth = LevelManager.Instance.heroHealth;
+        UpdateGoldText();
+        UpdateHeroHealthUI();
+        UpdateLifeText();
     }
 
     private void OnEnable()

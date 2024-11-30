@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d651e7b6fdf31f4fa2128244b76e8a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitName: Horse Rider
   health: 10
   moveSpeed: 2
   attackRange: 0
@@ -111,6 +112,9 @@ MonoBehaviour:
   magicRes: 0
   healthRegen: 0
   unitState: 0
+  OnSwitch:
+    m_PersistentCalls:
+      m_Calls: []
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []

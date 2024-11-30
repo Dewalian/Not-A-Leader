@@ -7,32 +7,40 @@ public class JokerCanvas : UnitCanvas
 {
     [SerializeField] private TMP_Text goldText;
     [SerializeField] private TMP_Text towerCountText;
-    [SerializeField] private TMP_Text uniqueTowerCountText;
-    private Joker joker;
+    [SerializeField] private GamblerRoulette gamblerRoulette;
+    private float goldRequired;
+    private float towerCountRequired;
+    private float uniqueTowerCountRequired;
 
-    protected override void Awake()
+    protected override void Start()
     {
-        base.Awake();
-        joker = GetComponentInParent<Joker>();
+        base.Start();
+        goldRequired = gamblerRoulette.goldRequired;
+        towerCountRequired = gamblerRoulette.towerCountRequired;
+        uniqueTowerCountRequired = gamblerRoulette.uniqueTowerCountRequired;
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
-        joker.OnUpdateStats.AddListener(() => UpdateStats());
+        gamblerRoulette.OnUpdateStats.AddListener(() => UpdateStats());
     }
 
     protected override void OnDisable()
     {
         base.OnDisable();
-        joker.OnUpdateStats.RemoveListener(() => UpdateStats());
+        gamblerRoulette.OnUpdateStats.RemoveListener(() => UpdateStats());
     }
 
     private void UpdateStats()
     {
-        goldText.text = LevelManager.Instance.gold.ToString();
-        towerCountText.text = joker.towers.Count.ToString();
-        uniqueTowerCountText.text = joker.uniqueTowerNames.Count.ToString();
+        float gold = LevelManager.Instance.gold;
+        float towerCount = gamblerRoulette.towers.Count;
+        float uniqueTowerCount = gamblerRoulette.uniqueTowerNames.Count;
+
+        goldText.text = string.Format("Gold: {0}/{1}", gold, goldRequired);
+        towerCountText.text = string.Format("Tower: {0}/{1} ({2}/{3})", 
+        gamblerRoulette.towers.Count, uniqueTowerCountRequired, towerCount, towerCountRequired);
     }
 
 }

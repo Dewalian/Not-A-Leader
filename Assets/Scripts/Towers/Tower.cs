@@ -5,12 +5,12 @@ using UnityEngine.Events;
 
 public abstract class Tower : MonoBehaviour
 {
-    [SerializeField] private GameObject plot;
     [HideInInspector] public int level;
     public string towerName;
     public Sprite towerSymbol;
     public int[] costs = new int[3];
-    public UnityEvent OnUpgrade;
+    [HideInInspector] public UnityEvent OnUpgrade;
+    [SerializeField] private GameObject plot;
 
     protected virtual void Start()
     {
@@ -40,6 +40,13 @@ public abstract class Tower : MonoBehaviour
         ChangeStats(changePercentage);
         yield return new WaitForSeconds(time);
         ChangeStats(-changePercentage);
+    }
+
+    public IEnumerator ChangeColor(float duration, Color color){
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.color = color;
+        yield return new WaitForSeconds(duration);
+        spriteRenderer.color = Color.white;
     }
 
     public abstract void ChangeStats(float changePercentage);

@@ -31,7 +31,6 @@ public class ArcherTower : ShootingTower
             canMultiply = false;
             yield return new WaitForSeconds(multiplierDelay);
             base.SpawnBullet();
-            Debug.Log("Test");
             canMultiply = true;
             multiplyCount++;
             StartCoroutine(Multiplier());

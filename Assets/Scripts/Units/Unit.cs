@@ -5,15 +5,16 @@ using UnityEngine.Events;
 
 public abstract class Unit : MonoBehaviour
 {
-    public float health;
-    [SerializeField] protected float moveSpeed;
-    [SerializeField] protected float attackRange;
-    [SerializeField] protected float attackDamagePhysic;
-    [SerializeField] protected float attackDamageMagic;
-    [SerializeField] protected float attackCD;
-    [SerializeField] protected float physicRes;
-    [SerializeField] protected float magicRes;
-    [SerializeField] protected float healthRegen;
+    public string unitName;
+    public  float health;
+    public float moveSpeed;
+    public float attackRange;
+    public float attackDamagePhysic;
+    public float attackDamageMagic;
+    public float attackCD;
+    public float physicRes;
+    public float magicRes;
+    public float healthRegen;
     protected Animator animator;
     protected float healthCopy;
     protected float moveSpeedCopy;
@@ -23,7 +24,7 @@ public abstract class Unit : MonoBehaviour
     protected float physicResCopy;
     protected float magicResCopy;
     protected float healthRegenCopy;
-    protected bool canAttack = true;
+    [HideInInspector] protected bool canAttack = true;
     public enum State{
         Neutral,
         Aggro,
@@ -32,10 +33,11 @@ public abstract class Unit : MonoBehaviour
         Skill,
         Death
     };
-    private Unit unitTarget;
-    [HideInInspector] public State unitState;
+    protected Unit unitTarget;
+    protected bool isAttackAnimation;
+    public State unitState;
+    [HideInInspector] public UnityEvent OnSwitch;
     [HideInInspector] public UnityEvent OnHealthChanged;
-
 
     protected virtual void Awake()
     {
@@ -47,30 +49,24 @@ public abstract class Unit : MonoBehaviour
         UpdateStatsCopy();
     }
 
-    protected virtual void CriticalEffect()
+    protected virtual void Update()
+    {
+        StateChange();
+    }
+
+    protected virtual void FatalEffect()
     {
         return;
     }
 
-    protected virtual void AttackEffect()
-    {
-        return;
-    }
+    // protected virtual void AttackEffect()
+    // {
+    //     return;
+    // }
 
     protected virtual void StateChange()
     {
-        if(health <= 0){
-            unitState = State.Death;
-        }
-
-        if(unitState == State.Death){
-            Death();
-            return;
-        }
-
-        if(unitState == State.Skill){
-            moveSpeed = 0;
-        }
+        return;
     }
 
     public virtual void Death()
@@ -88,7 +84,7 @@ public abstract class Unit : MonoBehaviour
 
     public virtual bool AboutToDie(float attackDamagePhysic, float attackDamageMagic)
     {
-        return health < Mathf.Max(1, attackDamagePhysic - physicRes) + Mathf.Max(1, attackDamageMagic - magicRes);
+        return health <= Mathf.Max(1, attackDamagePhysic - physicRes) + Mathf.Max(1, attackDamageMagic - magicRes);
     }
 
     public virtual void TakeDamage(float attackDamagePhysic, float attackDamageMagic)
@@ -96,29 +92,34 @@ public abstract class Unit : MonoBehaviour
         if(unitState != State.Death){
             health -= Mathf.Max(1, attackDamagePhysic - physicRes) + Mathf.Max(1, attackDamageMagic - magicRes);
             OnHealthChanged?.Invoke();
+
+            if(health <= 0){
+                unitState = State.Death;
+                Death();
+            }
         }
     }
 
-    protected IEnumerator AttackUnit(GameObject unit)
+    protected virtual IEnumerator AttackUnit(GameObject unit)
     {
-        this.unitTarget = unit.GetComponent<Unit>();;
+        unitTarget = unit.GetComponent<Unit>();
 
-        if(canAttack && unitTarget != null){
+        if(canAttack && unitTarget != null && attackCD > 0){
+            isAttackAnimation = true;
+
             canAttack = false;
-            if(animator){
-                animator.SetTrigger("TriggerAttack");
-            }else{
-                DamageUnitAnimator();
-            }
+            moveSpeed = 0;
 
-            if(unitTarget.AboutToDie(attackDamagePhysic, attackDamageMagic)){
-                CriticalEffect();
-            }else{
-                AttackEffect();
-            }
+            animator.SetTrigger("TriggerAttack");
+
             yield return new WaitForSeconds(attackCD);
             canAttack = true;
         }
+    }
+
+    public void FinishAttackAnimator()
+    {
+        isAttackAnimation = false;
     }
 
     public void DamageUnitAnimator()
@@ -170,5 +171,19 @@ public abstract class Unit : MonoBehaviour
         attackCD -= attackCDCopy * changePercentage;
         physicRes += physicResCopy * changePercentage;
         magicRes += magicResCopy * changePercentage;
+    }
+
+    public IEnumerator ChangeStatsTimed(float changePercentage, float time)
+    {
+        ChangeStats(changePercentage);
+        yield return new WaitForSeconds(time);
+        ChangeStats(-changePercentage);
+    }
+
+    public IEnumerator ChangeColor(float duration, Color color){
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.color = color;
+        yield return new WaitForSeconds(duration);
+        spriteRenderer.color = Color.white;
     }
 }

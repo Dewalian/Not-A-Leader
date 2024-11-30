@@ -12,17 +12,17 @@ public class Enemy : Unit
     protected Transform wayPoint;
     protected List<GameObject> unitsToFight = new List<GameObject>();
     protected EnemySpawner enemySpawner;
-    protected int wayPointIndex = 0;
+    protected int wayPointIndex;
 
     protected override void Start()
     {
+        base.Start();
         enemySpawner = GetComponentInParent<EnemySpawner>();
-        moveSpeedCopy = moveSpeed;
     }
 
-    protected virtual void Update()
+    protected override void Update()
     {
-        StateChange();
+        base.Update();
         MoveToWayPoint();
         ChangeTargetPos();
     }
@@ -49,7 +49,9 @@ public class Enemy : Unit
 
     protected override void StateChange()
     {
-        base.StateChange();
+        if(unitState == State.Death){
+            return;
+        }
 
         if(unitState == State.Neutral){
             moveSpeed = moveSpeedCopy;
@@ -67,7 +69,7 @@ public class Enemy : Unit
             }
         }
 
-        if(unitsToFight.Count == 0 && unitState != State.Shooting){
+        if(unitsToFight.Count == 0 && unitState != State.Shooting && !isAttackAnimation){
             unitState = State.Neutral;
         }else{
             unitState = State.Fighting;

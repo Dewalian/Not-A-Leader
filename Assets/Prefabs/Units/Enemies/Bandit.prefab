@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca75fd570011d354a9ce46ecdd005afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitName: Bandit
   health: 1000
   moveSpeed: 0.5
   attackRange: 0.5
@@ -111,6 +112,9 @@ MonoBehaviour:
   magicRes: 0
   healthRegen: 0
   unitState: 0
+  OnSwitch:
+    m_PersistentCalls:
+      m_Calls: []
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []

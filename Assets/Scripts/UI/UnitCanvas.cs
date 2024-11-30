@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,24 +14,24 @@ public class UnitCanvas : MonoBehaviour
 
     protected virtual void Awake()
     {
-        unit = GetComponentInParent<Unit>();
-        healthBar = GetComponentInChildren<Slider>();
-    }
-
-    protected virtual void OnEnable()
-    {
-        unit.OnHealthChanged.AddListener(() => UpdateHealthUI());
-    }
-
-    protected virtual void OnDisable()
-    {
-        unit.OnHealthChanged.RemoveListener(() => UpdateHealthUI());
+        GetComponents();
     }
 
     protected virtual void Start()
     {
         healthBar.gameObject.SetActive(false);
         originalHealth = unit.health;
+    }
+
+    protected virtual void OnEnable()
+    {
+        unit.OnHealthChanged.AddListener(() => UpdateHealthUI());
+        // unit.OnSwitch.AddListener(() => GetComponents());
+    }
+
+    protected virtual void OnDisable()
+    {
+        unit.OnHealthChanged.RemoveAllListeners();
     }
 
     private IEnumerator HideHealthUI()
@@ -50,5 +51,9 @@ public class UnitCanvas : MonoBehaviour
         StartCoroutine(HideHealthUI());
     }
 
-    
+    private void GetComponents()
+    {
+        healthBar = GetComponentInChildren<Slider>();
+        unit = GetComponentInParent<Unit>();
+    }
 }

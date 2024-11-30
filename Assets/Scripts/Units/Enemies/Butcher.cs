@@ -4,14 +4,27 @@ using UnityEngine;
 
 public class Butcher : Enemy
 {
-    private float healthCopy;
-    protected override void Start()
-    {
-        base.Start();
-        healthCopy = health;
-    }
-    protected override void CriticalEffect()
+    protected override void FatalEffect()
     {
         health = healthCopy;
+    }
+
+    protected override IEnumerator AttackUnit(GameObject unit)
+    {
+        unitTarget = unit.GetComponent<Unit>();
+
+        if(canAttack && unitTarget != null){
+            isAttackAnimation = true;
+            canAttack = false;
+
+            if(unitTarget.AboutToDie(attackDamagePhysic, attackDamageMagic)){
+                animator.SetTrigger("TriggerEat");
+                unit.GetComponent<Ally>().DeathAnimator();
+            }else{
+                animator.SetTrigger("TriggerAttack");
+            }
+            yield return new WaitForSeconds(attackCD);
+            canAttack = true;
+        }
     }
 }

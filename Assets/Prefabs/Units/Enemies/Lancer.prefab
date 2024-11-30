@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca75fd570011d354a9ce46ecdd005afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitName: Lancer
   health: 1000
   moveSpeed: 1
   attackRange: 0.5
@@ -111,11 +112,14 @@ MonoBehaviour:
   magicRes: 0
   healthRegen: 0
   unitState: 0
+  OnSwitch:
+    m_PersistentCalls:
+      m_Calls: []
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
   dodgeChance: 0
-  bounty: 0
+  bounty: 1000
   lifeDamage: 0
 --- !u!58 &162305304421753872
 CircleCollider2D:

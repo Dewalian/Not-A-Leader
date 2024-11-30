@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d623e60ea70ddcd4ba03c785e4e03f16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitName: Archer
   health: 1000
   moveSpeed: 1
   attackRange: 0.5
@@ -111,6 +112,9 @@ MonoBehaviour:
   magicRes: 0
   healthRegen: 0
   unitState: 0
+  OnSwitch:
+    m_PersistentCalls:
+      m_Calls: []
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class Ally : Unit
 {
@@ -23,13 +24,19 @@ public class Ally : Unit
 
     protected virtual void OnEnable()
     {
-        allyArea.OnMoveArea.AddListener(() => RemoveFromFight());
+        allyArea.OnMoveArea.AddListener(() => {
+            RemoveFromFight();
+            if(unitState != State.Skill){
+                unitState = State.Neutral;
+            }
+        });
+
         OnHealthChanged?.Invoke();
     }
     
     protected virtual void OnDisable()
     {
-        allyArea.OnMoveArea.RemoveListener(() => RemoveFromFight());
+        allyArea.OnMoveArea.RemoveAllListeners();
     }
 
     protected override void Start()
@@ -46,16 +53,17 @@ public class Ally : Unit
         healthCopy = health;
     }
 
-    protected virtual void Update()
+    protected override void Update()
     {
-        StateChange();
-
+        base.Update();
         agent.speed = moveSpeed;
     }
 
     protected override void StateChange()
     {
-        base.StateChange();
+        if(unitState == State.Death){
+            return;
+        }
 
         if(unitState == State.Aggro){
             agent.isStopped = false;
@@ -84,7 +92,7 @@ public class Ally : Unit
             }
         }
 
-        if(enemy == null && unitState != State.Death){
+        if(enemy == null && unitState != State.Death && !isAttackAnimation){
             unitState = State.Neutral;
         }
     }
@@ -122,6 +130,12 @@ public class Ally : Unit
         if(healthRegenCoroutine != null) { StopCoroutine(healthRegenCoroutine); }
     }
 
+    public override void Death()
+    {
+        base.Death();
+        RemoveFromFight();
+    }
+
     public override void DeathAnimator()
     {
         RemoveFromFight();
@@ -131,11 +145,6 @@ public class Ally : Unit
         moveSpeed = moveSpeedCopy;
         allyArea.StartRespawn(gameObject);
         gameObject.SetActive(false);
-    }
-
-    public override void ChangeStats(float changePercentage)
-    {
-        base.ChangeStats(changePercentage);
     }
 
     public IEnumerator WalkToTarget(Vector2 targetPos)
@@ -162,25 +171,13 @@ public class Ally : Unit
 
     public void RemoveFromFight()
     {
-        if(enemy != null){
+        if(enemy != null || health <= 0){
             enemy.GetComponent<Enemy>().RemoveUnitFromFightArr(gameObject);
-            unitState = State.Neutral;
         }
     }
 
     public void TeleportToOriginalPos()
     {
         transform.position = originalPos.transform.position;
-    }
-
-    public virtual void SwitchSide()
-    {
-        gameObject.AddComponent<Enemy>();
-        GetComponent<Enemy>().Upgrade(moveSpeed, health, attackRange, attackDamagePhysic, attackDamageMagic, attackCD,
-        physicRes, magicRes, healthRegen);
-        gameObject.tag = "Enemy";
-        gameObject.layer = 6;
-        Destroy(GetComponent<NavMeshAgent>());
-        Destroy(this);
     }
 }
