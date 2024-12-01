@@ -11,9 +11,11 @@ public class LevelCanvas : MonoBehaviour
     [SerializeField] private TMP_Text waveText;
     [SerializeField] private Slider heroHealthBar;
     [SerializeField] private WaveManager waveManager;
+    [SerializeField] private TMP_Text timerText;
     [SerializeField] private Sprite waveStartButtonFalse;
     [SerializeField] private Sprite waveStartButtonTrue;
     [SerializeField] private Image waveStartButtonImage;
+    private float timer;
     private float heroMaxHealth;
     private void Start()
     {
@@ -21,6 +23,8 @@ public class LevelCanvas : MonoBehaviour
         UpdateGoldText();
         UpdateHeroHealthUI();
         UpdateLifeText();
+
+        timer = 0;
     }
 
     private void OnEnable()
@@ -43,6 +47,11 @@ public class LevelCanvas : MonoBehaviour
         waveManager.OnNewWave.RemoveListener(() => UpdateWaveText());
     }
 
+    private void Update()
+    {
+        UpdateTimerText();
+    }
+
     private void UpdateGoldText()
     {
         goldText.text = LevelManager.Instance.gold.ToString();
@@ -61,6 +70,22 @@ public class LevelCanvas : MonoBehaviour
     private void UpdateWaveText()
     {
         waveText.text = waveManager.currentWave.ToString();
+        timer = waveManager.waveDuration;
+        
+        waveStartButtonImage.sprite = waveStartButtonFalse;
+        Debug.Log(waveManager.waveDuration);
+    }
+
+    private void UpdateTimerText()
+    {
+        if(timer > 1){
+            timer -= Time.deltaTime;
+
+            int minutes = Mathf.FloorToInt(timer / 60);
+            int seconds = Mathf.FloorToInt(timer % 60);
+
+            timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        }
     }
 
     private void WaveCanStart()
@@ -71,6 +96,5 @@ public class LevelCanvas : MonoBehaviour
     public void StartWave()
     {
         waveManager.StartWave();
-        waveStartButtonImage.sprite = waveStartButtonFalse;
     }
 }

@@ -5,9 +5,14 @@ using UnityEngine;
 
 public class JokerCanvas : UnitCanvas
 {
+    [SerializeField] private GamblerRoulette gamblerRoulette;
     [SerializeField] private TMP_Text goldText;
     [SerializeField] private TMP_Text towerCountText;
-    [SerializeField] private GamblerRoulette gamblerRoulette;
+    [SerializeField] private MadGambler madGambler;
+    [SerializeField] private TMP_Text faceText;
+    [SerializeField] private TMP_Text valueText;
+    [SerializeField] private Color trueColor;
+    [SerializeField] private Color falseColor;
     private float goldRequired;
     private float towerCountRequired;
     private float uniqueTowerCountRequired;
@@ -23,16 +28,18 @@ public class JokerCanvas : UnitCanvas
     protected override void OnEnable()
     {
         base.OnEnable();
-        gamblerRoulette.OnUpdateStats.AddListener(() => UpdateStats());
+        gamblerRoulette.OnUpdateGamblerRoulette.AddListener(() => UpdateGamblerRoulette());
+        madGambler.OnUpdateMadGambler.AddListener((bool sameFace, bool sameValue) => UpdateMadGambler(sameFace, sameValue));
     }
 
     protected override void OnDisable()
     {
         base.OnDisable();
-        gamblerRoulette.OnUpdateStats.RemoveListener(() => UpdateStats());
+        gamblerRoulette.OnUpdateGamblerRoulette.RemoveAllListeners();
+
     }
 
-    private void UpdateStats()
+    private void UpdateGamblerRoulette()
     {
         float gold = LevelManager.Instance.gold;
         float towerCount = gamblerRoulette.towers.Count;
@@ -40,7 +47,21 @@ public class JokerCanvas : UnitCanvas
 
         goldText.text = string.Format("Gold: {0}/{1}", gold, goldRequired);
         towerCountText.text = string.Format("Tower: {0}/{1} ({2}/{3})", 
-        gamblerRoulette.towers.Count, uniqueTowerCountRequired, towerCount, towerCountRequired);
+        towerCount, towerCountRequired, uniqueTowerCount, uniqueTowerCountRequired);
     }
 
+    private void UpdateMadGambler(bool sameFace, bool sameValue)
+    {
+        if(sameFace){
+            faceText.text = "Same face";
+        }else{
+            faceText.text = "Different face";
+        }
+
+        if(sameValue){
+            valueText.text = "Same value";
+        }else{
+            valueText.text = "Different value";
+        }
+    }
 }

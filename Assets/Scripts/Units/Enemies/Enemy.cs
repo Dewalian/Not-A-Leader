@@ -103,6 +103,10 @@ public class Enemy : Unit
 
     public Vector2 GetBulletPos(float bulletDuration)
     {
+        if(unitState == State.Death){
+            return transform.position;
+        }
+
         float bulletCalc = bulletDuration * moveSpeed;
 
         Vector2 enemyDir = (wayPoint.position - transform.position).normalized;

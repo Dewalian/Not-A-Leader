@@ -18,6 +18,11 @@ public abstract class Tower : MonoBehaviour
         UpgradeTower();
     }
 
+    protected virtual void OnDisable()
+    {
+        StopAllCoroutines();
+    }
+
     public void DestroyTower()
     {
         Instantiate(plot, transform.position, Quaternion.identity);

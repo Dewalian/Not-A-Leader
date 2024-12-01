@@ -25,7 +25,7 @@ public class GamblerRoulette : MonoBehaviour
     [HideInInspector] public List<string> towerNames = new List<string>();
     public List<Sprite> towerSymbols = new List<Sprite>();
     [HideInInspector] public List<string> uniqueTowerNames = new List<string>();
-    [HideInInspector] public UnityEvent OnUpdateStats;
+    [HideInInspector] public UnityEvent OnUpdateGamblerRoulette;
 
     private void Start()
     {
@@ -44,7 +44,7 @@ public class GamblerRoulette : MonoBehaviour
         if(LevelManager.Instance.gold >= 1000 && canActivate){
             statsUI.SetActive(true);
             area.SetActive(true);
-            OnUpdateStats?.Invoke();
+            OnUpdateGamblerRoulette?.Invoke();
         }else{
             statsUI.SetActive(false);
             area.SetActive(false);
@@ -144,7 +144,7 @@ public class GamblerRoulette : MonoBehaviour
 
         AddUniqueTower(towerName);
 
-        OnUpdateStats?.Invoke();
+        OnUpdateGamblerRoulette?.Invoke();
         StartCoroutine(Activate());
     }
 
@@ -155,7 +155,7 @@ public class GamblerRoulette : MonoBehaviour
         towerSymbols.Remove(towerSymbol);
         uniqueTowerNames.Remove(towerName);
 
-        OnUpdateStats?.Invoke();
+        OnUpdateGamblerRoulette?.Invoke();
         StartCoroutine(Activate());
     }
 }

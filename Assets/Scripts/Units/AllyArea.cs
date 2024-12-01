@@ -6,15 +6,15 @@ using UnityEngine.Events;
 
 public class AllyArea : MonoBehaviour
 {
-    [SerializeField] protected GameObject[] allies;
     [SerializeField] protected GameObject area;
     [SerializeField] protected float aggroArea;
+    public float respawnCD;
+    [SerializeField] protected GameObject[] allies;
     [SerializeField] protected LayerMask enemyLayer;
     [SerializeField] protected Transform respawnPos;
     protected bool isAreaMoving = false;
     protected bool isAreaMoved = false;
-    public float respawnCD;
-    public UnityEvent OnMoveArea;
+    [HideInInspector] public UnityEvent OnMoveArea;
     
     protected virtual void Update()
     {

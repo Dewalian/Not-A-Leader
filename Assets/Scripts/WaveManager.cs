@@ -8,10 +8,11 @@ using UnityEngine.Events;
 public class WaveManager : MonoBehaviour
 {
     private float waveTimer;
-    private float waveDuration;
-    private bool waveCanStart = true; // biar bisa munculin tombol wavestart duluan
+    private bool waveCanStart;
     public bool waveStart;
     public int waveCount;
+    [SerializeField] private float restDuration;
+    [HideInInspector] public float waveDuration;
     [HideInInspector] public int currentWave;
     [HideInInspector] public UnityEvent OnWaveCanStart;
     [HideInInspector] public UnityEvent OnNewWave;
@@ -19,12 +20,17 @@ public class WaveManager : MonoBehaviour
     private void Start()
     {
         currentWave = 0;
-        StartWave();
+        waveStart = false;
+        waveCanStart = true;
+
+        OnWaveCanStart?.Invoke();
     }
 
     private void Update()
     {
-        CalcWaveStartTime();
+        if(currentWave > 0){
+            CalcWaveStartTime();
+        }
     }
 
     private void CalcWaveStartTime()
@@ -33,7 +39,7 @@ public class WaveManager : MonoBehaviour
         if(waveTimer >= waveDuration * 8 / 10){
             waveCanStart = true;
             OnWaveCanStart?.Invoke();
-            if(waveTimer >= waveDuration + 5f){
+            if(waveTimer >= waveDuration){
                 StartWave();
             }
         }
@@ -45,7 +51,7 @@ public class WaveManager : MonoBehaviour
             SwitchWaveBool(true);
             waveCanStart = false;
             currentWave++;
-            OnNewWave?.Invoke();
+            waveDuration = restDuration;
         }
     }
 
@@ -56,9 +62,10 @@ public class WaveManager : MonoBehaviour
 
     public void SetWaveDuration(float waveDuration)
     {
-        if(waveDuration > this.waveDuration){
-            this.waveDuration = waveDuration;
+        if(waveDuration + restDuration > this.waveDuration){
+            this.waveDuration = waveDuration + restDuration;
             waveTimer = 0;
+            OnNewWave?.Invoke();
         }
     }
 }

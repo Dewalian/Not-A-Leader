@@ -18,6 +18,11 @@ public class MouseManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        GetClick(ref rightMouseClick, rightClickLayer);
+    }
+
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Mouse0)){

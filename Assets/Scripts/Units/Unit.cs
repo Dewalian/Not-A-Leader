@@ -38,6 +38,7 @@ public abstract class Unit : MonoBehaviour
     public State unitState;
     [HideInInspector] public UnityEvent OnSwitch;
     [HideInInspector] public UnityEvent OnHealthChanged;
+    [HideInInspector] public UnityEvent OnDeath;
 
     protected virtual void Awake()
     {
@@ -54,15 +55,15 @@ public abstract class Unit : MonoBehaviour
         StateChange();
     }
 
+    protected virtual void OnDisable()
+    {
+        StopAllCoroutines();
+    }
+
     protected virtual void FatalEffect()
     {
         return;
     }
-
-    // protected virtual void AttackEffect()
-    // {
-    //     return;
-    // }
 
     protected virtual void StateChange()
     {
@@ -74,11 +75,13 @@ public abstract class Unit : MonoBehaviour
         animator.SetBool("BoolWalk", false);
         animator.SetBool("BoolDeath", true);
         moveSpeed = 0;
+
         GetComponent<Collider2D>().enabled = false;
     }
 
     public virtual void DeathAnimator()
     {
+        OnDeath?.Invoke();
         Destroy(gameObject);
     }
 

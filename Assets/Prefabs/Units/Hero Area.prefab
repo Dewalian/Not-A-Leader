@@ -58,6 +58,7 @@ MonoBehaviour:
   OnMoveArea:
     m_PersistentCalls:
       m_Calls: []
+  teleportDuration: 2
 --- !u!1 &3918927366556408308
 GameObject:
   m_ObjectHideFlags: 0
