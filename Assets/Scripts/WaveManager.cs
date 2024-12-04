@@ -10,6 +10,7 @@ public class WaveManager : MonoBehaviour
     private float waveTimer;
     private bool waveCanStart;
     public int waveCount;
+    [SerializeField] private float startEarlyDurationPercentage;
     [SerializeField] private float restDuration;
     [HideInInspector] public float maxWaveDuration;
     [HideInInspector] public int currentWave;
@@ -26,7 +27,7 @@ public class WaveManager : MonoBehaviour
 
     private IEnumerator CalcWaveStartTime()
     {
-        while(waveTimer < maxWaveDuration * 8 / 10){
+        while(waveTimer < maxWaveDuration * startEarlyDurationPercentage / 100){
             waveTimer += Time.deltaTime;
             yield return null;
         }
