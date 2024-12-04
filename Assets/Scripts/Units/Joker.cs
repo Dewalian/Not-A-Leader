@@ -21,6 +21,7 @@ public class Joker : Ally
     protected override void StateChange()
     {
         if(unitState == State.Skill){
+            animator.SetBool("BoolWalk", false);
             moveSpeed = 0;
             return;
         }

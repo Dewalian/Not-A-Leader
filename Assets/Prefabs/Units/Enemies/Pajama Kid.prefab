@@ -223,7 +223,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0, g: 1, b: 0.97647065, a: 0.3529412}
+      maxColor: {r: 0.96470594, g: 0.7803922, b: 0.96470594, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4861,7 +4861,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8371356716524169053}
@@ -4910,8 +4910,8 @@ SpriteRenderer:
   m_SortingLayerID: -2141627737
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0, g: 1, b: 0.97695327, a: 1}
+  m_Sprite: {fileID: 21300000, guid: d9544b8d5dd393347980ee7b254cf4cb, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4948,6 +4948,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeath:
     m_PersistentCalls:
       m_Calls: []
   dodgeChance: 0
@@ -5029,7 +5032,7 @@ Animator:
   m_GameObject: {fileID: 8874370166680243440}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: fd43725f0e0ddf24d96c486792774651, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -5048,9 +5051,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5933505802656227159}
     m_Modifications:
+    - target: {fileID: 609896357750237953, guid: 9579f12971338134b9faf1a45b155626, type: 3}
+      propertyPath: m_Color.a
+      value: 0.65882355
+      objectReference: {fileID: 0}
+    - target: {fileID: 609896357750237953, guid: 9579f12971338134b9faf1a45b155626, type: 3}
+      propertyPath: m_Color.b
+      value: 0.3529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 609896357750237953, guid: 9579f12971338134b9faf1a45b155626, type: 3}
+      propertyPath: m_Color.g
+      value: 0.058823533
+      objectReference: {fileID: 0}
+    - target: {fileID: 609896357750237953, guid: 9579f12971338134b9faf1a45b155626, type: 3}
+      propertyPath: m_Color.r
+      value: 0.24313727
+      objectReference: {fileID: 0}
     - target: {fileID: 1440629869339237883, guid: 9579f12971338134b9faf1a45b155626, type: 3}
       propertyPath: m_Color.a
       value: 0.19607843
+      objectReference: {fileID: 0}
+    - target: {fileID: 1440629869339237883, guid: 9579f12971338134b9faf1a45b155626, type: 3}
+      propertyPath: m_Color.b
+      value: 0.7843138
+      objectReference: {fileID: 0}
+    - target: {fileID: 1440629869339237883, guid: 9579f12971338134b9faf1a45b155626, type: 3}
+      propertyPath: m_Color.g
+      value: 0.49411768
+      objectReference: {fileID: 0}
+    - target: {fileID: 1440629869339237883, guid: 9579f12971338134b9faf1a45b155626, type: 3}
+      propertyPath: m_Color.r
+      value: 0.6784314
       objectReference: {fileID: 0}
     - target: {fileID: 5505869270748946852, guid: 9579f12971338134b9faf1a45b155626, type: 3}
       propertyPath: m_LocalPosition.x

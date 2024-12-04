@@ -6,6 +6,11 @@ public class MoveCam : MonoBehaviour
 {
     private Camera mainCam;
     [SerializeField] private float speed;
+    [SerializeField] private float upperBound;
+    [SerializeField] private float lowerBound;
+    [SerializeField] private float leftBound;
+    [SerializeField] private float rightBound;
+    [SerializeField] private GameObject hero;
 
     private void Awake()
     {
@@ -15,6 +20,7 @@ public class MoveCam : MonoBehaviour
     private void Update()
     {
         MoveCamByMousePos();
+        FocusToHero();
     }
 
     private void MoveCamByMousePos()
@@ -31,8 +37,8 @@ public class MoveCam : MonoBehaviour
         if(moveX || moveY){
             Vector3 moveCam = Vector3.MoveTowards(transform.position, mousePosWorld, speed * Time.deltaTime);
 
-            bool boundX = moveCam.x <= -3 || moveCam.x >= 15;
-            bool boundY = moveCam.y <= -2 || moveCam.y >= 8;
+            bool boundX = moveCam.x <= leftBound || moveCam.x >= rightBound;
+            bool boundY = moveCam.y <= lowerBound || moveCam.y >= upperBound;
 
             if(boundX && boundY){
                 return;
@@ -43,6 +49,29 @@ public class MoveCam : MonoBehaviour
             }else{
                 transform.position = moveCam;
             }
+        }
+    }
+
+    private void FocusToHero()
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha1)){
+            Vector2 heroPos = hero.transform.position;
+            float x = 0;
+            float y = 0;
+            
+            if(heroPos.x > rightBound){
+                x -= heroPos.x - rightBound;
+            }else if(heroPos.x < leftBound){
+                x -= heroPos.x - leftBound;
+            }
+
+            if(heroPos.y > upperBound){
+                y -= heroPos.y - upperBound;
+            }else if(heroPos.y < lowerBound){
+                y -= heroPos.y - lowerBound;
+            }
+
+            transform.position = new Vector3(heroPos.x + x, heroPos.y + y, -10);
         }
     }
 }

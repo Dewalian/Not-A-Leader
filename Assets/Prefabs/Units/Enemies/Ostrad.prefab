@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3042339196702597558}
   - component: {fileID: 3410696309650100599}
-  - component: {fileID: 4983432493313421138}
+  - component: {fileID: 2368529937130843177}
   - component: {fileID: 162305304421753872}
   - component: {fileID: 2275137362942039777}
+  - component: {fileID: 3415844570948414843}
   m_Layer: 6
   m_Name: Ostrad
   m_TagString: Enemy
@@ -30,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2845988985010245576}
@@ -77,8 +78,8 @@ SpriteRenderer:
   m_SortingLayerID: -2141627737
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.00980854, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 5ceba965b89970a46855e95de3080c53, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -88,7 +89,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4983432493313421138
+--- !u!114 &2368529937130843177
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,7 +98,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1669481420998670219}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca75fd570011d354a9ce46ecdd005afc, type: 3}
+  m_Script: {fileID: 11500000, guid: b62d795b67dfcfa4792b8cb4f515f415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Ostrad
@@ -117,9 +118,18 @@ MonoBehaviour:
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
   dodgeChance: 0
   bounty: 0
   lifeDamage: 0
+  warScreamRange: 3
+  warScreamCD: 5
+  unitCountTrigger: 0
+  earthShakerRange: 5
+  earthShakerCD: 10
+  towerCountTrigger: 2
 --- !u!58 &162305304421753872
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -182,6 +192,27 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &3415844570948414843
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1669481420998670219}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: acc6fc94997a0e34db5876c998a938da, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &3493630438495094251
 PrefabInstance:
   m_ObjectHideFlags: 0

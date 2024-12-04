@@ -6,12 +6,20 @@ public class Ostrad : Enemy
 {
     [SerializeField] private float warScreamRange;
     [SerializeField] private float warScreamCD;
+    [SerializeField] private int unitCountTrigger;
     [SerializeField] private float earthShakerRange;
     [SerializeField] private float earthShakerCD;
-    [SerializeField] private LayerMask towerLayer;
-    [SerializeField] private LayerMask unitLayer;
+    [SerializeField] private int towerCountTrigger;
+    private Collider2D[] unitInWarScream;
+    private Collider2D[] towerInEarthShaker;
     private bool canWarScream;
     private bool canEarthShaker;
+
+    protected override void Start()
+    {
+        base.Start();
+        canEarthShaker = true;
+    }
 
     protected override void Update()
     {
@@ -20,20 +28,30 @@ public class Ostrad : Enemy
         EarthShakerDetect();
     }
 
+    protected override void StateChange()
+    {
+        if(unitState == State.Skill){
+            animator.SetBool("BoolWalk", false);
+            moveSpeed = 0;
+            return;
+        }
+        base.StateChange();
+    }
+
     private void WarScreamDetect()
     {
         if(canWarScream){
-            Collider2D[] unitInWarScream = Physics2D.OverlapCircleAll(transform.position, warScreamRange, unitLayer);
-            if(unitInWarScream.Length >= 10){
+            unitInWarScream = Physics2D.OverlapCircleAll(transform.position, warScreamRange, LayerMask.GetMask("Enemy", "Ally"));
+            if(unitInWarScream.Length >= unitCountTrigger){
                 unitState = State.Skill;
-                WarScream(unitInWarScream);
+                animator.SetTrigger("TriggerWarScream");
+                canWarScream = false;
             }
         }
     }
 
-    private void WarScream(Collider2D[] unitInWarScream)
+    private void WarScreamAnimator()
     {
-        canWarScream = false;
         foreach(Collider2D u in unitInWarScream){
             u.GetComponent<Unit>().Death();
         }
@@ -50,17 +68,17 @@ public class Ostrad : Enemy
     private void EarthShakerDetect()
     {
         if(canEarthShaker){
-            Collider2D[] towerInEarthShaker = Physics2D.OverlapCircleAll(transform.position, warScreamRange, towerLayer);
-            if(towerInEarthShaker.Length >= 1){
+            towerInEarthShaker = Physics2D.OverlapCircleAll(transform.position, earthShakerRange, LayerMask.GetMask("Tower"));
+            if(towerInEarthShaker.Length >= towerCountTrigger){
                 unitState = State.Skill;
-                EarthShaker(towerInEarthShaker);
+                animator.SetTrigger("TriggerEarthShaker");
+                canEarthShaker = false;
             }
         }
     }
 
-    private void EarthShaker(Collider2D[] towerInEarthShaker)
+    private void EarthShakerAnimator()
     {
-        canEarthShaker = false;
         foreach(Collider2D t in towerInEarthShaker){
             t.GetComponent<Tower>().DestroyTower();
         }
@@ -71,5 +89,10 @@ public class Ostrad : Enemy
     {
         yield return new WaitForSeconds(earthShakerCD);
         canEarthShaker = true;
+    }
+
+    private void NeutralAnimator()
+    {
+        unitState = State.Neutral;
     }
 }

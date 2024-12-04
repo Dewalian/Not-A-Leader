@@ -31,7 +31,7 @@ public abstract class Tower : MonoBehaviour
 
     public virtual void SellTower()
     {
-        //dapet duit
+        LevelManager.Instance.AddGold(costs[level] / 2);
         DestroyTower();
     }
 

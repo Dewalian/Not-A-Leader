@@ -31,7 +31,7 @@ public class Enemy : Unit
     {
         if(Vector2.Distance(wayPoint.position, transform.position) <= 0.1f){
             wayPointIndex++;
-            if(wayPointIndex == enemySpawner.wayPoint.Length){
+            if(wayPointIndex == enemySpawner.wayPoint.Count){
                 LevelManager.Instance.LifeBreak(lifeDamage);
                 Destroy(gameObject);
             }else{
@@ -49,7 +49,7 @@ public class Enemy : Unit
 
     protected override void StateChange()
     {
-        if(unitState == State.Death){
+        if(unitState == State.Death || unitState == State.Skill){
             return;
         }
 
@@ -112,7 +112,7 @@ public class Enemy : Unit
         Vector2 enemyDir = (wayPoint.position - transform.position).normalized;
 
         if(Vector2.Distance(transform.position, wayPoint.position) <= bulletCalc &&
-        wayPointIndex != enemySpawner.wayPoint.Length - 1){
+        wayPointIndex != enemySpawner.wayPoint.Count - 1){
             Vector2 nextWaypointDir = (enemySpawner.wayPoint[wayPointIndex + 1].position - enemySpawner.wayPoint[wayPointIndex].position).normalized;
             float remainingDistance = bulletCalc - Vector2.Distance(transform.position, wayPoint.position);
             return (nextWaypointDir * remainingDistance) + (enemyDir * (bulletCalc - remainingDistance));

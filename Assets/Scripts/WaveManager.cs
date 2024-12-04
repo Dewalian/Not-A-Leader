@@ -9,63 +9,57 @@ public class WaveManager : MonoBehaviour
 {
     private float waveTimer;
     private bool waveCanStart;
-    public bool waveStart;
     public int waveCount;
     [SerializeField] private float restDuration;
-    [HideInInspector] public float waveDuration;
+    [HideInInspector] public float maxWaveDuration;
     [HideInInspector] public int currentWave;
     [HideInInspector] public UnityEvent OnWaveCanStart;
-    [HideInInspector] public UnityEvent OnNewWave;
+    [HideInInspector] public UnityEvent OnStartWave;
+    private Coroutine calcWaveCoroutine;
 
     private void Start()
     {
         currentWave = 0;
-        waveStart = false;
-        waveCanStart = true;
 
         OnWaveCanStart?.Invoke();
     }
 
-    private void Update()
+    private IEnumerator CalcWaveStartTime()
     {
-        if(currentWave > 0){
-            CalcWaveStartTime();
+        while(waveTimer < maxWaveDuration * 8 / 10){
+            waveTimer += Time.deltaTime;
+            yield return null;
         }
-    }
 
-    private void CalcWaveStartTime()
-    {
-        waveTimer += Time.deltaTime;
-        if(waveTimer >= waveDuration * 8 / 10){
-            waveCanStart = true;
-            OnWaveCanStart?.Invoke();
-            if(waveTimer >= waveDuration){
-                StartWave();
-            }
+        OnWaveCanStart?.Invoke();
+
+        while(waveTimer < maxWaveDuration){
+            waveTimer += Time.deltaTime;
+            yield return null;
         }
+
+        StartWave();
     }
 
     public void StartWave()
     {
-        if(waveCanStart && currentWave < waveCount){
-            SwitchWaveBool(true);
-            waveCanStart = false;
+        if(currentWave < waveCount){
+            maxWaveDuration = restDuration;
+            maxWaveDuration = 0;
             currentWave++;
-            waveDuration = restDuration;
+            OnStartWave?.Invoke();
+
+            if(calcWaveCoroutine != null) StopCoroutine(calcWaveCoroutine);
+            calcWaveCoroutine = StartCoroutine(CalcWaveStartTime());
         }
     }
 
-    public void SwitchWaveBool(bool waveBool)
+    public void SetMaxWaveDuration(float waveDuration)
     {
-        waveStart = waveBool;
-    }
-
-    public void SetWaveDuration(float waveDuration)
-    {
-        if(waveDuration + restDuration > this.waveDuration){
-            this.waveDuration = waveDuration + restDuration;
+        if(waveDuration + restDuration > maxWaveDuration){
+            maxWaveDuration = waveDuration + restDuration;
+            Debug.Log(maxWaveDuration);
             waveTimer = 0;
-            OnNewWave?.Invoke();
         }
     }
 }

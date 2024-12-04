@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Pajama  Kid
+  m_Controller: {fileID: 9100000, guid: 4e277e51cebf3ad4e923a5f624a8d2de, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 96aefcc7a0d3bba4da05ca315cbf8983, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 517359556b867bf46a0add52f386d9ab, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: b25aff61263d62d479c2418ad366c959, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 423c6f153e1328f4290b42e59bbfe1ff, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 669f0dc0fbcd46f47bd7ccb4ec1348de, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3e43768851cd754498c395605f9a8f71, type: 2}

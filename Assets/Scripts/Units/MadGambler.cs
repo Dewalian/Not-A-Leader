@@ -27,6 +27,7 @@ public class MadGambler : MonoBehaviour
     private bool canActivate;
     [HideInInspector] public bool canEffect;
     private bool isJokerBuff;
+    private bool isTowerBuff;
 
     [SerializeField] private DeckSO deck;
     [SerializeField] private GameObject area;
@@ -79,29 +80,29 @@ public class MadGambler : MonoBehaviour
 
             OnUpdateMadGambler?.Invoke(sameFace, sameValue);
             statsUI.SetActive(true);
-            yield return new WaitForSeconds(showDuration);
-            statsUI.SetActive(false);
 
             Collider2D[] towers = Physics2D.OverlapCircleAll(transform.position, radius, LayerMask.GetMask("Tower"));
             joker.unitState = Unit.State.Neutral;
 
             if(value1 == value2){
-                foreach(Collider2D t in towers){
-                    Tower tScript = t.GetComponent<Tower>();
-                    StartCoroutine(tScript.ChangeStatsTimed(towerBuffPercentage, buffDuration));
-                    StartCoroutine(tScript.ChangeColor(buffDuration, buffColor));
-                }
+                isTowerBuff = false;
             }else{
-                foreach(Collider2D t in towers){
-                    Tower tScript = t.GetComponent<Tower>();
-                    StartCoroutine(tScript.ChangeStatsTimed(towerDebuffPercentage, debuffDuration));
-                    StartCoroutine(tScript.ChangeColor(debuffDuration, debuffColor));
-                }
+                isTowerBuff = true;
             }
 
+            foreach(Collider2D t in towers){
+                Tower tScript = t.GetComponent<Tower>();
+                StartCoroutine(TowerBuffDebuff(tScript));
+            }
+
+            yield return new WaitForSeconds(showDuration);
+            statsUI.SetActive(false);
+
             if(sameFace){
+                isJokerBuff = true;
                 StartCoroutine(JokerDebuff());
             }else{
+                isJokerBuff = false;
                 StartCoroutine(JokerBuff());
             }
 
@@ -125,7 +126,6 @@ public class MadGambler : MonoBehaviour
         float attackDamageCopy = joker.attackDamagePhysic;
 
         area.SetActive(true);
-        isJokerBuff = true;
 
         StartCoroutine(joker.ChangeColor(buffDuration, buffColor));
 
@@ -148,7 +148,7 @@ public class MadGambler : MonoBehaviour
         float magicResCopy = joker.magicRes;
 
         area.SetActive(true);
-        isJokerBuff = false;
+
         StartCoroutine(joker.ChangeColor(debuffDuration, debuffColor));
         
         joker.physicRes = jokerResistanceDebuff;
@@ -161,6 +161,30 @@ public class MadGambler : MonoBehaviour
         joker.physicRes = physicResCopy;
         joker.magicRes = magicResCopy;
     }
+
+    private IEnumerator TowerBuffDebuff(Tower tower)
+    {
+        yield return new WaitForSeconds(showDuration / 1.5f);
+
+        float timePassed = 0;
+        GameObject projectile = Instantiate(buffProjectile, transform.position, Quaternion.identity);
+
+        while(timePassed < showDuration / 3){
+            timePassed += Time.deltaTime;
+            float durationNorm = timePassed / (showDuration / 3);
+
+            projectile.transform.position = Vector2.Lerp(joker.transform.position, tower.transform.position, durationNorm);
+
+            yield return null;
+        }
+        
+        if(isTowerBuff){
+            StartCoroutine(tower.ChangeStatsTimed(towerBuffPercentage, buffDuration));
+            StartCoroutine(tower.ChangeColor(buffDuration, buffColor));
+        }else{
+            tower.DestroyTower();
+        }
+    }   
 
     private IEnumerator Shuffle(Vector2 start, Vector2 end, int face, int value){
         float yAdd = 0;

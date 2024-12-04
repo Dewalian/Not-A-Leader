@@ -34,7 +34,7 @@ public class Ally : Unit
         OnHealthChanged?.Invoke();
     }
     
-    protected virtual void OnDisable()
+    protected override void OnDisable()
     {
         allyArea.OnMoveArea.RemoveAllListeners();
     }

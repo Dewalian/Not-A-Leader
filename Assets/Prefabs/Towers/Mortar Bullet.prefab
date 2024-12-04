@@ -431,3 +431,4 @@ MonoBehaviour:
   enemylayer:
     serializedVersion: 2
     m_Bits: 1088
+  blast: {fileID: 5841594916558972656, guid: 04c1e6200fa14f449b2a11b547885a56, type: 3}

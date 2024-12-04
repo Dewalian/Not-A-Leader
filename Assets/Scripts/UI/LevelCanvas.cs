@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -17,15 +18,6 @@ public class LevelCanvas : MonoBehaviour
     [SerializeField] private Image waveStartButtonImage;
     private float timer;
     private float heroMaxHealth;
-    private void Start()
-    {
-        heroMaxHealth = LevelManager.Instance.heroHealth;
-        UpdateGoldText();
-        UpdateHeroHealthUI();
-        UpdateLifeText();
-
-        timer = 0;
-    }
 
     private void OnEnable()
     {
@@ -34,7 +26,8 @@ public class LevelCanvas : MonoBehaviour
         LevelManager.Instance.OnLifeBreak.AddListener(() => UpdateLifeText());
 
         waveManager.OnWaveCanStart.AddListener(() => WaveCanStart());
-        waveManager.OnNewWave.AddListener(() => UpdateWaveText());
+        waveManager.OnStartWave.AddListener(() => UpdateWaveText());
+        waveManager.OnStartWave.AddListener(() => WaveCannotStart());
     }
 
     private void OnDisable()
@@ -44,7 +37,19 @@ public class LevelCanvas : MonoBehaviour
         LevelManager.Instance.OnLifeBreak.RemoveListener(() => UpdateLifeText());
 
         waveManager.OnWaveCanStart.RemoveListener(() => WaveCanStart());
-        waveManager.OnNewWave.RemoveListener(() => UpdateWaveText());
+        waveManager.OnStartWave.RemoveListener(() => UpdateWaveText());
+        waveManager.OnStartWave.RemoveListener(() => WaveCannotStart());
+    }
+
+    private void Start()
+    {
+        heroMaxHealth = LevelManager.Instance.heroHealth;
+        UpdateGoldText();
+        UpdateHeroHealthUI();
+        UpdateLifeText();
+        UpdateWaveText();
+
+        timer = 0;
     }
 
     private void Update()
@@ -69,11 +74,8 @@ public class LevelCanvas : MonoBehaviour
 
     private void UpdateWaveText()
     {
-        waveText.text = waveManager.currentWave.ToString();
-        timer = waveManager.waveDuration;
-        
-        waveStartButtonImage.sprite = waveStartButtonFalse;
-        Debug.Log(waveManager.waveDuration);
+        waveText.text = String.Format("Wave: {0}/{1}", waveManager.currentWave, waveManager.waveCount);
+        timer = waveManager.maxWaveDuration;        
     }
 
     private void UpdateTimerText()
@@ -91,6 +93,11 @@ public class LevelCanvas : MonoBehaviour
     private void WaveCanStart()
     {
         waveStartButtonImage.sprite = waveStartButtonTrue;
+    }
+
+    private void WaveCannotStart()
+    {
+        waveStartButtonImage.sprite = waveStartButtonFalse;
     }
 
     public void StartWave()
