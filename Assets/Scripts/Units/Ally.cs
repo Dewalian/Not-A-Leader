@@ -70,6 +70,7 @@ public class Ally : Unit
 
         if(unitState == State.Aggro){
             agent.isStopped = false;
+            moveSpeed = moveSpeedCopy;
 
             if(animator) animator.SetBool("BoolWalk", true);
             AggroEnemy();
@@ -141,7 +142,6 @@ public class Ally : Unit
 
     public override void DeathAnimator()
     {
-        //RemoveFromFight();
         animator.SetBool("BoolDeath", false);
         
         allyArea.StartRespawn(gameObject);

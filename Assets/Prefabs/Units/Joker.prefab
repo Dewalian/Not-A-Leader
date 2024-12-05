@@ -1307,10 +1307,10 @@ MonoBehaviour:
   jokerHurtDebuff: 500
   buffDuration: 30
   debuffDuration: 30
-  trueTrueCD: 0
-  trueFalseCD: 0
-  falseTrueCD: 0
-  FalseFalseCD: 0
+  trueTrueCD: 1
+  trueFalseCD: 1
+  falseTrueCD: 1
+  FalseFalseCD: 1
   shuffleDuration: 2
   showDuration: 2
   projectileSpeed: 2

@@ -121,6 +121,8 @@ public class GamblerRoulette : MonoBehaviour
 
     private IEnumerator CoolDown()
     {
+        LevelManager.Instance.UpdateSkill2(coolDown);
+
         canActivate = false;
         yield return new WaitForSeconds(coolDown);
         canActivate = true;

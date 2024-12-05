@@ -222,6 +222,8 @@ public class MadGambler : MonoBehaviour
 
     private IEnumerator CoolDown(float coolDown)
     {
+        LevelManager.Instance.UpdateSkill1(coolDown);
+
         canActivate = false;
         yield return new WaitForSeconds(coolDown);
         canActivate = true;

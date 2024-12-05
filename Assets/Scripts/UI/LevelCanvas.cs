@@ -1,4 +1,4 @@
-using System;
+    using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -20,6 +20,10 @@ public class LevelCanvas : MonoBehaviour
     [SerializeField] private GameObject winPanel;
     [SerializeField] private GameObject defeatPanel;
     [SerializeField] private GameObject settingsPanel;
+    [SerializeField] private GameObject skill1Overlay;
+    [SerializeField] private GameObject skill2Overlay;
+    [SerializeField] private GameObject[] tutorialPanels;
+    private int tutorialIndex;
     private bool waveCanStart;
     private float timer;
     private float heroMaxHealth;
@@ -32,6 +36,9 @@ public class LevelCanvas : MonoBehaviour
 
         LevelManager.Instance.OnWin.AddListener(() => Win());
         LevelManager.Instance.OnDefeat.AddListener(() => Defeat());
+
+        LevelManager.Instance.OnSkill1CD.AddListener((float CD) => StartCoroutine(Skill1CD(CD)));
+        LevelManager.Instance.OnSkill2CD.AddListener((float CD) => StartCoroutine(Skill2CD(CD)));
 
         waveManager.OnWaveCanStart.AddListener(() => WaveCanStart());
         waveManager.OnStartWave.AddListener(() => UpdateWaveText());
@@ -46,6 +53,9 @@ public class LevelCanvas : MonoBehaviour
 
         LevelManager.Instance.OnWin.RemoveListener(() => Win());
         LevelManager.Instance.OnDefeat.RemoveListener(() => Defeat());
+
+        LevelManager.Instance.OnSkill1CD.RemoveListener((float CD) => Skill1CD(CD));
+        LevelManager.Instance.OnSkill2CD.RemoveListener((float CD) => Skill2CD(CD));
 
         waveManager.OnWaveCanStart.RemoveListener(() => WaveCanStart());
         waveManager.OnStartWave.RemoveListener(() => UpdateWaveText());
@@ -125,6 +135,30 @@ public class LevelCanvas : MonoBehaviour
     private void Defeat()
     {
         defeatPanel.SetActive(true);
+    }
+
+    private IEnumerator Skill1CD(float CD)
+    {
+        skill1Overlay.SetActive(true);
+        yield return new WaitForSeconds(CD);
+        skill1Overlay.SetActive(false);
+    }
+
+    private IEnumerator Skill2CD(float CD)
+    {
+        skill2Overlay.SetActive(true);
+        yield return new WaitForSeconds(CD);
+        skill2Overlay.SetActive(false);
+    }
+
+    public void Tutorial()
+    {
+        tutorialPanels[tutorialIndex].SetActive(false);
+        tutorialIndex++;
+
+        if(tutorialIndex < tutorialPanels.Length){
+            tutorialPanels[tutorialIndex].SetActive(true);
+        }
     }
 
     public void BackToMainMenu()

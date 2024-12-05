@@ -18,6 +18,8 @@ public class LevelManager : MonoBehaviour
     [HideInInspector] public UnityEvent OnLifeBreak;
     [HideInInspector] public UnityEvent OnWin;
     [HideInInspector] public UnityEvent OnDefeat;
+    [HideInInspector] public UnityEvent<float> OnSkill1CD;
+    [HideInInspector] public UnityEvent<float> OnSkill2CD;
 
     private void Awake()
     {
@@ -58,6 +60,16 @@ public class LevelManager : MonoBehaviour
     {
         this.heroHealth = heroHealth;
         OnHeroHealthChanged?.Invoke();
+    }
+
+    public void UpdateSkill1(float CD)
+    {
+        OnSkill1CD?.Invoke(CD);
+    }
+
+    public void UpdateSkill2(float CD)
+    {
+        OnSkill2CD?.Invoke(CD);
     }
 
     public void LifeBreak(int lifeDamage)
