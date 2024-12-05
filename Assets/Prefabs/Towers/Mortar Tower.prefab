@@ -112,16 +112,16 @@ MonoBehaviour:
   plot: {fileID: 304619289554043741, guid: b03bd979e5c275542b6d16278d8c98d6, type: 3}
   stats:
   - attackRange: 4
-    shootCD: 2
-    bulletDamagePhysic: 120
+    shootCD: 3
+    bulletDamagePhysic: 100
     bulletDamageMagic: 0
   - attackRange: 4.2
-    shootCD: 1.7
-    bulletDamagePhysic: 180
+    shootCD: 2
+    bulletDamagePhysic: 150
     bulletDamageMagic: 0
   - attackRange: 4.5
     shootCD: 1.5
-    bulletDamagePhysic: 240
+    bulletDamagePhysic: 200
     bulletDamageMagic: 0
   attackRange: 0
   shootCD: 0
@@ -135,11 +135,11 @@ MonoBehaviour:
   - innerRange: 1
     outerRange: 1.5
     bulletSize: 1
-  - innerRange: 1.25
-    outerRange: 2
+  - innerRange: 1.2
+    outerRange: 1.75
     bulletSize: 1.5
   - innerRange: 1.5
-    outerRange: 2.5
+    outerRange: 2.25
     bulletSize: 2
 --- !u!61 &2001779129403735682
 BoxCollider2D:

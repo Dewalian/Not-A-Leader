@@ -112,15 +112,15 @@ MonoBehaviour:
   plot: {fileID: 304619289554043741, guid: b03bd979e5c275542b6d16278d8c98d6, type: 3}
   stats:
   - attackRange: 3
-    shootCD: 1.5
+    shootCD: 1.8
     bulletDamagePhysic: 0
     bulletDamageMagic: 70
-  - attackRange: 3.5
-    shootCD: 1.2
+  - attackRange: 3.4
+    shootCD: 1.6
     bulletDamagePhysic: 0
     bulletDamageMagic: 85
   - attackRange: 4
-    shootCD: 1
+    shootCD: 1.5
     bulletDamagePhysic: 0
     bulletDamageMagic: 100
   attackRange: 0

@@ -38366,8 +38366,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waveCount: 10
-  startEarlyDurationPercentage: 80
-  restDuration: 10
+  startEarlyDurationPercentage: 90
+  restDuration: 40
   maxWaveDuration: 0
   currentWave: 0
   OnWaveCanStart:
@@ -39481,6 +39481,10 @@ PrefabInstance:
       propertyPath: radius
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 201844940801342452, guid: c3375611e4ba78a459c8d073414a2a88, type: 3}
+      propertyPath: coolDown
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 400924977567248208, guid: c3375611e4ba78a459c8d073414a2a88, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -39539,11 +39543,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1156872144983064319, guid: c3375611e4ba78a459c8d073414a2a88, type: 3}
       propertyPath: moveSpeed
-      value: 1
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 1156872144983064319, guid: c3375611e4ba78a459c8d073414a2a88, type: 3}
       propertyPath: attackRange
-      value: 1.2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1156872144983064319, guid: c3375611e4ba78a459c8d073414a2a88, type: 3}
       propertyPath: attackDamagePhysic
@@ -39576,6 +39580,22 @@ PrefabInstance:
     - target: {fileID: 4426391699746579627, guid: c3375611e4ba78a459c8d073414a2a88, type: 3}
       propertyPath: radius
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426391699746579627, guid: c3375611e4ba78a459c8d073414a2a88, type: 3}
+      propertyPath: trueTrueCD
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426391699746579627, guid: c3375611e4ba78a459c8d073414a2a88, type: 3}
+      propertyPath: falseTrueCD
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426391699746579627, guid: c3375611e4ba78a459c8d073414a2a88, type: 3}
+      propertyPath: trueFalseCD
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426391699746579627, guid: c3375611e4ba78a459c8d073414a2a88, type: 3}
+      propertyPath: FalseFalseCD
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6370885102508477079, guid: c3375611e4ba78a459c8d073414a2a88, type: 3}
       propertyPath: m_Layer

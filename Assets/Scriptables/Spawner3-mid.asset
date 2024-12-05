@@ -18,18 +18,14 @@ MonoBehaviour:
   - miniWave: []
     miniWaveSpawnCD: 0
   - miniWave:
-    - enemies: []
-      enemiesSpawnCD: 0
     - enemies:
       - {fileID: 1669481420998670219, guid: 19895fbca5f820842826787ff9c454f7, type: 3}
       enemiesSpawnCD: 0
-    miniWaveSpawnCD: 1
+    miniWaveSpawnCD: 0
   - miniWave: []
     miniWaveSpawnCD: 0
-  - miniWave:
-    - enemies: []
-      enemiesSpawnCD: 0
-    miniWaveSpawnCD: 1
+  - miniWave: []
+    miniWaveSpawnCD: 0
   - miniWave:
     - enemies:
       - {fileID: 9128754695197600263, guid: b7aee53704a3a4d4ea7bdb28089da014, type: 3}
@@ -44,23 +40,19 @@ MonoBehaviour:
       - {fileID: 1669481420998670219, guid: 19895fbca5f820842826787ff9c454f7, type: 3}
       - {fileID: 1669481420998670219, guid: 19895fbca5f820842826787ff9c454f7, type: 3}
       - {fileID: 1669481420998670219, guid: 19895fbca5f820842826787ff9c454f7, type: 3}
-      enemiesSpawnCD: 0.5
-    miniWaveSpawnCD: 1
+      enemiesSpawnCD: 3.2
+    miniWaveSpawnCD: 0
   - miniWave:
     - enemies:
       - {fileID: 9128754695197600263, guid: b7aee53704a3a4d4ea7bdb28089da014, type: 3}
-      enemiesSpawnCD: 0
-    - enemies:
       - {fileID: 8053275167943002035, guid: a481f04c581d3b84582ddca0d6fac5de, type: 3}
-      enemiesSpawnCD: 0
-    miniWaveSpawnCD: 1
+      enemiesSpawnCD: 4
+    miniWaveSpawnCD: 0
   - miniWave:
     - enemies:
       - {fileID: 9128754695197600263, guid: b7aee53704a3a4d4ea7bdb28089da014, type: 3}
-      enemiesSpawnCD: 0
-    - enemies:
       - {fileID: 1669481420998670219, guid: 19895fbca5f820842826787ff9c454f7, type: 3}
       - {fileID: 1669481420998670219, guid: 19895fbca5f820842826787ff9c454f7, type: 3}
       - {fileID: 1669481420998670219, guid: 19895fbca5f820842826787ff9c454f7, type: 3}
-      enemiesSpawnCD: 5
+      enemiesSpawnCD: 3.8
     miniWaveSpawnCD: 1

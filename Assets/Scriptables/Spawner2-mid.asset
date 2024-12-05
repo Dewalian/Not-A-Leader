@@ -18,28 +18,16 @@ MonoBehaviour:
   - miniWave:
     - enemies:
       - {fileID: 1669481420998670219, guid: b0538e2b97ddc2a4b8fb50e1b8af35bd, type: 3}
-      enemiesSpawnCD: 0
-    - enemies:
       - {fileID: 1669481420998670219, guid: b0538e2b97ddc2a4b8fb50e1b8af35bd, type: 3}
-      enemiesSpawnCD: 0
-    - enemies:
       - {fileID: 1669481420998670219, guid: b0538e2b97ddc2a4b8fb50e1b8af35bd, type: 3}
-      enemiesSpawnCD: 0
-    miniWaveSpawnCD: 1
+      enemiesSpawnCD: 3.6
+    miniWaveSpawnCD: 0
   - miniWave:
     - enemies:
       - {fileID: 1669481420998670219, guid: b0538e2b97ddc2a4b8fb50e1b8af35bd, type: 3}
-      enemiesSpawnCD: 0
-    - enemies: []
-      enemiesSpawnCD: 0
-    - enemies:
       - {fileID: 1669481420998670219, guid: b0538e2b97ddc2a4b8fb50e1b8af35bd, type: 3}
-      enemiesSpawnCD: 0
-    - enemies: []
-      enemiesSpawnCD: 0
-    - enemies: []
-      enemiesSpawnCD: 0
-    miniWaveSpawnCD: 1
+      enemiesSpawnCD: 4.2
+    miniWaveSpawnCD: 0
   - miniWave:
     - enemies:
       - {fileID: 1669481420998670219, guid: c8c91a66c0fb35543b5c564cad6c66f8, type: 3}
@@ -49,35 +37,29 @@ MonoBehaviour:
       - {fileID: 1669481420998670219, guid: c8c91a66c0fb35543b5c564cad6c66f8, type: 3}
       - {fileID: 1669481420998670219, guid: c8c91a66c0fb35543b5c564cad6c66f8, type: 3}
       - {fileID: 1669481420998670219, guid: c8c91a66c0fb35543b5c564cad6c66f8, type: 3}
-      enemiesSpawnCD: 0.5
-    miniWaveSpawnCD: 1
+      - {fileID: 1669481420998670219, guid: c8c91a66c0fb35543b5c564cad6c66f8, type: 3}
+      enemiesSpawnCD: 3
+    miniWaveSpawnCD: 0
+  - miniWave: []
+    miniWaveSpawnCD: 0
   - miniWave: []
     miniWaveSpawnCD: 0
   - miniWave:
     - enemies:
-      - {fileID: 2877365520346369375, guid: 8919dea1a0fe32a438b5ca63e68b0baf, type: 3}
-      enemiesSpawnCD: 0
-    miniWaveSpawnCD: 1
-  - miniWave:
-    - enemies:
       - {fileID: 1669481420998670219, guid: c8c91a66c0fb35543b5c564cad6c66f8, type: 3}
       - {fileID: 1669481420998670219, guid: c8c91a66c0fb35543b5c564cad6c66f8, type: 3}
       - {fileID: 1669481420998670219, guid: c8c91a66c0fb35543b5c564cad6c66f8, type: 3}
       - {fileID: 1669481420998670219, guid: c8c91a66c0fb35543b5c564cad6c66f8, type: 3}
       - {fileID: 1669481420998670219, guid: c8c91a66c0fb35543b5c564cad6c66f8, type: 3}
       - {fileID: 1669481420998670219, guid: c8c91a66c0fb35543b5c564cad6c66f8, type: 3}
-      enemiesSpawnCD: 0.5
-    miniWaveSpawnCD: 1
+      enemiesSpawnCD: 4
+    miniWaveSpawnCD: 0
   - miniWave:
     - enemies:
       - {fileID: 1669481420998670219, guid: b0538e2b97ddc2a4b8fb50e1b8af35bd, type: 3}
-      enemiesSpawnCD: 0
-    - enemies:
       - {fileID: 8053275167943002035, guid: a481f04c581d3b84582ddca0d6fac5de, type: 3}
-      enemiesSpawnCD: 0
-    - enemies:
       - {fileID: 1669481420998670219, guid: b0538e2b97ddc2a4b8fb50e1b8af35bd, type: 3}
-      enemiesSpawnCD: 0
+      enemiesSpawnCD: 3.6
     miniWaveSpawnCD: 1
   - miniWave:
     - enemies:
@@ -87,8 +69,8 @@ MonoBehaviour:
       - {fileID: 1669481420998670219, guid: c8c91a66c0fb35543b5c564cad6c66f8, type: 3}
       - {fileID: 1669481420998670219, guid: c8c91a66c0fb35543b5c564cad6c66f8, type: 3}
       - {fileID: 1669481420998670219, guid: c8c91a66c0fb35543b5c564cad6c66f8, type: 3}
-      enemiesSpawnCD: 0.5
-    miniWaveSpawnCD: 1
+      enemiesSpawnCD: 4
+    miniWaveSpawnCD: 0
   - miniWave:
     - enemies:
       - {fileID: 1669481420998670219, guid: c8c91a66c0fb35543b5c564cad6c66f8, type: 3}
@@ -106,5 +88,5 @@ MonoBehaviour:
       - {fileID: 1669481420998670219, guid: c8c91a66c0fb35543b5c564cad6c66f8, type: 3}
       - {fileID: 1669481420998670219, guid: c8c91a66c0fb35543b5c564cad6c66f8, type: 3}
       - {fileID: 1669481420998670219, guid: c8c91a66c0fb35543b5c564cad6c66f8, type: 3}
-      enemiesSpawnCD: 0.5
-    miniWaveSpawnCD: 1
+      enemiesSpawnCD: 3.2
+    miniWaveSpawnCD: 0

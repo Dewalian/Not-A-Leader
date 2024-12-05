@@ -19,7 +19,7 @@ public class MortarBullet : Bullet
 
         var blastMain = blastParticle.main;
 
-        blastMain.startLifetime = outerRange;
+        blastMain.startLifetime = outerRange/4;
         blastMain.startSpeed = outerRange * 12;
         blastParticle.Emit((int) outerRange * 12);
 
