@@ -40,7 +40,7 @@ public class SpawnerSkulls : MonoBehaviour
     private void Start()
     {
         foreach(EnemySpawner e in enemySpawners){
-            GameObject skullObj = Instantiate(skull, e.wayPoint[0].position, Quaternion.identity);
+            GameObject skullObj = Instantiate(skull, e.wayPoint[1].position, Quaternion.identity);
             skullObj.transform.SetParent(transform);
             skulls.Add(skullObj);
         }

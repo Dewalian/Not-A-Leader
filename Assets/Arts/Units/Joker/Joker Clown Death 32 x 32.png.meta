@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 51474eb6a448fd840a3d1e8a43e09d35
+guid: b2aa5435be45e574f8c39801b9800873
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Flag On The Ground 64 x 64_0
+      name: Joker Clown Death 32 x 32_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 943efed03a1fde142b5b53c7a3924928
-      internalID: -1002822394
+      spriteID: 61618e2aa17a9244cbb6fc23b56f28f2
+      internalID: -757529933
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flag On The Ground 64 x 64_1
+      name: Joker Clown Death 32 x 32_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 443540065e52f2041973d533be1a77ad
+      internalID: 791917111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Joker Clown Death 32 x 32_2
       rect:
         serializedVersion: 2
         x: 64
         y: 0
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +166,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a3ea4348bb5465c4683d23dd184f9b19
-      internalID: 1077600534
+      spriteID: a8dde1dfc462ae6449e5d97e6ce6839b
+      internalID: 1436262460
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flag On The Ground 64 x 64_2
+      name: Joker Clown Death 32 x 32_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 864285cb9ee44fd47aa8214097bc9b37
+      internalID: -471297285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Joker Clown Death 32 x 32_4
       rect:
         serializedVersion: 2
         x: 128
         y: 0
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +208,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f43ad8fdd10718f4092a7b94c8dc279f
-      internalID: 2002662674
+      spriteID: dd4c304349602694fbfe4ef083cbcf8f
+      internalID: 773886150
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flag On The Ground 64 x 64_3
+      name: Joker Clown Death 32 x 32_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa00e381649c9e34f97cf2e404378651
+      internalID: -550137265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Joker Clown Death 32 x 32_6
       rect:
         serializedVersion: 2
         x: 192
         y: 0
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,20 +250,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98574d86d9e5c88459f8f69594598a4a
-      internalID: -135344016
+      spriteID: e57d4224f5a494e41b6ac3843237ca26
+      internalID: 1770213447
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flag On The Ground 64 x 64_4
+      name: Joker Clown Death 32 x 32_7
       rect:
         serializedVersion: 2
-        x: 256
+        x: 224
         y: 0
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,50 +271,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26408ac0620c5bd48942f21abced8759
-      internalID: -1116567057
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flag On The Ground 64 x 64_5
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e9eb8d4d6da5ecc41a45900a69e2003e
-      internalID: -1097612181
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flag On The Ground 64 x 64_6
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2ade17dad37e2df4fa67c8fcdbf4c587
-      internalID: 624599385
+      spriteID: 3476dc2c2159b3a4b91851644d961243
+      internalID: -945924426
       vertices: []
       indices: 
       edges: []
@@ -267,13 +288,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Flag On The Ground 64 x 64_0: -1002822394
-      Flag On The Ground 64 x 64_1: 1077600534
-      Flag On The Ground 64 x 64_2: 2002662674
-      Flag On The Ground 64 x 64_3: -135344016
-      Flag On The Ground 64 x 64_4: -1116567057
-      Flag On The Ground 64 x 64_5: -1097612181
-      Flag On The Ground 64 x 64_6: 624599385
+      Joker Clown Death 32 x 32_0: -757529933
+      Joker Clown Death 32 x 32_1: 791917111
+      Joker Clown Death 32 x 32_2: 1436262460
+      Joker Clown Death 32 x 32_3: -471297285
+      Joker Clown Death 32 x 32_4: 773886150
+      Joker Clown Death 32 x 32_5: -550137265
+      Joker Clown Death 32 x 32_6: 1770213447
+      Joker Clown Death 32 x 32_7: -945924426
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

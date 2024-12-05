@@ -11,9 +11,13 @@ public class LevelManager : MonoBehaviour
     public float heroHealth;
     public Camera mainCam;
     public Camera levelCam;
+    public Transform[] ostradFlagPos;
+    public EnemySpawner[] ostradSpawners;
     [HideInInspector] public UnityEvent OnAddGold;
-    public UnityEvent OnHeroHealthChanged;
+    [HideInInspector] public UnityEvent OnHeroHealthChanged;
     [HideInInspector] public UnityEvent OnLifeBreak;
+    [HideInInspector] public UnityEvent OnWin;
+    [HideInInspector] public UnityEvent OnDefeat;
 
     private void Awake()
     {
@@ -25,6 +29,10 @@ public class LevelManager : MonoBehaviour
     private void Update()
     {
         SwitchCam();
+        
+        if(life <= 0){
+            Defeat();
+        }
     }
 
     private void SwitchCam()
@@ -56,5 +64,17 @@ public class LevelManager : MonoBehaviour
     {
         life -= lifeDamage;
         OnLifeBreak?.Invoke();
+    }
+
+    public void Win()
+    {
+        Time.timeScale = 0;
+        OnWin?.Invoke();
+    }
+
+    public void Defeat()
+    {
+        Time.timeScale = 0;
+        OnDefeat?.Invoke();
     }
 }

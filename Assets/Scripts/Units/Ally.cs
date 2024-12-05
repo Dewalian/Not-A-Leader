@@ -132,8 +132,8 @@ public class Ally : Unit
 
     public override void Death()
     {
-        base.Death();
         RemoveFromFight();
+        base.Death();
     }
 
     public override void DeathAnimator()

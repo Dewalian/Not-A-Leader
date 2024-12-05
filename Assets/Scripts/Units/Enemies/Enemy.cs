@@ -63,8 +63,8 @@ public class Enemy : Unit
 
             animator.SetBool("BoolWalk", false);
             
-            if(unitsToFight != null && 
-            unitsToFight.Count > 0 && Vector2.Distance(transform.position, unitsToFight[0].transform.position) <= attackRange){
+            if(unitsToFight != null && unitsToFight.Count > 0 &&
+             Vector2.Distance(transform.position, unitsToFight[0].transform.position) <= attackRange){
                 StartCoroutine(AttackUnit(unitsToFight[0]));
             }
         }

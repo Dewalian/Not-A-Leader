@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private AnimationCurve trajectoryCurve;
-    [SerializeField] private float maxHeight;
-    [SerializeField] private Transform bullet;
-    [SerializeField] private Transform bulletShadow;
-    private Transform startPosBullet;
-    private Transform startPosBulletShadow;
-    private float duration;
+    [SerializeField] protected AnimationCurve trajectoryCurve;
+    [SerializeField] protected float maxHeight;
+    [SerializeField] protected Transform bullet;
+    [SerializeField] protected Transform bulletShadow;
+    protected Transform startPosBullet;
+    protected Transform startPosBulletShadow;
+    protected float duration;
     protected Collider2D bulletCol;
     protected Transform target;
     protected Vector2 endPos;
@@ -20,21 +20,17 @@ public class Bullet : MonoBehaviour
     protected virtual void Start()
     {
         SetEndPos();
-    }
-
-    private void Update()
-    {
         StartCoroutine(Lob());
     }
 
-    private void SetEndPos()
+    protected virtual void SetEndPos()
     {
         if(target != null){
             endPos = (Vector2)target.position + target.GetComponent<Enemy>().GetBulletPos(duration);
         }
     }
 
-    private IEnumerator Lob(){
+    protected virtual IEnumerator Lob(){
         float timePassed = 0;
 
         while(timePassed < duration)

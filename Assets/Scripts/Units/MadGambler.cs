@@ -61,7 +61,7 @@ public class MadGambler : MonoBehaviour
 
     private IEnumerator Activate()
     {
-        if(Input.GetKeyDown(KeyCode.Q) && canActivate){
+        if(Input.GetKeyDown(KeyCode.Q) && canActivate && joker.unitState != Unit.State.Skill){
 
             int face1 = Random.Range(1, 4);
             int value1 = Random.Range(0, 12);

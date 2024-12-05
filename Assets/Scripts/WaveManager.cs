@@ -26,7 +26,7 @@ public class WaveManager : MonoBehaviour
 
     private IEnumerator CalcWaveStartTime()
     {
-        while(waveTimer < ((maxWaveDuration - restDuration) * startEarlyDurationPercentage / 100) + restDuration){
+        while(waveTimer < ((maxWaveDuration - restDuration) * startEarlyDurationPercentage / 100)){
             waveTimer += Time.deltaTime;
             yield return null;
         }
@@ -44,9 +44,17 @@ public class WaveManager : MonoBehaviour
     public void StartWave()
     {
         if(currentWave < waveCount){
+            
+            if(maxWaveDuration > 0){
+                float maxWavePercentage = maxWaveDuration * startEarlyDurationPercentage / 100;
+                float goldToAdd = -((waveTimer - maxWavePercentage) / (maxWavePercentage * 100) - 100);
+                LevelManager.Instance.AddGold(Mathf.FloorToInt(goldToAdd));
+            }
+
             maxWaveDuration = restDuration;
             maxWaveDuration = 0;
             currentWave++;
+
             OnStartWave?.Invoke();
 
             if(calcWaveCoroutine != null) StopCoroutine(calcWaveCoroutine);
@@ -58,7 +66,6 @@ public class WaveManager : MonoBehaviour
     {
         if(waveDuration + restDuration > maxWaveDuration){
             maxWaveDuration = waveDuration + restDuration;
-            Debug.Log(maxWaveDuration);
             waveTimer = 0;
         }
     }

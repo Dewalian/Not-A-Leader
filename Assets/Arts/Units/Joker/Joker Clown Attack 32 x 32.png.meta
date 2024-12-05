@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 51474eb6a448fd840a3d1e8a43e09d35
+guid: 05d1914c8a85c5742bfcd39415c07c53
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Flag On The Ground 64 x 64_0
+      name: Joker Clown Attack 32 x 32_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 943efed03a1fde142b5b53c7a3924928
-      internalID: -1002822394
+      spriteID: fd313801014af28438ca46fc6832914d
+      internalID: -26860526
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flag On The Ground 64 x 64_1
+      name: Joker Clown Attack 32 x 32_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b85c471c86f4a5b45baea8ef827b46dd
+      internalID: 2003938334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Joker Clown Attack 32 x 32_2
       rect:
         serializedVersion: 2
         x: 64
         y: 0
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +166,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a3ea4348bb5465c4683d23dd184f9b19
-      internalID: 1077600534
+      spriteID: 213d614db171295478be442f4c28b1f1
+      internalID: -2146349002
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flag On The Ground 64 x 64_2
+      name: Joker Clown Attack 32 x 32_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d89ac796cb5b3a4499480dba4f5ee834
+      internalID: 948252572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Joker Clown Attack 32 x 32_4
       rect:
         serializedVersion: 2
         x: 128
         y: 0
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,92 +208,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f43ad8fdd10718f4092a7b94c8dc279f
-      internalID: 2002662674
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flag On The Ground 64 x 64_3
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 98574d86d9e5c88459f8f69594598a4a
-      internalID: -135344016
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flag On The Ground 64 x 64_4
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 26408ac0620c5bd48942f21abced8759
-      internalID: -1116567057
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flag On The Ground 64 x 64_5
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e9eb8d4d6da5ecc41a45900a69e2003e
-      internalID: -1097612181
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flag On The Ground 64 x 64_6
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2ade17dad37e2df4fa67c8fcdbf4c587
-      internalID: 624599385
+      spriteID: 41d0828a1d189f8409a3c06b8a2ca4a1
+      internalID: -615944475
       vertices: []
       indices: 
       edges: []
@@ -267,13 +225,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Flag On The Ground 64 x 64_0: -1002822394
-      Flag On The Ground 64 x 64_1: 1077600534
-      Flag On The Ground 64 x 64_2: 2002662674
-      Flag On The Ground 64 x 64_3: -135344016
-      Flag On The Ground 64 x 64_4: -1116567057
-      Flag On The Ground 64 x 64_5: -1097612181
-      Flag On The Ground 64 x 64_6: 624599385
+      Joker Clown Attack 32 x 32_0: -26860526
+      Joker Clown Attack 32 x 32_1: 2003938334
+      Joker Clown Attack 32 x 32_2: -2146349002
+      Joker Clown Attack 32 x 32_3: 948252572
+      Joker Clown Attack 32 x 32_4: -615944475
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

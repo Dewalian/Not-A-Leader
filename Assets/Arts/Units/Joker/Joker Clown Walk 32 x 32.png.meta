@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 51474eb6a448fd840a3d1e8a43e09d35
+guid: b85fad122481ccd4db158bced9a11456
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Flag On The Ground 64 x 64_0
+      name: Joker Clown Walk 32 x 32_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 943efed03a1fde142b5b53c7a3924928
-      internalID: -1002822394
+      spriteID: 0e4695cacb20c6744919c06c90277fab
+      internalID: -1709026735
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flag On The Ground 64 x 64_1
+      name: Joker Clown Walk 32 x 32_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74529a7ea96264c4e92a99eb454841ac
+      internalID: -1754492253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Joker Clown Walk 32 x 32_2
       rect:
         serializedVersion: 2
         x: 64
         y: 0
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a3ea4348bb5465c4683d23dd184f9b19
-      internalID: 1077600534
+      spriteID: 65ac9213d3087844b8d9087db7e4ecde
+      internalID: 1850272231
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flag On The Ground 64 x 64_2
+      name: Joker Clown Walk 32 x 32_3
       rect:
         serializedVersion: 2
-        x: 128
+        x: 96
         y: 0
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,92 +187,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f43ad8fdd10718f4092a7b94c8dc279f
-      internalID: 2002662674
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flag On The Ground 64 x 64_3
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 98574d86d9e5c88459f8f69594598a4a
-      internalID: -135344016
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flag On The Ground 64 x 64_4
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 26408ac0620c5bd48942f21abced8759
-      internalID: -1116567057
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flag On The Ground 64 x 64_5
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e9eb8d4d6da5ecc41a45900a69e2003e
-      internalID: -1097612181
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flag On The Ground 64 x 64_6
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2ade17dad37e2df4fa67c8fcdbf4c587
-      internalID: 624599385
+      spriteID: b407ac6cd262f6e468f4249bd601a463
+      internalID: 1107605025
       vertices: []
       indices: 
       edges: []
@@ -267,13 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Flag On The Ground 64 x 64_0: -1002822394
-      Flag On The Ground 64 x 64_1: 1077600534
-      Flag On The Ground 64 x 64_2: 2002662674
-      Flag On The Ground 64 x 64_3: -135344016
-      Flag On The Ground 64 x 64_4: -1116567057
-      Flag On The Ground 64 x 64_5: -1097612181
-      Flag On The Ground 64 x 64_6: 624599385
+      Joker Clown Walk 32 x 32_0: -1709026735
+      Joker Clown Walk 32 x 32_1: -1754492253
+      Joker Clown Walk 32 x 32_2: 1850272231
+      Joker Clown Walk 32 x 32_3: 1107605025
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

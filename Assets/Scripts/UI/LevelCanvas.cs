@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelCanvas : MonoBehaviour
@@ -16,6 +17,9 @@ public class LevelCanvas : MonoBehaviour
     [SerializeField] private Sprite waveStartButtonFalse;
     [SerializeField] private Sprite waveStartButtonTrue;
     [SerializeField] private Image waveStartButtonImage;
+    [SerializeField] private GameObject winPanel;
+    [SerializeField] private GameObject defeatPanel;
+    [SerializeField] private GameObject settingsPanel;
     private bool waveCanStart;
     private float timer;
     private float heroMaxHealth;
@@ -25,6 +29,9 @@ public class LevelCanvas : MonoBehaviour
         LevelManager.Instance.OnAddGold.AddListener(() => UpdateGoldText());
         LevelManager.Instance.OnHeroHealthChanged.AddListener(() => UpdateHeroHealthUI());
         LevelManager.Instance.OnLifeBreak.AddListener(() => UpdateLifeText());
+
+        LevelManager.Instance.OnWin.AddListener(() => Win());
+        LevelManager.Instance.OnDefeat.AddListener(() => Defeat());
 
         waveManager.OnWaveCanStart.AddListener(() => WaveCanStart());
         waveManager.OnStartWave.AddListener(() => UpdateWaveText());
@@ -36,6 +43,9 @@ public class LevelCanvas : MonoBehaviour
         LevelManager.Instance.OnAddGold.RemoveListener(() => UpdateGoldText());
         LevelManager.Instance.OnHeroHealthChanged.RemoveListener(() => UpdateHeroHealthUI());
         LevelManager.Instance.OnLifeBreak.RemoveListener(() => UpdateLifeText());
+
+        LevelManager.Instance.OnWin.RemoveListener(() => Win());
+        LevelManager.Instance.OnDefeat.RemoveListener(() => Defeat());
 
         waveManager.OnWaveCanStart.RemoveListener(() => WaveCanStart());
         waveManager.OnStartWave.RemoveListener(() => UpdateWaveText());
@@ -49,6 +59,9 @@ public class LevelCanvas : MonoBehaviour
         UpdateHeroHealthUI();
         UpdateLifeText();
         UpdateWaveText();
+
+        winPanel.SetActive(false);
+        defeatPanel.SetActive(false);
 
         waveCanStart = true;
         timer = 0;
@@ -102,6 +115,39 @@ public class LevelCanvas : MonoBehaviour
     {
         waveStartButtonImage.sprite = waveStartButtonFalse;
         waveCanStart = false;
+    }
+
+    private void Win()
+    {
+        winPanel.SetActive(true);
+    }
+
+    private void Defeat()
+    {
+        defeatPanel.SetActive(true);
+    }
+
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1;
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1;
+    }
+
+    public void Settings(bool isPause)
+    {
+        if(isPause){
+            Time.timeScale = 0;
+            settingsPanel.SetActive(true);
+        }else{
+            Time.timeScale = 1;
+            settingsPanel.SetActive(false);
+        }
     }
 
     public void StartWave()

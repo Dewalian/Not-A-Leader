@@ -57,7 +57,7 @@ public class GamblerRoulette : MonoBehaviour
         bool isTowerCountPass = towers.Count >= towerCountRequired;
         bool isUniqueTowerCountPass = uniqueTowerNames.Count >= uniqueTowerCountRequired;
 
-        if(isGoldPass && isTowerCountPass && isUniqueTowerCountPass && canActivate){
+        if(isGoldPass && isTowerCountPass && isUniqueTowerCountPass && canActivate && joker.unitState != Unit.State.Skill){
             LevelManager.Instance.AddGold(cost);
 
             statsUI.SetActive(false);

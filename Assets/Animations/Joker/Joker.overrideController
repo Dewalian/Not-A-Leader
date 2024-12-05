@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Joker
+  m_Controller: {fileID: 9100000, guid: 4e277e51cebf3ad4e923a5f624a8d2de, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: dd25448bbb037c743b25a5cb62ad70ea, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 00b763de4eab8a1428674523dadab170, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 96aefcc7a0d3bba4da05ca315cbf8983, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: cc03ed389c5160f45b9485bd2a0369a4, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: b25aff61263d62d479c2418ad366c959, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: b1b4c54cde766044a86bd07689f7b647, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 669f0dc0fbcd46f47bd7ccb4ec1348de, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 320b099f94b555f42b8f7ca77c7183a0, type: 2}

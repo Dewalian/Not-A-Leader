@@ -18,6 +18,12 @@ public class Joker : Ally
         LevelManager.Instance.UpdateHeroHealth(health);
     }
 
+    public override void DeathAnimator()
+    {
+        base.DeathAnimator();
+        LevelManager.Instance.Defeat();
+    }
+
     protected override void StateChange()
     {
         if(unitState == State.Skill){

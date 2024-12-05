@@ -38,7 +38,7 @@ public abstract class Unit : MonoBehaviour
     public State unitState;
     [HideInInspector] public UnityEvent OnSwitch;
     [HideInInspector] public UnityEvent OnHealthChanged;
-    [HideInInspector] public UnityEvent OnDeath;
+    [HideInInspector] public UnityEvent<Unit> OnDeath;
 
     protected virtual void Awake()
     {
@@ -79,7 +79,7 @@ public abstract class Unit : MonoBehaviour
 
     public virtual void DeathAnimator()
     {
-        OnDeath?.Invoke();
+        OnDeath?.Invoke(this);
         Destroy(gameObject);
     }
 

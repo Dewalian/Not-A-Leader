@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class HalfSuccubus : Enemy
 {
-    private List<Enemy> charmedUnits;
+    private List<Unit> charmedUnits;
     [SerializeField] private GameObject charmedUnit;
     [SerializeField] private float charmChance;
     [SerializeField] private float maxCharmed;
@@ -25,6 +25,14 @@ public class HalfSuccubus : Enemy
         }
     }
 
+    public override void Death()
+    {
+        foreach(Unit c in charmedUnits){
+            c.Death();
+        }
+        base.Death();
+    }
+
     public void CharmAnimator()
     {
         if(unitTarget.CompareTag("Player")){
@@ -38,14 +46,24 @@ public class HalfSuccubus : Enemy
         unitTarget.GetComponent<Ally>().RemoveFromFight();
         unitTarget.GetComponent<Ally>().DeathAnimator();
 
+        Enemy charmedEnemy = charmedObj.GetComponent<Enemy>();
+
         charmedObj.GetComponent<SpriteRenderer>().sprite = unitTarget.GetComponent<SpriteRenderer>().sprite;
 
-        charmedObj.GetComponent<Enemy>().InitializeSummoned(wayPointIndex, enemySpawner);
+        charmedEnemy.InitializeSummoned(wayPointIndex, enemySpawner);
 
-        charmedObj.GetComponent<Enemy>().Upgrade(unitTarget.moveSpeed, unitTarget.health, unitTarget.attackRange,
+        charmedEnemy.Upgrade(unitTarget.moveSpeed, unitTarget.health, unitTarget.attackRange,
         unitTarget.attackDamagePhysic, unitTarget.attackDamageMagic, unitTarget.attackCD, unitTarget.physicRes,
         unitTarget.magicRes, unitTarget.healthRegen);
 
+        charmedUnits.Add(charmedEnemy);
+        charmedEnemy.OnDeath.AddListener((Unit enemy) => RemoveCharmedEnemy(enemy));
+
         charmedObj.transform.SetParent(enemySpawner.transform);
+    }
+
+    private void RemoveCharmedEnemy(Unit enemy)
+    {
+        charmedUnits.Remove(enemy);
     }
 }
