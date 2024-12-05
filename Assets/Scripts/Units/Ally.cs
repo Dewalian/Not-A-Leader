@@ -172,7 +172,7 @@ public class Ally : Unit
 
     public void RemoveFromFight()
     {
-        if(enemy != null && health <= 0){
+        if(enemy != null){
             enemy.GetComponent<Enemy>().RemoveUnitFromFightArr(gameObject);
         }
     }

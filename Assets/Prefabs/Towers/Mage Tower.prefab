@@ -114,15 +114,15 @@ MonoBehaviour:
   - attackRange: 3
     shootCD: 1.8
     bulletDamagePhysic: 0
-    bulletDamageMagic: 70
+    bulletDamageMagic: 80
   - attackRange: 3.4
     shootCD: 1.6
     bulletDamagePhysic: 0
-    bulletDamageMagic: 85
+    bulletDamageMagic: 100
   - attackRange: 4
     shootCD: 1.5
     bulletDamagePhysic: 0
-    bulletDamageMagic: 100
+    bulletDamageMagic: 120
   attackRange: 0
   shootCD: 0
   bulletDamagePhysic: 0
