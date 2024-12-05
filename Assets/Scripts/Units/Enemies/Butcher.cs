@@ -19,6 +19,7 @@ public class Butcher : Enemy
 
             if(unitTarget.AboutToDie(attackDamagePhysic, attackDamageMagic)){
                 animator.SetTrigger("TriggerEat");
+                unit.GetComponent<Ally>().RemoveFromFight();
                 unit.GetComponent<Ally>().DeathAnimator();
             }else{
                 animator.SetTrigger("TriggerAttack");

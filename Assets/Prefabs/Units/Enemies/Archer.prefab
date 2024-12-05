@@ -102,12 +102,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Archer
-  health: 1000
+  health: 50
   moveSpeed: 1
   attackRange: 0.5
-  attackDamagePhysic: 0
+  attackDamagePhysic: 5
   attackDamageMagic: 0
-  attackCD: 1
+  attackCD: 1.2
   physicRes: 0
   magicRes: 0
   healthRegen: 0
@@ -118,13 +118,16 @@ MonoBehaviour:
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
-  dodgeChance: 0
-  bounty: 0
-  lifeDamage: 0
-  rangedRange: 4
-  rangedDamagePhysic: 0
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  dodgeChance: 5
+  bounty: 10
+  lifeDamage: 1
+  rangedRange: 2.5
+  rangedDamagePhysic: 25
   rangedDamageMagic: 0
-  rangedCD: 0.7
+  rangedCD: 1
   bullet: {fileID: 7973510780219047249, guid: 2704ce1b0013c604b9f0922fa85eeab1, type: 3}
   allyLayer:
     serializedVersion: 2

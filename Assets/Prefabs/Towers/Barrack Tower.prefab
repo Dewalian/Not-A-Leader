@@ -235,7 +235,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1a9d39db7846b47baac2d3bc906f26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plot: {fileID: 304619289554043741, guid: b03bd979e5c275542b6d16278d8c98d6, type: 3}
   level: -1
   towerName: Barrack
   towerSymbol: {fileID: 21300000, guid: 855a3982d69403a4d8f4748c28401602, type: 3}
@@ -243,15 +242,7 @@ MonoBehaviour:
   OnUpgrade:
     m_PersistentCalls:
       m_Calls: []
-  knightArea: {fileID: 5084112843948612129}
-  knightRespawnCD: 10
-  startPosChecker: {fileID: 8980714776755811321}
-  knights:
-  - {fileID: 3968574284173201657}
-  knightsToAdd:
-  - {fileID: 486422950728011828}
-  - {fileID: 5876089410358320353}
-  - {fileID: 5171890160822640929}
+  plot: {fileID: 304619289554043741, guid: b03bd979e5c275542b6d16278d8c98d6, type: 3}
   stats:
   - flagRange: 3
     knightMoveSpeed: 1
@@ -272,10 +263,10 @@ MonoBehaviour:
     knightAttackCD: 1
     knightPhysicRes: 20
     knightMagicRes: 5
-    knightHealthRegen: 6
+    knightHealthRegen: 5
   - flagRange: 3.5
     knightMoveSpeed: 1.2
-    knightHealth: 250
+    knightHealth: 300
     knightAttackRange: 0.5
     knightDamagePhysic: 50
     knightDamageMagic: 0
@@ -293,6 +284,15 @@ MonoBehaviour:
   knightPhysicRes: 0
   knightMagicRes: 0
   knightHealthRegen: 0
+  knightArea: {fileID: 5084112843948612129}
+  knightRespawnCD: 10
+  startPosChecker: {fileID: 8980714776755811321}
+  knights:
+  - {fileID: 3968574284173201657}
+  knightsToAdd:
+  - {fileID: 486422950728011828}
+  - {fileID: 5876089410358320353}
+  - {fileID: 5171890160822640929}
   pathLayer:
     serializedVersion: 2
     m_Bits: 2048

@@ -102,7 +102,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fcf2d765e2d3f4d89b95cbcb910c8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plot: {fileID: 304619289554043741, guid: b03bd979e5c275542b6d16278d8c98d6, type: 3}
   level: -1
   towerName: Archer
   towerSymbol: {fileID: 21300000, guid: 3244302225a786047bc72472326257a7, type: 3}
@@ -110,12 +109,7 @@ MonoBehaviour:
   OnUpgrade:
     m_PersistentCalls:
       m_Calls: []
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 1088
-  firingPoint: {fileID: 4465939781030730053}
-  shadowPoint: {fileID: 6107085052550352698}
-  bullet: {fileID: 7973510780219047249, guid: 5b12913d120bb9d449378f2d87cc3504, type: 3}
+  plot: {fileID: 304619289554043741, guid: b03bd979e5c275542b6d16278d8c98d6, type: 3}
   stats:
   - attackRange: 4
     shootCD: 1.2
@@ -123,17 +117,20 @@ MonoBehaviour:
     bulletDamageMagic: 0
   - attackRange: 4.5
     shootCD: 1
-    bulletDamagePhysic: 45
+    bulletDamagePhysic: 50
     bulletDamageMagic: 0
   - attackRange: 5
     shootCD: 0.6
-    bulletDamagePhysic: 60
+    bulletDamagePhysic: 80
     bulletDamageMagic: 0
   attackRange: 0
   shootCD: 0
   bulletDamagePhysic: 0
   bulletDamageMagic: 0
   bulletDuration: 1
+  firingPoint: {fileID: 4465939781030730053}
+  shadowPoint: {fileID: 6107085052550352698}
+  bullet: {fileID: 7973510780219047249, guid: 5b12913d120bb9d449378f2d87cc3504, type: 3}
   archerTowerStats:
   - maxMultiplier: 0
     multiplierChance: 0

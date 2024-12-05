@@ -102,7 +102,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a6a19a8469dbc44c9df1a5a227dd92c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plot: {fileID: 304619289554043741, guid: b03bd979e5c275542b6d16278d8c98d6, type: 3}
   level: -1
   towerName: Mage
   towerSymbol: {fileID: 21300000, guid: 63169c3b42273e64ab26c21e04d251e5, type: 3}
@@ -110,12 +109,7 @@ MonoBehaviour:
   OnUpgrade:
     m_PersistentCalls:
       m_Calls: []
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 1088
-  firingPoint: {fileID: 4465939781030730053}
-  shadowPoint: {fileID: 6107085052550352698}
-  bullet: {fileID: 7973510780219047249, guid: c1a7a3903b7917a47a0471afe9dc1688, type: 3}
+  plot: {fileID: 304619289554043741, guid: b03bd979e5c275542b6d16278d8c98d6, type: 3}
   stats:
   - attackRange: 3
     shootCD: 1.5
@@ -124,16 +118,19 @@ MonoBehaviour:
   - attackRange: 3.5
     shootCD: 1.2
     bulletDamagePhysic: 0
-    bulletDamageMagic: 60
+    bulletDamageMagic: 65
   - attackRange: 4
     shootCD: 1
     bulletDamagePhysic: 0
-    bulletDamageMagic: 80
+    bulletDamageMagic: 100
   attackRange: 0
   shootCD: 0
   bulletDamagePhysic: 0
   bulletDamageMagic: 0
   bulletDuration: 1
+  firingPoint: {fileID: 4465939781030730053}
+  shadowPoint: {fileID: 6107085052550352698}
+  bullet: {fileID: 7973510780219047249, guid: c1a7a3903b7917a47a0471afe9dc1688, type: 3}
   mageTowerStats:
   - maxCharge: 1
   - maxCharge: 2

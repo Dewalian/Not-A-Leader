@@ -102,14 +102,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Protector
-  health: 1000
-  moveSpeed: 1
+  health: 350
+  moveSpeed: 0.3
   attackRange: 0.5
-  attackDamagePhysic: 0
+  attackDamagePhysic: 20
   attackDamageMagic: 0
-  attackCD: 1
-  physicRes: 0
-  magicRes: 0
+  attackCD: 2
+  physicRes: 25
+  magicRes: 10
   healthRegen: 0
   unitState: 0
   OnSwitch:
@@ -118,9 +118,12 @@ MonoBehaviour:
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
-  dodgeChance: 0
-  bounty: 0
-  lifeDamage: 0
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  dodgeChance: 1
+  bounty: 20
+  lifeDamage: 2
 --- !u!58 &162305304421753872
 CircleCollider2D:
   m_ObjectHideFlags: 0

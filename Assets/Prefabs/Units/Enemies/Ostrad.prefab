@@ -102,14 +102,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Ostrad
-  health: 1000
-  moveSpeed: 1
-  attackRange: 0.5
-  attackDamagePhysic: 0
+  health: 1500
+  moveSpeed: 0.05
+  attackRange: 1
+  attackDamagePhysic: 500
   attackDamageMagic: 0
-  attackCD: 1
-  physicRes: 0
-  magicRes: 0
+  attackCD: 2.5
+  physicRes: 20
+  magicRes: 50
   healthRegen: 0
   unitState: 0
   OnSwitch:
@@ -122,13 +122,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   dodgeChance: 0
-  bounty: 0
-  lifeDamage: 0
-  warScreamRange: 3
-  warScreamCD: 5
-  unitCountTrigger: 0
-  earthShakerRange: 5
-  earthShakerCD: 10
+  bounty: 1000
+  lifeDamage: 50
+  warScreamRange: 2.5
+  warScreamCD: 30
+  unitCountTrigger: 10
+  earthShakerRange: 3.5
+  earthShakerCD: 50
   towerCountTrigger: 2
 --- !u!58 &162305304421753872
 CircleCollider2D:

@@ -102,14 +102,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Horse Rider
-  health: 10
+  health: 200
   moveSpeed: 2
   attackRange: 0
   attackDamagePhysic: 0
   attackDamageMagic: 0
   attackCD: 0
-  physicRes: 0
-  magicRes: 0
+  physicRes: 10
+  magicRes: 20
   healthRegen: 0
   unitState: 0
   OnSwitch:
@@ -118,9 +118,12 @@ MonoBehaviour:
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
-  dodgeChance: 0
-  bounty: 0
-  lifeDamage: 2
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  dodgeChance: 5
+  bounty: 15
+  lifeDamage: 3
   lancer: {fileID: 1669481420998670219, guid: 8bb14536000c6664687f06732612068b, type: 3}
 --- !u!58 &4048113197079083278
 CircleCollider2D:

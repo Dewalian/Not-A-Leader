@@ -138,7 +138,7 @@ public class Ally : Unit
 
     public override void DeathAnimator()
     {
-        RemoveFromFight();
+        //RemoveFromFight();
         animator.SetBool("BoolDeath", false);
         health = healthCopy;
         canAttack = true;

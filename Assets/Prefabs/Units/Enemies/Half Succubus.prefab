@@ -102,14 +102,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Half Succubus
-  health: 3000
-  moveSpeed: 1
-  attackRange: 0.5
+  health: 500
+  moveSpeed: 0.3
+  attackRange: 0
   attackDamagePhysic: 0
   attackDamageMagic: 0
-  attackCD: 0
+  attackCD: 999
   physicRes: 0
-  magicRes: 0
+  magicRes: 30
   healthRegen: 0
   unitState: 0
   OnSwitch:
@@ -118,14 +118,17 @@ MonoBehaviour:
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
-  dodgeChance: 0
-  bounty: 0
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  dodgeChance: 3
+  bounty: 60
   lifeDamage: 5
   charmedUnit: {fileID: 7195208647487599242, guid: 407410deb3456d54c97c77e2df9f97fa, type: 3}
-  charmChance: 50
+  charmChance: 35
   maxCharmed: 3
   charmedColor: {r: 1, g: 0.36862746, b: 0.827451, a: 0}
-  heroStunDuration: 10
+  heroStunDuration: 2
 --- !u!58 &7044325704340306457
 CircleCollider2D:
   m_ObjectHideFlags: 0

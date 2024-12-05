@@ -35,6 +35,7 @@ public class HalfSuccubus : Enemy
 
         GameObject charmedObj = Instantiate(charmedUnit, unitTarget.transform.position, Quaternion.identity);
 
+        unitTarget.GetComponent<Ally>().RemoveFromFight();
         unitTarget.GetComponent<Ally>().DeathAnimator();
 
         charmedObj.GetComponent<SpriteRenderer>().sprite = unitTarget.GetComponent<SpriteRenderer>().sprite;
