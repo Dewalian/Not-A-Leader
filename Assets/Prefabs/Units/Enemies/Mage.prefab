@@ -128,7 +128,7 @@ MonoBehaviour:
   rangedDamagePhysic: 0
   rangedDamageMagic: 30
   rangedCD: 1.5
-  bullet: {fileID: 7973510780219047249, guid: 2704ce1b0013c604b9f0922fa85eeab1, type: 3}
+  bullet: {fileID: 7973510780219047249, guid: 752f60e82d80aff4a9a1811bd5d326bd, type: 3}
   allyLayer:
     serializedVersion: 2
     m_Bits: 512

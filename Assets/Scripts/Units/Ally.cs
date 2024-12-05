@@ -36,10 +36,11 @@ public class Ally : Unit
     
     protected override void OnDisable()
     {
-        allyArea.OnMoveArea.RemoveAllListeners();
         health = healthCopy;
+        OnHealthChanged?.Invoke();
         canAttack = true;
         moveSpeed = moveSpeedCopy;
+        allyArea.OnMoveArea.RemoveAllListeners();
     }
 
     protected override void Start()
@@ -52,7 +53,6 @@ public class Ally : Unit
         agent.radius = 0.1f;
         agent.acceleration = 50f;
         
-        StartCoroutine(WalkToTarget(originalPos.position));
         healthCopy = health;
     }
 
