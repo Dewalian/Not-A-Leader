@@ -114,11 +114,11 @@ MonoBehaviour:
   - attackRange: 3
     shootCD: 1.5
     bulletDamagePhysic: 0
-    bulletDamageMagic: 50
+    bulletDamageMagic: 70
   - attackRange: 3.5
     shootCD: 1.2
     bulletDamagePhysic: 0
-    bulletDamageMagic: 65
+    bulletDamageMagic: 85
   - attackRange: 4
     shootCD: 1
     bulletDamagePhysic: 0
@@ -135,7 +135,7 @@ MonoBehaviour:
   - maxCharge: 1
   - maxCharge: 2
   - maxCharge: 3
-  chargeBuffPercentage: 5
+  chargeBuffPercentage: 10
   OnSameTarget:
     m_PersistentCalls:
       m_Calls: []

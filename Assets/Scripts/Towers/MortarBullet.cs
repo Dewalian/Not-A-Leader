@@ -11,15 +11,15 @@ public class MortarBullet : Bullet
 
     protected override void DamageEnemy()
     {
-        Collider2D[] outerCircle = Physics2D.OverlapCircleAll(transform.position, outerRange, enemylayer);
-        Collider2D[] innerCircle = Physics2D.OverlapCircleAll(transform.position, innerRange, enemylayer);
+        Collider2D[] outerCircle = Physics2D.OverlapCircleAll(bullet.position, outerRange, enemylayer);
+        Collider2D[] innerCircle = Physics2D.OverlapCircleAll(bullet.position, innerRange, enemylayer);
 
         GameObject blastObj = Instantiate(blast, endPos, Quaternion.identity);
         ParticleSystem blastParticle = blastObj.GetComponent<ParticleSystem>();
 
         var blastMain = blastParticle.main;
 
-        blastMain.startLifetime = outerRange / 10;
+        blastMain.startLifetime = outerRange;
         blastMain.startSpeed = outerRange * 12;
         blastParticle.Emit((int) outerRange * 12);
 
@@ -29,7 +29,7 @@ public class MortarBullet : Bullet
             foreach(Collider2D e2 in innerCircle){
                 if(e == e2){
                     e2.GetComponent<Unit>().TakeDamage(damagePhysic, damageMagic);
-                    break;
+                    //continue;
                 }
             }
             e.GetComponent<Unit>().TakeDamage(damagePhysic/4, damageMagic/4);

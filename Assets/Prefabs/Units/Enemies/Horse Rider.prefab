@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Horse Rider
-  health: 200
+  health: 400
   moveSpeed: 2
   attackRange: 0
   attackDamagePhysic: 0

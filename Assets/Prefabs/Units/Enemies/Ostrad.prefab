@@ -106,8 +106,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Ostrad
-  health: 1500
-  moveSpeed: 1
+  health: 15000
+  moveSpeed: 0.1
   attackRange: 1
   attackDamagePhysic: 500
   attackDamageMagic: 0

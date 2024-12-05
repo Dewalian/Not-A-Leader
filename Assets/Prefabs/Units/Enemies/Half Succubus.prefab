@@ -102,8 +102,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Half Succubus
-  health: 500
-  moveSpeed: 0.3
+  health: 600
+  moveSpeed: 0.5
   attackRange: 0
   attackDamagePhysic: 0
   attackDamageMagic: 0

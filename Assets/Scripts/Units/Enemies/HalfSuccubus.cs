@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class HalfSuccubus : Enemy
 {
-    private List<Unit> charmedUnits;
+    private List<Unit> charmedUnits = new List<Unit>();
     [SerializeField] private GameObject charmedUnit;
     [SerializeField] private float charmChance;
     [SerializeField] private float maxCharmed;

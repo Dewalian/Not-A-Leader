@@ -25,13 +25,17 @@ public class EnemyRanged : Enemy
     private void DetectTargetRanged()
     {
         Collider2D target = Physics2D.OverlapCircle(transform.position, rangedRange, allyLayer);
-        if(target != null){
+        if(target != null && target.gameObject.activeSelf){
             unitState = State.Shooting;
             FlipDirection(target.transform.position);
             if(canShoot){
                 this.target = target.gameObject;
                 RangeAttackTargetAnimator();
             }
+        }
+        else
+        {
+            unitState = State.Neutral;
         }
     }
 

@@ -102,8 +102,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Archer
-  health: 50
-  moveSpeed: 1
+  health: 200
+  moveSpeed: 1.1
   attackRange: 0.5
   attackDamagePhysic: 5
   attackDamageMagic: 0

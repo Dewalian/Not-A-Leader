@@ -113,11 +113,11 @@ MonoBehaviour:
   stats:
   - attackRange: 4
     shootCD: 2
-    bulletDamagePhysic: 80
+    bulletDamagePhysic: 120
     bulletDamageMagic: 0
   - attackRange: 4.2
     shootCD: 1.7
-    bulletDamagePhysic: 120
+    bulletDamagePhysic: 180
     bulletDamageMagic: 0
   - attackRange: 4.5
     shootCD: 1.5
@@ -132,14 +132,14 @@ MonoBehaviour:
   shadowPoint: {fileID: 5089177008269510584}
   bullet: {fileID: 7973510780219047249, guid: 26e76f7b29a01c94fb76ace1946ec669, type: 3}
   mortarTowerStats:
-  - innerRange: 2
-    outerRange: 5
+  - innerRange: 1
+    outerRange: 1.5
     bulletSize: 1
-  - innerRange: 3
-    outerRange: 6
+  - innerRange: 1.25
+    outerRange: 2
     bulletSize: 1.5
-  - innerRange: 4
-    outerRange: 7
+  - innerRange: 1.5
+    outerRange: 2.5
     bulletSize: 2
 --- !u!61 &2001779129403735682
 BoxCollider2D:

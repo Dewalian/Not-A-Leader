@@ -4934,8 +4934,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Pajama Kid
-  health: 300
-  moveSpeed: 0.2
+  health: 500
+  moveSpeed: 0.3
   attackRange: 0
   attackDamagePhysic: 0
   attackDamageMagic: 0

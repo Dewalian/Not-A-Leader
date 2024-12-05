@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyBullet : Bullet
 {
-    protected override void Start()
+    protected override void SetEndPos()
     {
         endPos = (Vector2)target.position;
     }

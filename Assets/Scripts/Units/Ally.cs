@@ -37,6 +37,9 @@ public class Ally : Unit
     protected override void OnDisable()
     {
         allyArea.OnMoveArea.RemoveAllListeners();
+        health = healthCopy;
+        canAttack = true;
+        moveSpeed = moveSpeedCopy;
     }
 
     protected override void Start()
@@ -140,9 +143,7 @@ public class Ally : Unit
     {
         //RemoveFromFight();
         animator.SetBool("BoolDeath", false);
-        health = healthCopy;
-        canAttack = true;
-        moveSpeed = moveSpeedCopy;
+        
         allyArea.StartRespawn(gameObject);
         gameObject.SetActive(false);
     }
@@ -171,7 +172,7 @@ public class Ally : Unit
 
     public void RemoveFromFight()
     {
-        if(enemy != null || health <= 0){
+        if(enemy != null && health <= 0){
             enemy.GetComponent<Enemy>().RemoveUnitFromFightArr(gameObject);
         }
     }

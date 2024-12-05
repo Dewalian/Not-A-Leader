@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Lancer
-  health: 200
+  health: 500
   moveSpeed: 0.5
   attackRange: 0.7
   attackDamagePhysic: 75

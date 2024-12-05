@@ -36491,7 +36491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b02fa6c93685f4e8c34ba75a76b44f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gold: 20000
+  gold: 400
   life: 50
   heroHealth: 0
   mainCam: {fileID: 519420031}
@@ -36509,6 +36509,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnLifeBreak:
+    m_PersistentCalls:
+      m_Calls: []
+  OnWin:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDefeat:
     m_PersistentCalls:
       m_Calls: []
 --- !u!4 &1976793126

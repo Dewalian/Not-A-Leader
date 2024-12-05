@@ -12,12 +12,7 @@ public class SwiftEnemy : Enemy
 
     protected override void StateChange()
     {
-        if(health <= 0){
-            unitState = State.Death;
-        }
-
-        if(unitState == State.Death){
-            Death();
+        if(unitState == State.Death || unitState == State.Skill){
             return;
         }
         

@@ -102,8 +102,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Fighter
-  health: 100
-  moveSpeed: 0.7
+  health: 250
+  moveSpeed: 1
   attackRange: 0.5
   attackDamagePhysic: 15
   attackDamageMagic: 0
@@ -121,7 +121,7 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
-  dodgeChance: 3
+  dodgeChance: 0
   bounty: 5
   lifeDamage: 1
 --- !u!58 &162305304421753872

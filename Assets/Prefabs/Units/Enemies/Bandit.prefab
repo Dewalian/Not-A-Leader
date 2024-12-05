@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Bandit
-  health: 50
+  health: 200
   moveSpeed: 1.5
   attackRange: 0.5
   attackDamagePhysic: 30

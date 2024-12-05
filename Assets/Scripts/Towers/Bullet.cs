@@ -53,6 +53,7 @@ public class Bullet : MonoBehaviour
         }
 
         DamageEnemy();
+        yield return null;
         Destroy(gameObject);
     }
 

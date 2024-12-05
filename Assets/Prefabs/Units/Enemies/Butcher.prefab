@@ -102,8 +102,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Butcher
-  health: 750
-  moveSpeed: 0.15
+  health: 1500
+  moveSpeed: 0.2
   attackRange: 0.5
   attackDamagePhysic: 50
   attackDamageMagic: 0
@@ -124,6 +124,7 @@ MonoBehaviour:
   dodgeChance: 0
   bounty: 80
   lifeDamage: 5
+  healthPercentage: 0
 --- !u!58 &8825422873262970916
 CircleCollider2D:
   m_ObjectHideFlags: 0

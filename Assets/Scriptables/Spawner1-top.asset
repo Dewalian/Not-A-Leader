@@ -15,9 +15,6 @@ MonoBehaviour:
   waves:
   - miniWave:
     - enemies:
-      - {fileID: 1669481420998670219, guid: b15d96f65d681ff43818813e6813e4cc, type: 3}
-      enemiesSpawnCD: 0
-    - enemies:
       - {fileID: 1669481420998670219, guid: 03f3eacc36df00a4ab6f3ed0a9e39c8f, type: 3}
       enemiesSpawnCD: 0
     - enemies:
@@ -28,10 +25,6 @@ MonoBehaviour:
       - {fileID: 1669481420998670219, guid: 03f3eacc36df00a4ab6f3ed0a9e39c8f, type: 3}
       enemiesSpawnCD: 0.5
     - enemies:
-      - {fileID: 1669481420998670219, guid: 03f3eacc36df00a4ab6f3ed0a9e39c8f, type: 3}
-      enemiesSpawnCD: 0
-    - enemies:
-      - {fileID: 1669481420998670219, guid: 03f3eacc36df00a4ab6f3ed0a9e39c8f, type: 3}
       - {fileID: 1669481420998670219, guid: 03f3eacc36df00a4ab6f3ed0a9e39c8f, type: 3}
       enemiesSpawnCD: 0
     miniWaveSpawnCD: 1

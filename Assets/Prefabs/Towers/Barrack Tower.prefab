@@ -285,7 +285,7 @@ MonoBehaviour:
   knightMagicRes: 0
   knightHealthRegen: 0
   knightArea: {fileID: 5084112843948612129}
-  knightRespawnCD: 10
+  knightRespawnCD: 8
   startPosChecker: {fileID: 8980714776755811321}
   knights:
   - {fileID: 3968574284173201657}
