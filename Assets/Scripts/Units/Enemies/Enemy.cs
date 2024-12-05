@@ -79,6 +79,7 @@ public class Enemy : Unit
     public override void Death()
     {
         LevelManager.Instance.AddGold(bounty);
+        GetComponent<Collider2D>().enabled = false;
         base.Death();
     }
 

@@ -8,7 +8,6 @@ using UnityEngine.Events;
 public class WaveManager : MonoBehaviour
 {
     private float waveTimer;
-    private bool waveCanStart;
     public int waveCount;
     [SerializeField] private float startEarlyDurationPercentage;
     [SerializeField] private float restDuration;

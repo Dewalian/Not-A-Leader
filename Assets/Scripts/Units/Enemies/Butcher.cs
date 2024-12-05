@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Butcher : Enemy
 {
+    [SerializeField] private float healthPercentage;
     protected override void FatalEffect()
     {
-        health = healthCopy;
+        health = healthCopy * healthPercentage / 100;
     }
 
     protected override IEnumerator AttackUnit(GameObject unit)

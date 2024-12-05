@@ -64,9 +64,9 @@ public class MadGambler : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Q) && canActivate){
 
             int face1 = Random.Range(1, 4);
-            int value1 = Random.Range(1, 13);
+            int value1 = Random.Range(0, 12);
             int face2 = Random.Range(1, 4);
-            int value2 = Random.Range(1, 13);
+            int value2 = Random.Range(0, 12);
 
             bool sameFace = face1 == face2;
             bool sameValue = value1 == value2;

@@ -75,8 +75,6 @@ public abstract class Unit : MonoBehaviour
         animator.SetBool("BoolWalk", false);
         animator.SetBool("BoolDeath", true);
         moveSpeed = 0;
-
-        GetComponent<Collider2D>().enabled = false;
     }
 
     public virtual void DeathAnimator()

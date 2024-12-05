@@ -16,6 +16,7 @@ public class LevelCanvas : MonoBehaviour
     [SerializeField] private Sprite waveStartButtonFalse;
     [SerializeField] private Sprite waveStartButtonTrue;
     [SerializeField] private Image waveStartButtonImage;
+    private bool waveCanStart;
     private float timer;
     private float heroMaxHealth;
 
@@ -49,6 +50,7 @@ public class LevelCanvas : MonoBehaviour
         UpdateLifeText();
         UpdateWaveText();
 
+        waveCanStart = true;
         timer = 0;
     }
 
@@ -93,15 +95,19 @@ public class LevelCanvas : MonoBehaviour
     private void WaveCanStart()
     {
         waveStartButtonImage.sprite = waveStartButtonTrue;
+        waveCanStart = true;
     }
 
     private void WaveCannotStart()
     {
         waveStartButtonImage.sprite = waveStartButtonFalse;
+        waveCanStart = false;
     }
 
     public void StartWave()
     {
-        waveManager.StartWave();
+        if(waveCanStart){
+            waveManager.StartWave();
+        }
     }
 }
