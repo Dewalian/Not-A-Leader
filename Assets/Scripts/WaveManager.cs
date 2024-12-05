@@ -26,7 +26,7 @@ public class WaveManager : MonoBehaviour
 
     private IEnumerator CalcWaveStartTime()
     {
-        while(waveTimer < maxWaveDuration * startEarlyDurationPercentage / 100){
+        while(waveTimer < (maxWaveDuration * startEarlyDurationPercentage / 100) + restDuration){
             waveTimer += Time.deltaTime;
             yield return null;
         }
@@ -56,8 +56,8 @@ public class WaveManager : MonoBehaviour
 
     public void SetMaxWaveDuration(float waveDuration)
     {
-        if(waveDuration + restDuration > maxWaveDuration){
-            maxWaveDuration = waveDuration + restDuration;
+        if(waveDuration > maxWaveDuration){
+            maxWaveDuration = waveDuration;
             Debug.Log(maxWaveDuration);
             waveTimer = 0;
         }

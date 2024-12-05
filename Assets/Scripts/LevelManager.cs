@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour
     public Camera mainCam;
     public Camera levelCam;
     [HideInInspector] public UnityEvent OnAddGold;
-     public UnityEvent OnHeroHealthChanged;
+    public UnityEvent OnHeroHealthChanged;
     [HideInInspector] public UnityEvent OnLifeBreak;
 
     private void Awake()
